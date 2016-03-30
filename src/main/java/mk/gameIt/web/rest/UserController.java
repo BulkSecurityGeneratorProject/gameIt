@@ -5,7 +5,6 @@ import mk.gameIt.web.dto.UserObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -61,7 +60,7 @@ public class UserController {
         User user = userService.createNewUser(userObject);
         final URI location = ServletUriComponentsBuilder.
                 fromCurrentServletMapping().path("/users/{id}").build()
-                .expand(user.getId()).toUri();
+                .expand(user.getUserId()).toUri();
         return ResponseEntity.created(location).body(user);
     }
 

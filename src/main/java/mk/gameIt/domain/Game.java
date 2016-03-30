@@ -1,70 +1,161 @@
 package mk.gameIt.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
  * Created by Stefan on 24.03.2016.
  */
 @Entity
-@Table
+@Table(name = "Game")
 public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column
-    @NotNull
+    private Long gameId;
+    @Column(nullable = false)
     private String gameName;
-
-    @Column(length = 4000)
-    @NotNull
+    @Column(nullable = false)
+    private Date gameReleaseYear;
+    @Column(nullable = false)
+    private String gamePicturePath;
+    @Column(nullable = false)
     private String gameDescription;
+    private String gameMinimalPerformance;
+    private String gameOptimalPerformance;
+    @Column(nullable = false)
+    private Long gameNumberOfViews;
 
-    @Column
-    @NotNull
-    private Long gameViews;
+    @Column(nullable = true)
+    private Double gameGradeSum;
 
-    @Column
-    @NotNull
-    private String gameImagePath;
 
-    @Column(length = 1000)
-    private String gameMinRequirements;
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "game")
+    private List<Video> gameVideos;
 
-    @Column(length = 1000)
-    private String gameRecRequirements;
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "GameGenre", joinColumns = {@JoinColumn(name = "gameId")}, inverseJoinColumns = {@JoinColumn(name = "genreId")})
+    private List<Genre> gameGenres;
 
-    @Column
-    private Integer gameReleaseYear;
+    @JsonIgnore
+    @OneToMany(mappedBy = "gameId")
+    private List<GameRating> ratings;
 
-    @Column
-    private Float gameRating;
 
-    @ManyToMany(mappedBy = "gamesRated")
-    private List<User> rated;
+    @JsonIgnore
+    @ManyToMany(mappedBy = "publishedGames")
+    private List<Company> gameCompanies;
 
-    public Game(String gameName, String gameDescription, Long gameViews, String gameImagePath, String gameMinRequirements, String gameRecRequirements, Integer gameReleaseYear, Float gameRating) {
-        this.gameName = gameName;
-        this.gameDescription = gameDescription;
-        this.gameViews = gameViews;
-        this.gameImagePath = gameImagePath;
-        this.gameMinRequirements = gameMinRequirements;
-        this.gameRecRequirements = gameRecRequirements;
-        this.gameReleaseYear = gameReleaseYear;
-        this.gameRating = gameRating;
-    }
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "gameId")
+    private List<CommentGame> comments;
+
 
     public Game() {
+        comments = new ArrayList<CommentGame>();
+        gameVideos = new ArrayList<Video>();
+        gameGenres = new ArrayList<Genre>();
+        gameCompanies = new ArrayList<Company>();
+        double d = 0;
+        gameGradeSum = d;
+        //    prodolzenija = new ArrayList<ImaVerzija>();
     }
 
-    public Long getId() {
-        return id;
+    //TODO: EQUALS AND HASHCODE
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Game game = (Game) o;
+
+        if (!gameName.equals(game.gameName)) return false;
+        if (!gameReleaseYear.equals(game.gameReleaseYear)) return false;
+        if (!gamePicturePath.equals(game.gamePicturePath)) return false;
+        return gameDescription.equals(game.gameDescription);
+
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    @Override
+    public int hashCode() {
+        int result = gameName.hashCode();
+        result = 31 * result + gameReleaseYear.hashCode();
+        result = 31 * result + gamePicturePath.hashCode();
+        result = 31 * result + gameDescription.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "gameId=" + gameId +
+                ", gameName='" + gameName + '\'' +
+                ", gameReleaseYear=" + gameReleaseYear +
+                ", gamePicturePath='" + gamePicturePath + '\'' +
+                ", gameDescription='" + gameDescription + '\'' +
+                ", gameMinimalPerformance='" + gameMinimalPerformance + '\'' +
+                ", gameOptimalPerformance='" + gameOptimalPerformance + '\'' +
+                ", gameNumberOfViews=" + gameNumberOfViews +
+                ", gameGradeSum=" + gameGradeSum +
+                '}';
+    }
+
+    public List<GameRating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<GameRating> ratings) {
+        this.ratings = ratings;
+    }
+
+    public List<CommentGame> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<CommentGame> comments) {
+        this.comments = comments;
+    }
+
+
+    public List<Company> getGameCompanies() {
+        return gameCompanies;
+    }
+
+    public void setGameCompanies(List<Company> gameCompanies) {
+        this.gameCompanies = gameCompanies;
+    }
+
+    public List<Video> getgameVideos() {
+        return gameVideos;
+    }
+
+    public void setgameVideos(List<Video> gameVideos) {
+        this.gameVideos = gameVideos;
+    }
+
+    public List<Genre> getGameGenres() {
+        return gameGenres;
+    }
+
+    public void setGameGenres(List<Genre> gameGenres) {
+        this.gameGenres = gameGenres;
+    }
+
+    public Long getGameId() {
+        return gameId;
+    }
+
+    public void setGameId(Long gameId) {
+        this.gameId = gameId;
     }
 
     public String getGameName() {
@@ -75,6 +166,22 @@ public class Game {
         this.gameName = gameName;
     }
 
+    public Date getGameReleaseYear() {
+        return gameReleaseYear;
+    }
+
+    public void setGameReleaseYear(Date gameReleaseYear) {
+        this.gameReleaseYear = gameReleaseYear;
+    }
+
+    public String getGamePicturePath() {
+        return gamePicturePath;
+    }
+
+    public void setGamePicturePath(String gamePicturePath) {
+        this.gamePicturePath = gamePicturePath;
+    }
+
     public String getGameDescription() {
         return gameDescription;
     }
@@ -83,72 +190,35 @@ public class Game {
         this.gameDescription = gameDescription;
     }
 
-    public Long getGameViews() {
-        return gameViews;
+    public String getGameMinimalPerformance() {
+        return gameMinimalPerformance;
     }
 
-    public void setGameViews(Long gameViews) {
-        this.gameViews = gameViews;
+    public void setGameMinimalPerformance(String gameMinimalPerformance) {
+        this.gameMinimalPerformance = gameMinimalPerformance;
     }
 
-    public String getGameImagePath() {
-        return gameImagePath;
+    public String getGameOptimalPerformance() {
+        return gameOptimalPerformance;
     }
 
-    public void setGameImagePath(String gameImagePath) {
-        this.gameImagePath = gameImagePath;
+    public void setGameOptimalPerformance(String gameOptimalPerformance) {
+        this.gameOptimalPerformance = gameOptimalPerformance;
     }
 
-    public String getGameMinRequirements() {
-        return gameMinRequirements;
+    public long getGameNumberOfViews() {
+        return gameNumberOfViews;
     }
 
-    public void setGameMinRequirements(String gameMinRequirements) {
-        this.gameMinRequirements = gameMinRequirements;
+    public void setGameNumberOfViews(long gameNumberOfViews) {
+        this.gameNumberOfViews = gameNumberOfViews;
     }
 
-    public String getGameRecRequirements() {
-        return gameRecRequirements;
+    public double getGameGradeSum() {
+        return gameGradeSum;
     }
 
-    public void setGameRecRequirements(String gameRecRequirements) {
-        this.gameRecRequirements = gameRecRequirements;
-    }
-
-    public Integer getGameReleaseYear() {
-        return gameReleaseYear;
-    }
-
-    public void setGameReleaseYear(Integer gameReleaseYear) {
-        this.gameReleaseYear = gameReleaseYear;
-    }
-
-    public Float getGameRating() {
-        return gameRating;
-    }
-
-    public void setGameRating(Float gameRating) {
-        this.gameRating = gameRating;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Game game = (Game) o;
-
-        if (!gameName.equals(game.gameName)) return false;
-        if (!gameDescription.equals(game.gameDescription)) return false;
-        return gameImagePath.equals(game.gameImagePath);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = gameName.hashCode();
-        result = 31 * result + gameDescription.hashCode();
-        result = 31 * result + gameImagePath.hashCode();
-        return result;
+    public void setGameGradeSum(double gameGradeSum) {
+        this.gameGradeSum = gameGradeSum;
     }
 }

@@ -10,11 +10,9 @@ public enum Provider {
             return "/login";
         }
     },
-    GITHUB {
+    GOOGLE{
         @Override
-        public String getLoginUrl() {
-            return "/login/github";
-        }
+        public String getLoginUrl(){return "/login/google";}
     },
     FACEBOOK {
         @Override

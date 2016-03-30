@@ -1,5 +1,6 @@
 package mk.gameIt.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
@@ -14,7 +15,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long userId;
 
     @NotNull
     @Column(unique = true, name = "username")
@@ -42,9 +43,21 @@ public class User {
     @Enumerated(EnumType.STRING)
     public Role role;
 
-    @ManyToMany
-    @JoinTable(name = "user_rating_game",joinColumns =})
-    private List<Game> gamesRated;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "userId")
+    private List<CommentGame> commentsGame;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "userId")
+    private List<CommentHardwareProduct> commentsHardware;
+
+    @OneToMany(mappedBy = "userId")
+    private List<GameRating> gamesRatings;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "userId")
+    private List<HardwareProductRating> hardwareProductRatings;
 
 
 
@@ -91,12 +104,12 @@ public class User {
         this.provider = provider;
     }
 
-    public Long getId() {
-        return id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
