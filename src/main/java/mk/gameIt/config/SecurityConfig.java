@@ -68,8 +68,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic();
-                http
+        http.httpBasic()
+                .and()
+
                 .logout()
                 .and()
                 .authorizeRequests()
@@ -111,4 +112,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         repository.setHeaderName("X-XSRF-TOKEN");
         return repository;
     }
+
 }

@@ -59,16 +59,6 @@ public class User {
     @OneToMany(mappedBy = "userId")
     private List<HardwareProductRating> hardwareProductRatings;
 
-
-
-
-
-
-
-
-
-
-
     public User() {
     }
 

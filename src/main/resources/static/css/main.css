@@ -1,18 +1,28 @@
 .ng-scope {
-    /*border: 1px solid black;*/
+    /*
+    border: 1px solid black;
+    NICE BG COLOR: #2f4050;
+    */
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url('../fonts/roboto/Roboto-Medium.ttf');
 }
 
 body {
     font-family: 'Roboto', sans-serif;
+    padding-top: 70px;
 }
+
 @media screen and (min-device-width: 992px) {
-   body {
-       padding-top: 70px;
-   }
+    body {
+        padding-top: 70px;
+    }
 }
 
 #navbar {
-    background-color: #293239;
+    background-color: #2f4050;
     border-color: transparent;
 }
 
@@ -36,41 +46,13 @@ body {
     background: #32a1cf;
 }
 
-.fullscreen-bg {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
-    z-index: -100;
+.social-buttons{
+    margin:12px 0
+}
+.social-buttons button{
+    width: 35%;
 }
 
-video#bgvid {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -100;
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
-    background: url('../images/bgImg.jpg') no-repeat;
-    background-size: cover;
-}
-
-video {
-    display: block;
-}
-
-@media screen and (max-device-width: 768px) {
-    html {
-        background: url('../images/bgImg.jpg') #000 no-repeat center center fixed;
-    }
-
-    #bgvid {
-        display: none;
-    }
+.social-buttons .row{
+    padding-bottom: 10px;
 }

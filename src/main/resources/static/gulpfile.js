@@ -32,7 +32,9 @@ var CSS_LIB = [
     'bower_components/ngQuickDate/dist/ng-quick-date-plus-default-theme.css',
     'bower_components/angular-bootstrap-colorpicker/css/colorpicker.css',
     'bower_components/angular-xeditable/dist/css/xeditable.css',
-    'bower_components/AngularJS-Toaster/toaster.min.css'
+    'bower_components/AngularJS-Toaster/toaster.min.css',
+    'bower_components/components-font-awesome/css/font-awesome.min.css'
+
 ];
 
 var CSS_APP = [
@@ -42,7 +44,6 @@ var CSS_APP = [
 var JS_LIB = [
     'bower_components/jquery/dist/jquery.min.js',
     'bower_components/angular/angular.js',
-
     'bower_components/bootstrap/dist/js/bootstrap.min.js',
     'bower_components/bootstrap-switch/dist/js/bootstrap-switch.min.js',
     'bower_components/angular-cookies/angular-cookies.js',
@@ -67,7 +68,6 @@ var JS_LIB = [
     'bower_components/select2/select2.js',
     'bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js',
     'bower_components/is_js/is.min.js',
-
     'bower_components/angular-base64/angular-base64.js',
     'bower_components/sockjs/sockjs.js',
     'bower_components/stomp-websocket/lib/stomp.js',
