@@ -68,8 +68,6 @@ public class Game {
         //    prodolzenija = new ArrayList<ImaVerzija>();
     }
 
-    //TODO: EQUALS AND HASHCODE
-
 
     @Override
     public boolean equals(Object o) {
