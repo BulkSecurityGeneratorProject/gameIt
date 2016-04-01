@@ -36,6 +36,11 @@
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
+                    <li ng-hide="authenticated"><a ui-sref="login"><i class="fa fa-sign-in"></i>    Login</a></li>
+                    <li ng-show="authenticated"><a href="" ng-click="logout()"><i class="fa fa-sign-out"></i> Logout</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" ng-show="administrator">
                     <li><a href="#">Link</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"

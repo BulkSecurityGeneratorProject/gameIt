@@ -2,7 +2,26 @@
  * Created by Stefan on 24.03.2016.
  */
 var gameItAngularApp = angular.module('gameItApp', [
-    'ui.router','ngResource']);
+    'ui.router', 'ngResource']);
+gameItAngularApp.run([
+    '$rootScope', '$location', '$window', '$http', '$state', 'CredentialsService',
+    function ($rootScope, $location, $window, $http, $state, CredentialService) {
+        $rootScope.$on('$stateChangeStart',
+            function (event, toState, toParams, fromState, fromParams, options) {
+            });
+        $rootScope.$on('$stateChangeSuccess',
+            function (event, toState, toParams, fromState, fromParams) {
+            });
+
+        $rootScope.$on('$stateNotFound',
+            function (event, unfoundState, fromState, fromParams) {
+                console.log(unfoundState.to); // "lazy.state"
+                console.log(unfoundState.toParams); // {a:1, b:2}
+                console.log(unfoundState.options); // {inherit:false} + default options
+
+                $state.go('notFound');
+            });
+    }]);
 gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider',
     function ($httpProvider, $stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
@@ -46,15 +65,25 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
                     }
                 }
             })
+            .state('accountManagement',{
+                url: "/account-management",
+                parent: 'main',
+                views:{
+                    'page@':{
+                        templateUrl: 'views/account-management.html',
+                        controller: 'AccountManagementController'
+                    }
+                }
+            })
             .state('admin', {
                 abstract: true,
                 parent: 'main'
             })
-            .state('user-management',{
+            .state('user-management', {
                 url: "/user-management",
                 parent: 'admin',
-                views:{
-                    'page@':{
+                views: {
+                    'page@': {
                         templateUrl: 'views/admin/user-management.html',
                         controller: 'UserManagementController'
                     }
@@ -64,3 +93,4 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
         $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 
     }]);
+

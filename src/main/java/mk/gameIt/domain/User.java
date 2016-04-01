@@ -43,6 +43,10 @@ public class User {
     @Enumerated(EnumType.STRING)
     public Role role;
 
+ //   @JsonIgnore
+  //  @OneToOne
+  //  @JoinColumn(referencedColumnName = "id")
+  //  private OAuthAccount client;
 
     @JsonIgnore
     @OneToMany(mappedBy = "userId")

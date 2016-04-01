@@ -5,3 +5,4 @@ buildNumber.properties
 *.iml
 .idea/
 
+*-aplication.properties
