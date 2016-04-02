@@ -2,10 +2,28 @@
  * Created by Stefan on 24.03.2016.
  */
 var gameItAngularApp = angular.module('gameItApp', [
-    'ui.router', 'ngResource']);
+    'ui.router', 'ngResource', 'textAngular', 'pascalprecht.translate','angularTranslateApp',
+        'LocalStorageModule',
+    'ngCookies',
+    'ngAria',
+    'ngFileUpload',
+    'smart-table',
+    'ui.bootstrap',
+    'toastr',
+    'angular-loading-bar',
+    'ngAnimate',
+    'infinite-scroll'
+
+
+
+
+]);
+
 gameItAngularApp.run([
     '$rootScope', '$location', '$window', '$http', '$state', 'CredentialsService',
     function ($rootScope, $location, $window, $http, $state, CredentialService) {
+        $rootScope.language='mk';
+
         $rootScope.$on('$stateChangeStart',
             function (event, toState, toParams, fromState, fromParams, options) {
             });
@@ -44,6 +62,7 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
                         controller: 'HomeController'
                     }
                 }
+
             })
             .state('login', {
                 url: "/login",
@@ -65,32 +84,49 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
                     }
                 }
             })
-            .state('accountManagement',{
+            .state('accountManagement', {
                 url: "/account-management",
                 parent: 'main',
-                views:{
-                    'page@':{
+                views: {
+                    'page@': {
                         templateUrl: 'views/account-management.html',
                         controller: 'AccountManagementController'
                     }
                 }
             })
             .state('admin', {
-                abstract: true,
-                parent: 'main'
+                url: "/administrator",
+                parent: 'main',
+                views:{
+                    'page@':{
+                        templateUrl: 'views/admin/admin.html',
+                        controller: 'AdminController'
+                    }
+                }
+            })
+            .state('admin-news-post', {
+                url: "/admin-news-post",
+                parent: 'admin',
+                views: {
+                    'admin': {
+                        templateUrl: 'views/admin/admin-news-post.html',
+                        controller: 'AdminNewsPostController'
+                    }
+                }
             })
             .state('user-management', {
                 url: "/user-management",
                 parent: 'admin',
                 views: {
-                    'page@': {
+                    'admin': {
                         templateUrl: 'views/admin/user-management.html',
                         controller: 'UserManagementController'
                     }
                 }
             });
 
-        $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+       // $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+
 
     }]);
 

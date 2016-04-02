@@ -1,33 +1,33 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-6">
-            <div class="alert alert-danger" ng-show="error">
+            <div class="alert alert-danger" ng-show="error" translate="login.messages.error.authentication">
                 There was a problem logging in. Please try again.
             </div>
-            <h2 class="page-header text-center">Sign in</h2>
+            <h2 class="page-header text-center" translate="login.title">Sign in</h2>
             <form role="form" ng-submit="loginLocal()">
                 <div class="form-group">
-                    <label for="username">Username:</label>
+                    <label for="username" translate="login.form.username">Username:</label>
                     <input type="text" class="form-control" id="username" name="username"
-                           ng-model="credentials.username"/>
+                           ng-model="credentials.username" placeholder="{{'login.form.username.placeholder' | translate}}"/>
                 </div>
                 <div class="form-group">
-                    <label for="password">Password:</label>
+                    <label for="password" translate="login.form.password">Password:</label>
                     <input type="password" class="form-control" id="password" name="password"
-                           ng-model="credentials.password"/>
+                           ng-model="credentials.password" placeholder="{{'login.form.password.placeholder' | translate}}"/>
                 </div>
-                <button type="submit" class="btn btn-primary">Sign in</button>
+                <button type="submit" class="btn btn-primary" translate="login.form.button">Sign in</button>
             </form>
             <div class="row">
                 <div class="col-sm-12">
-                    <h3>Don't have an account? <a type="button" ui-sref="register">Register</a>.</h3>
+                    <h3 translate="login.noAccount">Don't have an account? <a type="button" ui-sref="register">Register</a>.</h3>
                 </div>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="row">
                 <div class="col-sm-12 text-center">
-                    <h2 class="page-header">Sign in using external providers</h2>
+                    <h2 class="page-header" translate="login.externalProviders">Sign in using external providers</h2>
                 </div>
             </div>
             <div class="social-buttons">

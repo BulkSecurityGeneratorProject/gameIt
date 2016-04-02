@@ -1,0 +1,21 @@
+{
+  "admin": {
+    "title": "Administration",
+    "sidenav": {
+      "dashboard": {
+        "main": "Dashboard"
+      },
+      "charts": {
+        "main": "Charts"
+      },
+      "newsPost": {
+        "main": "News Post",
+        "success": "Settings saved!",
+        "error": "<strong>An error has occurred!</strong> Settings could not be saved."
+      },
+      "users": {
+        "main": "Users"
+      }
+    }
+  }
+}

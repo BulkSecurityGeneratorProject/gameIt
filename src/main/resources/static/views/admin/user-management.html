@@ -1,0 +1,46 @@
+<h2 translate="userManagement.home.title">Users</h2>
+<div class="alert alert-success" ng-show="success">
+    <strong translate="admin.sidenav.users.main.success">Settings saved!</strong>
+</div>
+<div class="alert alert-danger" ng-show="error">
+    <span translate="admin.sidenav.users.main.error"><strong>An error has occurred!</strong> Settings could not be saved.</span>
+</div>
+<table st-table="displayedUsers" st-safe-src="userList" class="table table-hover table-stripped">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th translate="userManagement.username">Username</th>
+        <th translate="userManagement.email">Email</th>
+        <th translate="userManagement.firstName">First Name</th>
+        <th translate="userManagement.lastName">Last Name</th>
+        <th translate="userManagement.admin">Admin</th>
+        <th translate="userManagement.delete">Delete</th>
+    </tr>
+  <!--  <tr>
+        <th>
+            <input st-search="" placeholder="Global search..." class="input-sm form-control"/>
+        </th>
+    </tr>-->
+    </thead>
+    <tbody>
+    <tr ng-repeat="user in displayedUsers" class="">
+        <td>{{user.id}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.role == "ROLE_ADMIN"}}</td>
+        <td>
+            <button class="btn btn-danger" ng-click="deleteUser(user)">Delete</button>
+        </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="6" class="text-center">
+            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="5"></div>
+        </td>
+    </tr>
+    </tfoot>
+
+</table>

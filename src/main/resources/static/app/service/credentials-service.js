@@ -14,15 +14,21 @@ gameItAngularApp.factory('CredentialsService', ['$http', '$rootScope', function 
                     if ($rootScope.loggedInUser === undefined) {
                         $rootScope.loggedInUser = response.data.principal;
                     }
+                    if(response.data.authorities[0].authority == "ROLE_ADMIN"){
+                        console.log("isAdmin");
+                        $rootScope.administrator = true;
+                    }
                     $rootScope.authenticated = true;
                 } else {
                     $rootScope.loggedInUser = undefined;
                     $rootScope.authenticated = false;
+                    $rootScope.administrator = false;
                 }
                 console.log(response);
                 callback && callback();
             }, function error(response) {
                 $rootScope.authenticated = false;
+                $rootScope.administrator = false;
                 console.log(response);
                 callback && callback();
             });

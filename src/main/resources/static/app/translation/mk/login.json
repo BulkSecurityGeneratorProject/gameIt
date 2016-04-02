@@ -1,0 +1,23 @@
+{
+    "login": {
+        "title": "Најавете се",
+        "form": {
+            "username": "Корисничко име",
+            "username.placeholder": "Вашето корисничко име",
+            "password": "Лозинка",
+            "password.placeholder": "Вашата лозинка",
+            "rememberme": "Запамти ме",
+            "button": "Најава"
+        },
+        "messages": {
+            "error": {
+                "authentication": "<strong>Најавата беше неуспешна!</strong> Ве молиме проверете ги вашето корисничко име и лозинка и пробајте повторно."
+            }
+        },
+        "password" : {
+            "forgot": "Ја заборавивте вашата лозинка? "
+        },
+        "noAccount": "Немате корисничка сметка? <a href=\"\" type=\"button\" ui-sref=\"register\">Регистрирајте се</a>.",
+        "externalProviders": "Најавете се користејќи надворешни провајдери"
+    }
+}

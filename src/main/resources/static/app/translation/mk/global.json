@@ -1,0 +1,77 @@
+{
+    "global": {
+        "title": "GameIt",
+        "menu": {
+            "home": "Дома",
+            "account": {
+                "main": "Сметка",
+                "settings": "Подесувања",
+                "password": "Лозинка",
+                "sessions": "Сесии",
+                "login": "Најава",
+                "logout": "Одјава",
+                "register": "Регистрација"
+            },
+            "search.placeholder": "Пребарувај",
+            "admin": {
+                "main": "Администрација",
+                "userManagement": "Менаџирање на корисници"
+            },
+            "language": "Јазик",
+            "buttonLang_mk": "Македонски",
+            "buttonLang_en": "Англиски"
+
+
+        },
+        "form": {
+            "username": "Корисничко име",
+            "username.placeholder": "Вашето корисничко име",
+            "newpassword": "Нова лозинка",
+            "newpassword.placeholder": "Нова лозинка",
+            "confirmpassword": "Конфирмација за новата лозинка",
+            "confirmpassword.placeholder": "Потврдете ја новата лозинка",
+            "email": "E-mail",
+            "email.placeholder": "Вашата e-mail адреса"
+        },
+        "messages": {
+            "info": {
+                "authenticated": "If you want to <a class=\"alert-link\" href=\"\" ng-click=\"vm.login()\">sign in</a>, you can try the default accounts:<br/>- Administrator (login=\"admin\" and password=\"admin\") <br/>- User (login=\"user\" and password=\"user\").",
+                "register": "You don't have an account yet? <a class=\"alert-link\" ui-sref=\"register\">Register a new account</a>"
+            },
+            "error": {
+                "dontmatch": "Лозинката и нејзината потврда не се совпаѓаат!"
+            },
+            "validate": {
+                "newpassword": {
+                    "required": "Вашата лозинка е задолжителна.",
+                    "minlength": "Вашата лозинка треба да содржи најмалку 5 карактери.",
+                    "maxlength": "Вашата лозинка неможе да биде поголема од 50 карактери.",
+                    "strength": "Јачината на лозинката:"
+                },
+                "confirmpassword": {
+                    "required": "Морате да ја потврдите вашата лозинка.",
+                    "minlength": "Вашата потврдна лозинка треба да содржи најмалку 5 карактери.",
+                    "maxlength": "Вашата потврдна лозинка неможе да биде поголема од 50 карактери."
+                },
+                "email": {
+                    "required": "Вашата e-mail адреса е задолжителна.",
+                    "invalid": "Вашата e-mail адреса е невалидна.",
+                    "minlength": "Вашата e-mail адреса треба да содржи најмалку 5 карактери.",
+                    "maxlength": "Вашата e-mail адреса неможе да биде поголема од 50 карактери."
+                }
+            }
+        },
+        "field": {
+            "id": "ID"
+        }
+    },
+    "error": {
+        "server.not.reachable": "Неможе да се пристапи серверот",
+        "NotNull": "Полето {{ fieldName }} неможе да биде празно!",
+        "Size": "Полето {{ fieldName }} does not meet min/max size requirements!",
+        "userexists": "Корисничкото име веќе постои во системот!",
+        "emailexists": "E-mail адресата веќе постои во системот!",
+        "idexists": "A new {{ entityName }} cannot already have an ID"
+    },
+    "footer": "Ова е вашиот footer"
+}

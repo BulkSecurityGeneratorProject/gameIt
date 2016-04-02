@@ -1,0 +1,12 @@
+{
+  "home": {
+    "title": "Welcome!",
+    "subtitle": "This is your homepage",
+    "logged": {
+      "message": "You are logged in as user \"{{username}}\"."
+    },
+    "link": {
+      "homepage": "Game It homepage"
+    }
+  }
+}

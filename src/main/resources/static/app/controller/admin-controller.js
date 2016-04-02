@@ -1,10 +1,10 @@
 /**
- * Created by Stefan on 30.03.2016.
+ * Created by Stefan on 02.04.2016.
  */
-gameItAngularApp.controller('HomeController', ['$scope', '$rootScope', '$http','$translate', '$translatePartialLoader',
+gameItAngularApp.controller('AdminController', ['$scope', '$rootScope', '$http','$translate', '$translatePartialLoader',
     function ($scope, $rootScope, $http, $translate, $translatePartialLoader) {
         $scope.hello = "hellossssssz";
         // $scope.account = AccountService.query();
-        $translatePartialLoader.addPart('home');
+        $translatePartialLoader.addPart('admin');
         $translate.refresh();
     }]);

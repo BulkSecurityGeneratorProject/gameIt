@@ -33,8 +33,12 @@ var CSS_LIB = [
     'bower_components/angular-bootstrap-colorpicker/css/colorpicker.css',
     'bower_components/angular-xeditable/dist/css/xeditable.css',
     'bower_components/AngularJS-Toaster/toaster.min.css',
-    'bower_components/components-font-awesome/css/font-awesome.min.css'
-
+    'bower_components/components-font-awesome/css/font-awesome.min.css',
+    'bower_components/textAngular/dist/textAngular.css',
+    'bower_components/flag-icon-css/css/flag-icon.min.css',
+    'bower_components/metisMenu/dist/metisMenu.min.css',
+    'bower_components/angular-toggle-switch/angular-toggle-switch.css',
+    'bower_components/angular-toggle-switch/angular-toggle-switch.bootstrap.css'
 ];
 
 var CSS_APP = [
@@ -49,10 +53,10 @@ var JS_LIB = [
     'bower_components/angular-cookies/angular-cookies.js',
     'bower_components/angular-animate/angular-animate.js',
     'bower_components/angular-aria/angular-aria.js',
+     'bower_components/angular-sanitize/angular-sanitize.js',
     'bower_components/angular-loading-bar/build/loading-bar.js',
     'bower_components/angular-local-storage/dist/angular-local-storage.js',
     'bower_components/angular-resource/angular-resource.min.js',
-    'bower_components/angular-sanitize/angular-sanitize.min.js',
     'bower_components/angular-ui-router/release/angular-ui-router.min.js',
     'bower_components/angular-toastr/dist/angular-toastr.js',
     'bower_components/angular-toastr/dist/angular-toastr.tpls.js',
@@ -77,7 +81,16 @@ var JS_LIB = [
     'bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch.min.js',
     'bower_components/angular-xeditable/dist/js/xeditable.js',
     'bower_components/angular-bootstrap/ui-bootstrap.js',
-    'bower_components/angular-bootstrap/ui-bootstrap-tpls.js'
+    'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+    'bower_components/textAngular/dist/textAngular-rangy.min.js',
+    'bower_components/textAngular/dist/textAngular-sanitize.min.js',
+    'bower_components/textAngular/dist/textAngular.min.js',
+    'bower_components/angular-translate/angular-translate.min.js',
+    'bower_components/angular-translate-loader-partial/angular-translate-loader-partial.min.js',
+    'bower_components/metisMenu/dist/metisMenu.min.js',
+    'bower_components/angular-toggle-switch/angular-toggle-switch.min.js',
+    'bower_components/Chart.js/Chart.min.js'
+
 
 
 ];
@@ -185,7 +198,7 @@ gulp.task('watch', function () {
     gulp.watch('css/**/**.css', ['concat_css_app', 'cache-break']);
 });
 
-gulp.task('default', function() {
+gulp.task('default', function () {
     //runSequence('serve');
     gulp.start('watch');
 });
