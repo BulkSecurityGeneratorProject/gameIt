@@ -127,6 +127,6 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
 
        // $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 
-
+//dpsaiojdsaiopjdasiodjoisa
     }]);
 
