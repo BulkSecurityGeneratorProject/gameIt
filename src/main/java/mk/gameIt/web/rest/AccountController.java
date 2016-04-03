@@ -32,7 +32,6 @@ public class AccountController {
 
     @RequestMapping("/authenticate")
     public Principal user(Principal user) {
-        log.debug("Authenticate called, returning true");
         return user;
     }
 }

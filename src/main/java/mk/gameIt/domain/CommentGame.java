@@ -1,5 +1,7 @@
 package mk.gameIt.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -17,6 +19,7 @@ public class CommentGame implements Serializable {
     @JoinColumn(name = "userId", referencedColumnName = "userId")
     private User userId;
 
+    @JsonIgnore
     @Id
     @ManyToOne
     @JoinColumn(name = "gameId", referencedColumnName = "gameId")

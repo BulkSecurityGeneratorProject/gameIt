@@ -20,7 +20,14 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public List<Game> findAll() {
-        return gameRepository.findAll();
+
+        List<Game> gameList = gameRepository.findAll();
+        //Setting the comments to null since we don't need them
+        //when we show the games to the user
+        for (Game game : gameList) {
+            game.setComments(null);
+        }
+        return gameList;
     }
 
     @Override

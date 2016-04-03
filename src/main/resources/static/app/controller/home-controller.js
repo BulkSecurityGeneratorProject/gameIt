@@ -7,4 +7,6 @@ gameItAngularApp.controller('HomeController', ['$scope', '$rootScope', '$http','
         // $scope.account = AccountService.query();
         $translatePartialLoader.addPart('home');
         $translate.refresh();
+
+     
     }]);

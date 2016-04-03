@@ -23,7 +23,7 @@ public class Game {
     private Date gameReleaseYear;
     @Column(nullable = false, length = 300)
     private String gamePicturePath;
-    @Column(nullable = false , length = 4000)
+    @Column(nullable = false, length = 4000)
     private String gameDescription;
     @Column(length = 1000)
     private String gameMinimalPerformance;
@@ -40,7 +40,6 @@ public class Game {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "game")
     private List<Video> gameVideos;
 
-    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "GameGenre", joinColumns = {@JoinColumn(name = "gameId")}, inverseJoinColumns = {@JoinColumn(name = "genreId")})
     private List<Genre> gameGenres;
@@ -55,7 +54,6 @@ public class Game {
     private List<Company> gameCompanies;
 
 
-    @JsonIgnore
     @OneToMany(mappedBy = "gameId")
     private List<CommentGame> comments;
 

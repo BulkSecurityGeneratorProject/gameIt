@@ -15,7 +15,6 @@ gameItAngularApp.factory('CredentialsService', ['$http', '$rootScope', function 
                         $rootScope.loggedInUser = response.data.principal;
                     }
                     if(response.data.authorities[0].authority == "ROLE_ADMIN"){
-                        console.log("isAdmin");
                         $rootScope.administrator = true;
                     }
                     $rootScope.authenticated = true;

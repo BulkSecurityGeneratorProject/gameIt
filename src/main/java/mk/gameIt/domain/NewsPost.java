@@ -24,10 +24,12 @@ public class NewsPost {
     private Date postAddDate;
 
     @Column(nullable = false )
-    private Long postNumberOfViews;
+    private Long postNumberOfViews =(long)0;
 
     @Column(nullable = true)
     private String postVideoUrl;
+
+    private String tags;
 
     @Override
     public boolean equals(Object o) {

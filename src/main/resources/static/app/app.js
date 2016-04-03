@@ -37,7 +37,7 @@ gameItAngularApp.run([
                 console.log(unfoundState.toParams); // {a:1, b:2}
                 console.log(unfoundState.options); // {inherit:false} + default options
 
-                $state.go('notFound');
+               // $state.go('notFound');
             });
     }]);
 gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider',
@@ -147,6 +147,16 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
                     }
                 }
             })
+            .state('admin.metrics',{
+                url: "/metrics",
+                parent: 'admin',
+                views: {
+                    'admin':{
+                        templateUrl: 'views/admin/metrics.html',
+                        controller: 'AdminMetricsController'
+                    }
+                }
+            })
             .state('admin-news-post', {
                 url: "/admin-news-post",
                 parent: 'admin',
@@ -169,8 +179,5 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
             });
 
        // $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
-//dsadsa
-        //asddsa
-//dpsaiojdsaiopjdasiodjoisa
     }]);
 

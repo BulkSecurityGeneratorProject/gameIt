@@ -11,7 +11,6 @@ gameItAngularApp.controller('GamesController',['$rootScope','$scope', '$translat
         console.log($scope.gamesList);
         $scope.text="ADJE TOMMY BABA";
         $scope.viewGame = function(gameId) {
-            console.log(gameId);
             $state.go('games.game', {id:gameId});
         }
 }]);

@@ -1,5 +1,7 @@
 package mk.gameIt.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,7 @@ public class Genre {
     private String genreName;
 
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "gameGenres")
     private List<Game> games;
 

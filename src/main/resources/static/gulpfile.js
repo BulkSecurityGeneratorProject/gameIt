@@ -53,7 +53,7 @@ var JS_LIB = [
     'bower_components/angular-cookies/angular-cookies.js',
     'bower_components/angular-animate/angular-animate.js',
     'bower_components/angular-aria/angular-aria.js',
-     'bower_components/angular-sanitize/angular-sanitize.js',
+  //   'bower_components/angular-sanitize/angular-sanitize.js',
     'bower_components/angular-loading-bar/build/loading-bar.js',
     'bower_components/angular-local-storage/dist/angular-local-storage.js',
     'bower_components/angular-resource/angular-resource.min.js',
