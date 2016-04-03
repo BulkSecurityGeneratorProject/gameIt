@@ -16,7 +16,7 @@ public class NewsPost {
     @Column(nullable = false)
     private String postTitle;
 
-    @Column(name = "postDescription", nullable = false)
+    @Column(name = "postDescription", nullable = false, length = 4000)
     private String postDescription;
 
     @Column(nullable = false)

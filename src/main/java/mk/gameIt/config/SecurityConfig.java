@@ -2,7 +2,6 @@ package mk.gameIt.config;
 
 import mk.gameIt.authentication.LoginFailureHandler;
 import mk.gameIt.authentication.LoginSuccessHandler;
-import mk.gameIt.authentication.OAuthClientResource;
 import mk.gameIt.domain.Provider;
 import mk.gameIt.domain.Role;
 import org.slf4j.Logger;

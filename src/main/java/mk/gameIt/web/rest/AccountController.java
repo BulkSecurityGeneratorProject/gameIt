@@ -27,7 +27,7 @@ public class AccountController {
 
     @RequestMapping(value = "/account", method = RequestMethod.POST)
     public void createNewAccount(@RequestBody UserObject userObject) {
-
+//styytyhtyh
     }
 
     @RequestMapping("/authenticate")

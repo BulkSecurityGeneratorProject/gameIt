@@ -26,7 +26,7 @@ public class CommentGame implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long commentId;
 
-    @Column(name = "commentText", nullable = false)
+    @Column(name = "commentText", nullable = false,  length = 4000)
     private String commentText;
 
     @Column(name = "commentDate", nullable = false)

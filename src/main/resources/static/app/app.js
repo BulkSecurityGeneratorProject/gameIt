@@ -74,6 +74,49 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
                     }
                 }
             })
+            .state('news', {
+                url: "/news",
+                parent: 'main',
+                views: {
+                    'page@': {
+                        templateUrl: 'views/news.html',
+                        controller: 'NewsController'
+                    }
+                }
+            })
+
+            .state('games', {
+                url: "/games",
+                parent:'main',
+                views:{
+                    'page@':{
+                        templateUrl: 'views/games.html',
+                        controller: 'GamesController'
+                    }
+                }
+            })
+
+            .state('games.game', {
+                url: "/:id",
+                parent: 'games',
+                views: {
+                    'page@': {
+                        templateUrl: 'views/game.html',
+                        controller: 'GameController'
+                    }
+                }
+            })
+
+            .state('hardware', {
+                url: "/hardware",
+                parent: 'main',
+                views:{
+                    'page@':{
+                        templateUrl: 'views/hardware.html',
+                        controller: 'HardwareController'
+                    }
+                }
+            })
             .state('register', {
                 url: "/register",
                 parent: 'main',
@@ -127,6 +170,7 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
 
        // $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 //dsadsa
+        //asddsa
 //dpsaiojdsaiopjdasiodjoisa
     }]);
 

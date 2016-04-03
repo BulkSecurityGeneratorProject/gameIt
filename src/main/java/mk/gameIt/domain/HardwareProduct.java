@@ -21,9 +21,9 @@ public class HardwareProduct {
 
     @Column(nullable = false)
     private Date hardwareProductionYear;
-    @Column(nullable = false)
+    @Column(nullable = false,  length = 300)
     private String hardwarePicturePath;
-    @Column(nullable = false)
+    @Column(nullable = false,  length = 4000)
     private String hardwareDescription;
     @Column(nullable = false)
     private Long hardwareNumberOfViews;

@@ -21,11 +21,13 @@ public class Game {
     private String gameName;
     @Column(nullable = false)
     private Date gameReleaseYear;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 300)
     private String gamePicturePath;
-    @Column(nullable = false)
+    @Column(nullable = false , length = 4000)
     private String gameDescription;
+    @Column(length = 1000)
     private String gameMinimalPerformance;
+    @Column(length = 1000)
     private String gameOptimalPerformance;
     @Column(nullable = false)
     private Long gameNumberOfViews;

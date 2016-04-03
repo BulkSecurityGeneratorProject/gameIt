@@ -3,6 +3,9 @@
         "title": "GameIt",
         "menu": {
             "home": "Дома",
+            "news": "Новости",
+            "games": "Игри",
+            "hardware": "Хардвер",
             "account": {
                 "main": "Сметка",
                 "settings": "Подесувања",

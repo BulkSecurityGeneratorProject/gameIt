@@ -18,16 +18,5 @@ gameItAngularApp.controller('LoginController', ['$scope', '$rootScope', '$locati
                 }
             });
         }
-        $scope.loginFacebook = function () {
-            $http({
-                method: 'GET',
-                url: '/login/facebook'
-            });
-        }
-        $scope.loginGoogle = function () {
-            $http({
-                method: 'GET',
-                url: '/login/google'
-            });
-        }
+
     }]);
