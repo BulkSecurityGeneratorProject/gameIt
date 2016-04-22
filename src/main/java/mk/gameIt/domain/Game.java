@@ -17,12 +17,20 @@ public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long gameId;
+
+    @NotNull
     @Column(nullable = false)
     private String gameName;
+
+    @NotNull
     @Column(nullable = false)
     private Date gameReleaseYear;
+
+    @NotNull
     @Column(nullable = false, length = 300)
     private String gamePicturePath;
+
+    @NotNull
     @Column(nullable = false, length = 4000)
     private String gameDescription;
     @Column(length = 1000)
@@ -30,10 +38,10 @@ public class Game {
     @Column(length = 1000)
     private String gameOptimalPerformance;
     @Column(nullable = false)
-    private Long gameNumberOfViews;
+    private Long gameNumberOfViews = (long)0;
 
     @Column(nullable = true)
-    private Double gameGradeSum;
+    private Double gameGradeSum = (double)0;
 
 
     @JsonIgnore
@@ -63,8 +71,7 @@ public class Game {
         gameVideos = new ArrayList<Video>();
         gameGenres = new ArrayList<Genre>();
         gameCompanies = new ArrayList<Company>();
-        double d = 0;
-        gameGradeSum = d;
+
         //    prodolzenija = new ArrayList<ImaVerzija>();
     }
 

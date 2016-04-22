@@ -1,6 +1,7 @@
 package mk.gameIt.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,9 @@ public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long companyId;
+
+    @NotNull
+    @Column(unique = true, nullable=false)
     private String companyName;
 
     @ManyToMany

@@ -1,9 +1,16 @@
 /**
  * Created by Stefan on 02.04.2016.
  */
-gameItAngularApp.controller('AdminNewsPostController', ['$scope', '$rootScope','NewsPostService','$http',
-    function ($scope, $rootScope,NewsPostService,$http) {
+gameItAngularApp.controller('AdminNewsPostController', ['$scope', '$rootScope','NewsPostService','$http', '$translate', '$translatePartialLoader',
+    function ($scope, $rootScope,NewsPostService,$http, $translate, $translatePartialLoader) {
+        $translatePartialLoader.addPart('news');
+        $translate.refresh();
         $scope.newsPost = {};
+
+        $http.get('/api/news').then(function success(response){
+            console.log(response);
+            $scope.inserted=response.data[0].postDescription;
+        })
             $scope.click = function(){
                 console.log($scope.newsPost);
            $http({

@@ -1,7 +1,11 @@
 package mk.gameIt.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -16,56 +20,59 @@ public class CommentHardwareProduct implements Serializable {
 
     @Id
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "userId", referencedColumnName = "userId")
     private User userId;
 
     @Id
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "hardwareId", referencedColumnName = "hardwareId")
     private HardwareProduct hardwareId;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long commentId;
 
+    @NotNull
     @Column(name = "commentText", nullable = false, length = 4000)
     private String commentText;
 
-    @Column(name = "commentDate", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date commentDate;
 
+    //TODO: INSERT COMMENT DATE AUTOMATICALLY ON CREATE
+    @Column(nullable = false)
+    private LocalDateTime commentDate;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof CommentHardwareProduct)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         CommentHardwareProduct that = (CommentHardwareProduct) o;
 
-        if (getUserId() != null ? !getUserId().equals(that.getUserId()) : that.getUserId() != null) return false;
-        if (getHardwareId() != null ? !getHardwareId().equals(that.getHardwareId()) : that.getHardwareId() != null) return false;
-        if (getCommentId() != null ? !getCommentId().equals(that.getCommentId()) : that.getCommentId() != null) return false;
-        if (getCommentText() != null ? !getCommentText().equals(that.getCommentText()) : that.getCommentText() != null) return false;
-        return getCommentDate() != null ? getCommentDate().equals(that.getCommentDate()) : that.getCommentDate() == null;
+        if (!userId.equals(that.userId)) return false;
+        if (!hardwareId.equals(that.hardwareId)) return false;
+        if (!commentId.equals(that.commentId)) return false;
+        if (!commentText.equals(that.commentText)) return false;
+        return commentDate.equals(that.commentDate);
 
     }
 
     @Override
     public int hashCode() {
-        int result = getUserId() != null ? getUserId().hashCode() : 0;
-        result = 31 * result + (getHardwareId() != null ? getHardwareId().hashCode() : 0);
-        result = 31 * result + (getCommentId() != null ? getCommentId().hashCode() : 0);
-        result = 31 * result + (getCommentText() != null ? getCommentText().hashCode() : 0);
-        result = 31 * result + (getCommentDate() != null ? getCommentDate().hashCode() : 0);
+        int result = userId.hashCode();
+        result = 31 * result + hardwareId.hashCode();
+        result = 31 * result + commentId.hashCode();
+        result = 31 * result + commentText.hashCode();
+        result = 31 * result + commentDate.hashCode();
         return result;
     }
 
-    public Date getCommentDate() {
+    public LocalDateTime getCommentDate() {
         return commentDate;
     }
 
-    public void setCommentDate(Date commentDate) {
+    public void setCommentDate(LocalDateTime commentDate) {
         this.commentDate = commentDate;
     }
 

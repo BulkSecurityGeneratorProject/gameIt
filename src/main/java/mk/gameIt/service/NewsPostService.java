@@ -11,4 +11,12 @@ public interface NewsPostService {
     List<NewsPost> findAll();
 
     NewsPost save(NewsPost newsPost);
+
+    NewsPost findOne(Long id);
+
+    void deleteAll();
+
+    void delete(Long id);
+
+    NewsPost update(Long id, NewsPost newsPost);
 }

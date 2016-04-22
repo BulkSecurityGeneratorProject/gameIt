@@ -1,36 +1,53 @@
 package mk.gameIt.service.impl;
 
+import mk.gameIt.GameItApplication;
+import mk.gameIt.domain.User;
+import mk.gameIt.repository.UserRepository;
+import mk.gameIt.service.UserService;
+import mk.gameIt.web.dto.UserObject;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+import static org.junit.Assert.*;
 
 /**
- * Created by Stefan on 24.03.2016.
+ * Created by Stefan on 16.04.2016.
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = GameItApplication.class)
+@WebAppConfiguration
 public class UserServiceImplTest {
+    @Autowired
+    private UserService userService;
 
-    @Before
-    public void setUp() throws Exception {
+    @Autowired
+    UserRepository userRepository;
 
-    }
-
-    @After
-    public void tearDown() throws Exception {
-
-    }
 
     @Test
-    public void findAll() throws Exception {
-
+    public void createNewUser() {
+       UserObject userObject = new UserObject();
+        userObject.setUsername("Peshou");
+        userObject.setEmail("stefan.pesik@gmail.com");
+        userObject.setFirstName("Stefan");
+        userObject.setLastName("Peshikj");
+        userObject.setPassword("pesho123");
+        User newUser = userService.createNewUser(userObject);
+        assertNotNull(newUser);
     }
-
     @Test
-    public void findOne() throws Exception {
-
+    public void updateUser() {
+    assertTrue(true);
     }
 
-    @Test
-    public void deleteOne() throws Exception {
 
-    }
 }

@@ -1,6 +1,7 @@
 package mk.gameIt.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -20,6 +21,7 @@ public class HardwareProductRating implements Serializable {
     @JoinColumn(name = "hardwareId", referencedColumnName = "hardwareId")
     private HardwareProduct hardwareId;
 
+    @NotNull
     @Column(name = "rating", nullable = false)
     private int rating;
 

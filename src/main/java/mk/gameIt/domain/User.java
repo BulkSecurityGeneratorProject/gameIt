@@ -5,6 +5,8 @@ import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 /**
@@ -36,7 +38,18 @@ public class User {
     private String lastName;
 
     @Column(nullable = false, columnDefinition = "TINYINT(1)")
-    private boolean active = true;
+    private boolean activated = true;
+
+    private String langKey;
+
+    private String profileImagePath;
+
+    @Size(max = 20)
+    @Column(name = "reset_key", length = 20)
+    private String resetKey;
+
+    @Column(name = "reset_date", nullable = true)
+    private ZonedDateTime resetDate = null;
 
     @Enumerated(EnumType.STRING)
     public Provider provider = Provider.LOCAL;
@@ -65,6 +78,7 @@ public class User {
     private List<HardwareProductRating> hardwareProductRatings;
 
     public User() {
+       langKey = LangKey.en.name();
     }
 
     @Override
@@ -147,22 +161,54 @@ public class User {
         this.lastName = lastName;
     }
 
-    public boolean isActive() {
-        return active;
+    public boolean isActivated() {
+        return activated;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setActivated(boolean activated) {
+        this.activated = activated;
     }
 
+    public String getLangKey() {
+        return langKey;
+    }
 
-    public User(String username, String email, String passwordHash, String firstName, String lastName, boolean active, boolean admin) {
+    public void setLangKey(String langKey) {
+        this.langKey = langKey;
+    }
+
+    public String getProfileImagePath() {
+        return profileImagePath;
+    }
+
+    public void setProfileImagePath(String profileImagePath) {
+        this.profileImagePath = profileImagePath;
+    }
+
+    public String getResetKey() {
+        return resetKey;
+    }
+
+    public void setResetKey(String resetKey) {
+        this.resetKey = resetKey;
+    }
+
+    public ZonedDateTime getResetDate() {
+        return resetDate;
+    }
+
+    public void setResetDate(ZonedDateTime resetDate) {
+        this.resetDate = resetDate;
+    }
+
+    public User(String username, String email, String passwordHash, String firstName, String lastName, boolean activated, boolean admin) {
         this.username = username;
         this.email = email;
         this.passwordHash = passwordHash;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.active = active;
+        this.activated = activated;
+        this.langKey = LangKey.en.name();
     }
 }
 

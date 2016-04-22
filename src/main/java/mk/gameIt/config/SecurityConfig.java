@@ -84,6 +84,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .deleteCookies("JSESSIONID")
                 .permitAll();
 
+
         http
                 .authorizeRequests()
                 .antMatchers("/index.html", "/home.html", "/login.html", "/**", "/").permitAll()
@@ -93,6 +94,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
         http.addFilterBefore(ssoFilter(), BasicAuthenticationFilter.class);
+
+
 
     }
 

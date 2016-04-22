@@ -28,12 +28,38 @@ public class NewsPostServiceImpl implements NewsPostService {
         NewsPost post = new NewsPost();
         post.setPostDescription(newsPost.getPostDescription());
         post.setPostAddDate(newsPost.getPostAddDate());
+        newsPost.setPublishedPicturePath(newsPost.getPublishedPicturePath());
+        newsPost.setTags(newsPost.getTags());
         if(post.getPostAddDate() == null){
-            Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now());
-            post.setPostAddDate(timestamp);
+            post.setPostAddDate(LocalDateTime.now());
         }
 
         post.setPostTitle(newsPost.getPostTitle());
         return newsPostRepository.save(post);
     }
+
+    @Override
+    public NewsPost findOne(Long id) {
+        return newsPostRepository.findOne(id);
+    }
+
+    @Override
+    public void deleteAll() {
+        newsPostRepository.deleteAll();
+    }
+
+    @Override
+    public void delete(Long id) {
+        newsPostRepository.delete(id);
+    }
+
+    @Override
+    public NewsPost update(Long id, NewsPost newsPost) {
+        NewsPost newsPost1 = newsPostRepository.findOne(id);
+        //TODO:  FINISH UPDATING NEWS POST
+        // newsPost1.set(newsPost.get);
+        return newsPostRepository.save(newsPost1);
+    }
+
+
 }

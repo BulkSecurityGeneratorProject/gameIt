@@ -3,10 +3,7 @@ package mk.gameIt.web.rest;
 import mk.gameIt.domain.NewsPost;
 import mk.gameIt.service.NewsPostService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +23,17 @@ public class NewsPostController {
     @RequestMapping(value="/news", method = RequestMethod.POST)
     public NewsPost saveNewsPost(@RequestBody NewsPost newsPost ){
         return newsPostService.save(newsPost);
+    }
+    @RequestMapping(value ="/news/{id}", method = RequestMethod.GET)
+    public NewsPost getOneNewsPost(@PathVariable Long id){
+        return newsPostService.findOne(id);
+    }
+    @RequestMapping(value = "/news/{id}", method = RequestMethod.DELETE)
+    public void deleteOneNewsPost(@PathVariable Long id){
+        newsPostService.delete(id);
+    }
+    @RequestMapping(value="/news/{id}", method = RequestMethod.PUT)
+    public NewsPost updateOneNewsPost(@PathVariable Long id, @RequestBody NewsPost newsPost){
+        return newsPostService.update(id, newsPost);
     }
 }

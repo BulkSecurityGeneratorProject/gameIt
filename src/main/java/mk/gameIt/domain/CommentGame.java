@@ -3,7 +3,9 @@ package mk.gameIt.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -15,6 +17,7 @@ import java.util.Date;
 public class CommentGame implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "userId", referencedColumnName = "userId")
     private User userId;
@@ -26,39 +29,35 @@ public class CommentGame implements Serializable {
     private Game gameId;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long commentId;
 
+    @NotNull
     @Column(name = "commentText", nullable = false,  length = 4000)
     private String commentText;
 
-    @Column(name = "commentDate", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date commentDate;
+
+    @Column(nullable = false)
+    private LocalDateTime commentDate;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof CommentGame)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        CommentGame commentGame = (CommentGame) o;
+        CommentGame that = (CommentGame) o;
 
-        if (getUserId() != null ? !getUserId().equals(commentGame.getUserId()) : commentGame.getUserId() != null) return false;
-        if (getGameId() != null ? !getGameId().equals(commentGame.getGameId()) : commentGame.getGameId() != null)
-            return false;
-        if (getCommentId() != null ? !getCommentId().equals(commentGame.getCommentId()) : commentGame.getCommentId() != null) return false;
-        if (getCommentText() != null ? !getCommentText().equals(commentGame.getCommentText()) : commentGame.getCommentText() != null) return false;
-        return getCommentDate() != null ? getCommentDate().equals(commentGame.getCommentDate()) : commentGame.getCommentDate() == null;
+        if (!userId.equals(that.userId)) return false;
+        if (!gameId.equals(that.gameId)) return false;
+        return commentText.equals(that.commentText);
 
     }
 
     @Override
     public int hashCode() {
-        int result = getUserId() != null ? getUserId().hashCode() : 0;
-        result = 31 * result + (getGameId() != null ? getGameId().hashCode() : 0);
-        result = 31 * result + (getCommentId() != null ? getCommentId().hashCode() : 0);
-        result = 31 * result + (getCommentText() != null ? getCommentText().hashCode() : 0);
-        result = 31 * result + (getCommentDate() != null ? getCommentDate().hashCode() : 0);
+        int result = userId.hashCode();
+        result = 31 * result + gameId.hashCode();
+        result = 31 * result + commentText.hashCode();
         return result;
     }
 
@@ -94,11 +93,11 @@ public class CommentGame implements Serializable {
         this.commentId = commentId;
     }
 
-    public Date getCommentDate() {
+    public LocalDateTime getCommentDate() {
         return commentDate;
     }
 
-    public void setCommentDate(Date commentDate) {
+    public void setCommentDate(LocalDateTime commentDate) {
         this.commentDate = commentDate;
     }
 }

@@ -18,4 +18,8 @@ public interface UserService {
     User updateUser(Long id, UserObject userObject);
 
     User createNewUser(UserObject userObject);
+
+    void deleteAll();
+
+    void changeLangKey(String lang, String username);
 }

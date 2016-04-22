@@ -1,6 +1,7 @@
 package mk.gameIt.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by Stefan on 1/15/2016.
@@ -11,6 +12,8 @@ public class Video {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long videoId;
+
+    @NotNull
     @Column(nullable = false)
     private String videoLink;
 

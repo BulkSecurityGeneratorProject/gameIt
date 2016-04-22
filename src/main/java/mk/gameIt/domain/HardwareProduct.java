@@ -1,6 +1,7 @@
 package mk.gameIt.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,21 +15,32 @@ public class HardwareProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long hardwareId;
+
+    @NotNull
     @Column(nullable = false)
     private String hardwarePerformance;
+
+    @NotNull
     @Column(nullable = false)
     private String hardwareModelName;
 
+    @NotNull
     @Column(nullable = false)
     private Date hardwareProductionYear;
-    @Column(nullable = false,  length = 300)
-    private String hardwarePicturePath;
-    @Column(nullable = false,  length = 4000)
-    private String hardwareDescription;
-    @Column(nullable = false)
-    private Long hardwareNumberOfViews;
 
-    private Double hardwareGradeSum;
+    @NotNull
+    @Column(nullable = false, length = 300)
+    private String hardwarePicturePath;
+
+    @NotNull
+    @Column(nullable = false, length = 4000)
+    private String hardwareDescription;
+
+    @NotNull
+    @Column(nullable = false)
+    private Long hardwareNumberOfViews = (long) 0;
+
+    private Double hardwareGradeSum = (double) 0;
 
     @ManyToOne
     @JoinTable(name = "TypeOfHardware", joinColumns = {@JoinColumn(name = "hardwareId")}, inverseJoinColumns = {@JoinColumn(name = "categoryId")})
@@ -47,8 +59,8 @@ public class HardwareProduct {
     private List<HardwareProductRating> oceni;
 
     public HardwareProduct() {
-     //   kompanii = new ArrayList<Company>();
-    //    comments = new ArrayList<CommentHardwareProduct>();
+        //   kompanii = new ArrayList<Company>();
+        //    comments = new ArrayList<CommentHardwareProduct>();
         oceni = new ArrayList<HardwareProductRating>();
     }
 
@@ -173,8 +185,14 @@ public class HardwareProduct {
 
     @Override
     public int hashCode() {
-        int result = getHardwareId().hashCode();
-        result = 31 * result + getHardwarePerformance().hashCode();
+        int result = 0;
+
+        if (getHardwareId() != null) {
+            result = getHardwareId().hashCode();
+            result = 31 * result + getHardwarePerformance().hashCode();
+        } else {
+            result = getHardwarePerformance().hashCode();
+        }
         result = 31 * result + getHardwareModelName().hashCode();
         result = 31 * result + getHardwareProductionYear().hashCode();
         result = 31 * result + getHardwarePicturePath().hashCode();

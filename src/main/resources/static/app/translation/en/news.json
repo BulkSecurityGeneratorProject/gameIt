@@ -1,5 +1,9 @@
 {
   "news": {
-      "header": "News"
+      "header": "News",
+      "form":{
+        "postTitle": "Enter title here",
+        "publish": "Publish"
+      }
   }
 }

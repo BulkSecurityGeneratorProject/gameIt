@@ -3,6 +3,7 @@ package mk.gameIt.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,8 @@ public class Genre {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long genreId;
 
-    @Column(nullable = false)
+    @NotNull
+    @Column(nullable = false, unique = true)
     private String genreName;
 
 
