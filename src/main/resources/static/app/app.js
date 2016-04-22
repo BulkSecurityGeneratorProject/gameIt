@@ -117,6 +117,18 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
                     }
                 }
             })
+
+            .state('hardware.product', {
+                url:"/:id",
+                parent: 'hardware',
+                views: {
+                    'page@':{
+                        templateUrl: 'views/product.html',
+                        cotroller: 'ProductController'
+                    }
+                }
+            })
+
             .state('register', {
                 url: "/register",
                 parent: 'main',
