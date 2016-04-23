@@ -1,5 +1,6 @@
 package mk.gameIt.config;
 
+import com.github.mkopylec.recaptcha.security.login.FormLoginConfigurerEnhancer;
 import mk.gameIt.authentication.LoginFailureHandler;
 import mk.gameIt.authentication.LoginSuccessHandler;
 import mk.gameIt.domain.Provider;
@@ -64,6 +65,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     UserDetailsService userDetailsService;
     @Autowired
     OAuth2ClientContext oAuth2ClientContext;
+    @Autowired
+    private FormLoginConfigurerEnhancer enhancer;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -77,7 +80,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic();
+
+    enhancer.addRecaptchaSupport(http.formLogin()).loginPage("/login");
         http.logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/")

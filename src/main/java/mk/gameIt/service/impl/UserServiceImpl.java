@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setLastName(userObject.getLastName());
         //userObject.get
         //user.setAdmin(userObject.getAdmin());
-       // user.setActivated(userObject.getActivated());
+        // user.setActivated(userObject.getActivated());
         userRepository.save(user);
         log.debug("Changed Information for User: {}", user);
         return user;
@@ -85,7 +85,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setLangKey("en");
         user.setProvider(Provider.LOCAL);
         user.setRole(Role.ROLE_USER);
-        if(userObject.getProfileImage()==null) {
+        if (userObject.getProfileImage() == null) {
             File img = ResourceUtils.getFile("classpath:static/images/defaultProfileImage.png");
             byte[] imag = IOUtils.toByteArray(new FileInputStream(img));
             Blob imageBlob = new SerialBlob(imag);
@@ -119,7 +119,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
         return null;
     }
-    public User finishPasswordReset(String newPassword, String resetKey){
+
+    public User finishPasswordReset(String newPassword, String resetKey) {
         log.debug("Reset user password for reset key {}", resetKey);
 
         User user = userRepository.findOneByResetKey(resetKey);
@@ -132,6 +133,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
         return null;
     }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findOneByUsername(username);

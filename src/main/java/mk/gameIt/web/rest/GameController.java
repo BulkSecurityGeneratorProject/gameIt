@@ -36,7 +36,9 @@ public class GameController {
 
     @RequestMapping(value = "/games/{id}", method = RequestMethod.GET)
     public Game getGame(@PathVariable Long id){
-        return gameService.findOne(id);
+        Game game =  gameService.findOne(id);
+        game = gameService.incrementNumberOfViews(game);
+        return game;
     }
 
     @RequestMapping(value = {"/games/{id}/picture"}, method = RequestMethod.GET)

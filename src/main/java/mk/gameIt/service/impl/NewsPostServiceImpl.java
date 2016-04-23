@@ -4,6 +4,7 @@ import mk.gameIt.domain.NewsPost;
 import mk.gameIt.repository.NewsPostRepository;
 import mk.gameIt.service.NewsPostService;
 import mk.gameIt.web.dto.NewsPostObject;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,11 +18,14 @@ import java.util.List;
 @Service
 @Transactional
 public class NewsPostServiceImpl implements NewsPostService {
+    private final Logger log = org.slf4j.LoggerFactory.getLogger(NewsPostServiceImpl.class);
+
     @Autowired
     NewsPostRepository newsPostRepository;
+
     @Override
     public List<NewsPost> findAll() {
-      return newsPostRepository.findAll();
+        return newsPostRepository.findAll();
     }
 
     @Override
@@ -31,12 +35,14 @@ public class NewsPostServiceImpl implements NewsPostService {
         post.setPostAddDate(newsPost.getPostAddDate());
         newsPost.setPublishedPicturePath(newsPost.getPublishedPicturePath());
         newsPost.setTags(newsPost.getTags());
-        if(post.getPostAddDate() == null){
+        if (post.getPostAddDate() == null) {
             post.setPostAddDate(LocalDateTime.now());
         }
 
         post.setPostTitle(newsPost.getPostTitle());
-        return newsPostRepository.save(post);
+        newsPost = newsPostRepository.save(post);
+        log.debug("Created NewsPost: {}", newsPost);
+        return newsPost;
     }
 
     @Override
@@ -51,6 +57,8 @@ public class NewsPostServiceImpl implements NewsPostService {
 
     @Override
     public void delete(Long id) {
+        //NewsPost newsPost = newsPostRepository.findOne(id);
+        //log.debug("Deleted NewsPost: {}", newsPost);
         newsPostRepository.delete(id);
     }
 

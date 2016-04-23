@@ -3,6 +3,7 @@ package mk.gameIt.service.impl;
 import mk.gameIt.domain.Genre;
 import mk.gameIt.repository.GenreRepository;
 import mk.gameIt.service.GenreService;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +15,8 @@ import java.util.List;
  */
 @Service
 public class GenreServiceImpl implements GenreService {
+    private final Logger log = org.slf4j.LoggerFactory.getLogger(GenreServiceImpl.class);
+
     @Autowired
     private GenreRepository genreRepository;
 
@@ -30,12 +33,16 @@ public class GenreServiceImpl implements GenreService {
     @Transactional
     @Override
     public void delete(Long id) {
+        //Genre genre = genreRepository.findOne(id);
+        //log.debug("Deleted Genre: {}",genre);
         genreRepository.delete(id);
     }
 
     @Transactional
     @Override
     public Genre save(Genre genre) {
-        return genreRepository.save(genre);
+        genre = genreRepository.save(genre);
+        log.debug("Created Genre: {}", genre);
+        return genre;
     }
 }

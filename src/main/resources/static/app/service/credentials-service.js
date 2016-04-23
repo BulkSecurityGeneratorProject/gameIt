@@ -3,7 +3,7 @@
  */
 gameItAngularApp.factory('CredentialsService', ['$http', '$rootScope', function ($http, $rootScope) {
     return {
-        authenticate: function (credentials, callback) {
+            authenticate: function (credentials, callback) {
             var headers = credentials ? {authorization: "Basic " + btoa(credentials.username + ":" + credentials.password)} : {};
             $http({
                 method: 'GET',

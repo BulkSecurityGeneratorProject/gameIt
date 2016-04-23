@@ -7,6 +7,7 @@ import mk.gameIt.repository.HardwareProductRepository;
 import mk.gameIt.repository.UserRepository;
 import mk.gameIt.service.CommentHardwareProductService;
 import mk.gameIt.web.dto.CommentHardwareProductObject;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,7 @@ import java.util.List;
  */
 @Service
 public class CommentHardwareProductServiceImpl implements CommentHardwareProductService {
+    private final Logger log = org.slf4j.LoggerFactory.getLogger(CommentHardwareProductServiceImpl.class);
     @Autowired
     UserRepository userRepository;
     @Autowired
@@ -41,7 +43,8 @@ public class CommentHardwareProductServiceImpl implements CommentHardwareProduct
         commentHardwareProduct.setCommentId(nmrComments);
         commentHardwareProduct.setHardwareId(hardwareProductRepository.findOne(commentHardwareProductObject.getHardwareProductId()));
         commentHardwareProduct.setUserId(userRepository.findOne(commentHardwareProductObject.getUserId()));
-
-        return commentHardwareProductRepository.save(commentHardwareProduct);
+        commentHardwareProduct = commentHardwareProductRepository.save(commentHardwareProduct);
+        log.debug("Created Comment for HardwareProduct: {}", commentHardwareProduct);
+        return commentHardwareProduct;
     }
 }

@@ -3,6 +3,7 @@ package mk.gameIt.service.impl;
 import mk.gameIt.domain.Game;
 import mk.gameIt.repository.GameRepository;
 import mk.gameIt.service.GameService;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,6 +24,8 @@ import java.util.List;
 @Service
 @Transactional
 public class GameServiceImpl implements GameService {
+    private final Logger log = org.slf4j.LoggerFactory.getLogger(GameServiceImpl.class);
+
     @Autowired
     private GameRepository gameRepository;
 
@@ -41,6 +44,7 @@ public class GameServiceImpl implements GameService {
 
     /**
      * Game finder intended for infinite scroll functionality
+     *
      * @param pageable
      * @return
      */
@@ -56,6 +60,12 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    public synchronized Game incrementNumberOfViews(Game game) {
+        game.setGameNumberOfViews(game.getGameNumberOfViews()+1);
+        return gameRepository.save(game);
+    }
+
+    @Override
     public Game findOne(Long id) {
         return gameRepository.findOne(id);
     }
@@ -67,11 +77,15 @@ public class GameServiceImpl implements GameService {
             pictureBlob = new SerialBlob(image.getBytes());
         }
         game.setGamePicture(pictureBlob);
-        return gameRepository.save(game);
+        game = gameRepository.save(game);
+        log.debug("Created Game: {}", game);
+        return game;
     }
 
     @Override
     public void delete(Long id) {
+     //   Game game = gameRepository.findOne(id);
+     //   log.debug("Deleted Game: {}", game);
         gameRepository.delete(id);
 
     }

@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
  * Created by Stefan on 23.04.2016.
  */
 public class CommentGameObject {
+    private Long commentId;
     @NotNull
     private Long userId;
     @NotNull
@@ -19,17 +20,28 @@ public class CommentGameObject {
     public CommentGameObject() {
     }
 
-    public CommentGameObject(Long userId, Long gameId, String commentText, LocalDateTime commentDate) {
+    public CommentGameObject(Long commentId, Long userId, Long gameId, String commentText, LocalDateTime commentDate) {
+        this.commentId = commentId;
         this.userId = userId;
         this.gameId = gameId;
         this.commentText = commentText;
         this.commentDate = commentDate;
     }
+
     public CommentGameObject(CommentGameObject commentGameObject) {
+        this.commentId = commentGameObject.getCommentId();
         this.userId = commentGameObject.getUserId();
         this.gameId = commentGameObject.getGameId();
         this.commentText = commentGameObject.getCommentText();
         this.commentDate = commentGameObject.getCommentDate();
+    }
+
+    public Long getCommentId() {
+        return commentId;
+    }
+
+    public void setCommentId(Long commentId) {
+        this.commentId = commentId;
     }
 
     public Long getUserId() {

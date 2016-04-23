@@ -13,6 +13,9 @@ public interface HardwareProductService {
     HardwareProduct findOne(Long id);
     List<HardwareProduct> findAll();
     Page<HardwareProduct> findAll(Pageable pageable);
+    HardwareProduct incrementNumberOfViews(HardwareProduct hardwareProduct);
     void delete(Long id);
     HardwareProduct save(HardwareProduct hardwareProduct);
+
+    void calculateRating(HardwareProduct hardwareId, int rating);
 }

@@ -15,7 +15,7 @@ import java.util.List;
 public interface GameService {
     List<Game> findAll();
     Page<Game> findAll(Pageable pageable);
-
+    Game incrementNumberOfViews(Game game);
     Game findOne(Long id);
     Game save(Game game, MultipartFile image) throws IOException, SQLException;
     void delete(Long id);

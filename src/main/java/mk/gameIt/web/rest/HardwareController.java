@@ -35,7 +35,9 @@ public class HardwareController {
 
     @RequestMapping(value = "/hardware/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public HardwareProduct getOneHardwareProduct(@PathVariable Long id) {
-        return hardwareProductService.findOne(id);
+        HardwareProduct hardwareProduct =  hardwareProductService.findOne(id);
+        hardwareProduct = hardwareProductService.incrementNumberOfViews(hardwareProduct);
+        return hardwareProduct;
     }
 
     @RequestMapping(value = "/hardware/{id}/picture", method = RequestMethod.GET)

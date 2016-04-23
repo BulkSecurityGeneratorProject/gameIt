@@ -3,6 +3,7 @@ package mk.gameIt.service.impl;
 import mk.gameIt.domain.Tag;
 import mk.gameIt.repository.TagRepository;
 import mk.gameIt.service.TagService;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,8 +15,11 @@ import java.util.List;
  */
 @Service
 public class TagServiceImpl implements TagService {
+    private final Logger log = org.slf4j.LoggerFactory.getLogger(TagServiceImpl.class);
+
     @Autowired
     private TagRepository tagRepository;
+
     @Override
     public Tag findOne(Long id) {
         return tagRepository.findOne(id);
@@ -25,14 +29,20 @@ public class TagServiceImpl implements TagService {
     public List<Tag> findAll() {
         return tagRepository.findAll();
     }
+
     @Transactional
     @Override
     public void delete(Long id) {
+        //Tag tag = tagRepository.findOne(id);
+        //log.debug("Deleted Tag: {}", tag);
         tagRepository.delete(id);
     }
+
     @Transactional
     @Override
     public Tag save(Tag tag) {
-        return tagRepository.save(tag);
+        tag = tagRepository.save(tag);
+        log.debug("Created Tag: {}", tag);
+        return tag;
     }
 }

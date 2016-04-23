@@ -1,5 +1,6 @@
 package mk.gameIt.web.rest;
 
+import mk.gameIt.domain.Role;
 import mk.gameIt.domain.User;
 import mk.gameIt.repository.UserRepository;
 import mk.gameIt.service.UserService;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -40,16 +42,16 @@ public class AccountController {
         return user;
     }
 
-    @RequestMapping(value="/lang",method = RequestMethod.POST)
-    public ResponseEntity changeLanguage(@RequestBody String lang){
+    @RequestMapping(value = "/lang", method = RequestMethod.POST)
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    public ResponseEntity changeLanguage(@RequestBody String lang) {
         String username = null;
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if(authentication.isAuthenticated()){
+        if (authentication.isAuthenticated()) {
             Object principal = authentication.getPrincipal();
-            if(principal instanceof UserDetails){
-                username = ((UserDetails)principal).getUsername();
-            }
-            else{
+            if (principal instanceof UserDetails) {
+                username = ((UserDetails) principal).getUsername();
+            } else {
                 username = principal.toString();
             }
             userService.changeLangKey(lang, username);
