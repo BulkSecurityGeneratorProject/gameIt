@@ -1,6 +1,9 @@
 package mk.gameIt.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,9 +16,11 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long categoryId;
+    @NotNull
     @Column(nullable = false, unique = true)
     private String categoryName;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "category")
     private List<HardwareProduct> hardwareProducts;
 

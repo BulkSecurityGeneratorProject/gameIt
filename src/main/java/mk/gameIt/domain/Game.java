@@ -38,13 +38,11 @@ public class Game {
     @Column(length = 1000)
     private String gameOptimalPerformance;
     @Column(nullable = false)
-    private Long gameNumberOfViews = (long)0;
+    private Long gameNumberOfViews = (long) 0;
 
     @Column(nullable = true)
-    private Double gameGradeSum = (double)0;
+    private Double gameGradeSum = (double) 0;
 
-
-    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "game")
     private List<Video> gameVideos;
 
@@ -52,19 +50,14 @@ public class Game {
     @JoinTable(name = "GameGenre", joinColumns = {@JoinColumn(name = "gameId")}, inverseJoinColumns = {@JoinColumn(name = "genreId")})
     private List<Genre> gameGenres;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "gameId")
     private List<GameRating> ratings;
 
-
-    @JsonIgnore
     @ManyToMany(mappedBy = "publishedGames")
     private List<Company> gameCompanies;
 
-
     @OneToMany(mappedBy = "gameId")
     private List<CommentGame> comments;
-
 
     public Game() {
         comments = new ArrayList<CommentGame>();

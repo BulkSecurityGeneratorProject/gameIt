@@ -36,7 +36,6 @@ public class HardwareProduct {
     @Column(nullable = false, length = 4000)
     private String hardwareDescription;
 
-    @NotNull
     @Column(nullable = false)
     private Long hardwareNumberOfViews = (long) 0;
 
@@ -45,30 +44,27 @@ public class HardwareProduct {
     @ManyToOne
     @JoinTable(name = "TypeOfHardware", joinColumns = {@JoinColumn(name = "hardwareId")}, inverseJoinColumns = {@JoinColumn(name = "categoryId")})
     private Category category;
-/*TODO:FINISH HERE
-    @ManyToMany(mappedBy = "izdadenHardver")
-    private List<Company> kompanii;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.hardver")
-    private List<CommentHardwareProduct> comments;*/
+    @ManyToMany(mappedBy = "publishedHardware")
+    private List<Company> hardwareCompanies;
 
     @OneToMany(mappedBy = "hardwareId")
     private List<CommentHardwareProduct> comments;
 
     @OneToMany(mappedBy = "hardwareId")
-    private List<HardwareProductRating> oceni;
+    private List<HardwareProductRating> ratings;
 
     public HardwareProduct() {
-        //   kompanii = new ArrayList<Company>();
-        //    comments = new ArrayList<CommentHardwareProduct>();
-        oceni = new ArrayList<HardwareProductRating>();
+        hardwareCompanies = new ArrayList<Company>();
+        comments = new ArrayList<CommentHardwareProduct>();
+        ratings = new ArrayList<HardwareProductRating>();
     }
 
-    public List<HardwareProductRating> getOceni() {
-        return oceni;
+    public List<HardwareProductRating> getRatings() {
+        return ratings;
     }
 
-/*    public List<CommentHardwareProduct> getComments() {
+    public List<CommentHardwareProduct> getComments() {
         return comments;
     }
 
@@ -76,13 +72,17 @@ public class HardwareProduct {
         this.comments = comments;
     }
 
-    public List<Company> getGameCompanies() {
-        return kompanii;
+    public List<Company> getHardwareCompanies() {
+        return hardwareCompanies;
     }
 
-    public void setGameCompanies(List<Company> kompanii) {
-        this.kompanii = kompanii;
-    }*/
+    public void setHardwareCompanies(List<Company> hardwareCompanies) {
+        this.hardwareCompanies = hardwareCompanies;
+    }
+
+    public void setRatings(List<HardwareProductRating> ratings) {
+        this.ratings = ratings;
+    }
 
     public Date getHardwareProductionYear() {
         return hardwareProductionYear;
@@ -160,6 +160,11 @@ public class HardwareProduct {
         this.hardwareId = hardid;
     }
 
+    public void setHardwareId(Long hardwareId) {
+        this.hardwareId = hardwareId;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -179,7 +184,7 @@ public class HardwareProduct {
         if (getCategory() != null ? !getCategory().equals(that.getCategory()) : that.getCategory() != null)
             return false;
 
-        return getOceni() != null ? getOceni().equals(that.getOceni()) : that.getOceni() == null;
+        return getRatings() != null ? getRatings().equals(that.getRatings()) : that.getRatings() == null;
 
     }
 
@@ -199,7 +204,7 @@ public class HardwareProduct {
         result = 31 * result + (int) (getHardwareNumberOfViews() ^ (getHardwareNumberOfViews() >>> 32));
         result = 31 * result + (getHardwareGradeSum() != null ? getHardwareGradeSum().hashCode() : 0);
         result = 31 * result + (getCategory() != null ? getCategory().hashCode() : 0);
-        result = 31 * result + (getOceni() != null ? getOceni().hashCode() : 0);
+        result = 31 * result + (getRatings() != null ? getRatings().hashCode() : 0);
         return result;
     }
 

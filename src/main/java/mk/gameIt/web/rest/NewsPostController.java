@@ -2,6 +2,7 @@ package mk.gameIt.web.rest;
 
 import mk.gameIt.domain.NewsPost;
 import mk.gameIt.service.NewsPostService;
+import mk.gameIt.web.dto.NewsPostObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +34,7 @@ public class NewsPostController {
         newsPostService.delete(id);
     }
     @RequestMapping(value="/news/{id}", method = RequestMethod.PUT)
-    public NewsPost updateOneNewsPost(@PathVariable Long id, @RequestBody NewsPost newsPost){
-        return newsPostService.update(id, newsPost);
+    public NewsPost updateOneNewsPost(@PathVariable Long id, @RequestBody NewsPostObject newsPostObject){
+        return newsPostService.update(id, newsPostObject);
     }
 }

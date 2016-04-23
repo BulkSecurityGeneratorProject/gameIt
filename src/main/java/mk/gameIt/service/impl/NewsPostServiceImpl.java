@@ -3,13 +3,12 @@ package mk.gameIt.service.impl;
 import mk.gameIt.domain.NewsPost;
 import mk.gameIt.repository.NewsPostRepository;
 import mk.gameIt.service.NewsPostService;
+import mk.gameIt.web.dto.NewsPostObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -56,7 +55,7 @@ public class NewsPostServiceImpl implements NewsPostService {
     }
 
     @Override
-    public NewsPost update(Long id, NewsPost newsPost) {
+    public NewsPost update(Long id, NewsPostObject newsPostObject) {
         NewsPost newsPost1 = newsPostRepository.findOne(id);
         //TODO:  FINISH UPDATING NEWS POST
         // newsPost1.set(newsPost.get);

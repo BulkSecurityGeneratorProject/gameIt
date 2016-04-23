@@ -1,5 +1,7 @@
 package mk.gameIt.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -19,10 +21,12 @@ public class Company {
     @Column(unique = true, nullable=false)
     private String companyName;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "PublishedGame", joinColumns = {@JoinColumn(name = "companyId")}, inverseJoinColumns = {@JoinColumn(name = "gameId")})
     private List<Game> publishedGames;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "PublishedHardware", joinColumns = {@JoinColumn(name = "companyId")}, inverseJoinColumns = {@JoinColumn(name = "hardwareId")})
     private List<HardwareProduct> publishedHardware;

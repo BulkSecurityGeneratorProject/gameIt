@@ -1,5 +1,7 @@
 package mk.gameIt.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -15,11 +17,13 @@ public class GameRating implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "userId", referencedColumnName = "userId")
     private User userId;
 
     @Id
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "gameId", referencedColumnName = "gameId")
     private Game gameId;
 

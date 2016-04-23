@@ -1,6 +1,7 @@
 package mk.gameIt.service;
 
 import mk.gameIt.domain.NewsPost;
+import mk.gameIt.web.dto.NewsPostObject;
 
 import java.util.List;
 
@@ -18,5 +19,5 @@ public interface NewsPostService {
 
     void delete(Long id);
 
-    NewsPost update(Long id, NewsPost newsPost);
+    NewsPost update(Long id, NewsPostObject newsPostObject);
 }

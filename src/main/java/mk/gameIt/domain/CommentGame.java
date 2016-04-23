@@ -22,8 +22,8 @@ public class CommentGame implements Serializable {
     @JoinColumn(name = "userId", referencedColumnName = "userId")
     private User userId;
 
-    @JsonIgnore
     @Id
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "gameId", referencedColumnName = "gameId")
     private Game gameId;
