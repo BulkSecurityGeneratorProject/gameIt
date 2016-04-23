@@ -2,6 +2,7 @@ package mk.gameIt.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,9 +29,8 @@ public class HardwareProduct {
     @Column(nullable = false)
     private Date hardwareProductionYear;
 
-    @NotNull
-    @Column(nullable = false, length = 300)
-    private String hardwarePicturePath;
+    @Column(nullable = true)
+    private Blob hardwarePicture;
 
     @NotNull
     @Column(nullable = false, length = 4000)
@@ -148,12 +148,12 @@ public class HardwareProduct {
         this.hardwarePerformance = hardwarePerformance;
     }
 
-    public String getHardwarePicturePath() {
-        return hardwarePicturePath;
+    public Blob getHardwarePicture() {
+        return hardwarePicture;
     }
 
-    public void setHardwarePicturePath(String hardwarePicturePath) {
-        this.hardwarePicturePath = hardwarePicturePath;
+    public void setHardwarePicture(Blob hardwarePicture) {
+        this.hardwarePicture = hardwarePicture;
     }
 
     public void setHardid(Long hardid) {
@@ -172,7 +172,7 @@ public class HardwareProduct {
         if (!getHardwarePerformance().equals(that.getHardwarePerformance())) return false;
         if (!getHardwareModelName().equals(that.getHardwareModelName())) return false;
         if (!getHardwareProductionYear().equals(that.getHardwareProductionYear())) return false;
-        if (!getHardwarePicturePath().equals(that.getHardwarePicturePath())) return false;
+        if (!getHardwarePicture().equals(that.getHardwarePicture())) return false;
         if (!getHardwareDescription().equals(that.getHardwareDescription())) return false;
         if (getHardwareGradeSum() != null ? !getHardwareGradeSum().equals(that.getHardwareGradeSum()) : that.getHardwareGradeSum() != null)
             return false;
@@ -195,7 +195,6 @@ public class HardwareProduct {
         }
         result = 31 * result + getHardwareModelName().hashCode();
         result = 31 * result + getHardwareProductionYear().hashCode();
-        result = 31 * result + getHardwarePicturePath().hashCode();
         result = 31 * result + getHardwareDescription().hashCode();
         result = 31 * result + (int) (getHardwareNumberOfViews() ^ (getHardwareNumberOfViews() >>> 32));
         result = 31 * result + (getHardwareGradeSum() != null ? getHardwareGradeSum().hashCode() : 0);
@@ -211,7 +210,7 @@ public class HardwareProduct {
                 ", hardwarePerformance='" + hardwarePerformance + '\'' +
                 ", hardwareModelName='" + hardwareModelName + '\'' +
                 ", hardwareProductionYear=" + hardwareProductionYear +
-                ", hardwarePicturePath='" + hardwarePicturePath + '\'' +
+                ", hardwarePicture='" + hardwarePicture + '\'' +
                 ", hardwareDescription='" + hardwareDescription + '\'' +
                 ", hardwareNumberOfViews=" + hardwareNumberOfViews +
                 ", hardwareGradeSum=" + hardwareGradeSum +

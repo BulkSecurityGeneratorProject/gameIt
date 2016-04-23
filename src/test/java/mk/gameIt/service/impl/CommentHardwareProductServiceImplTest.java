@@ -1,7 +1,6 @@
 package mk.gameIt.service.impl;
 
 import mk.gameIt.GameItApplication;
-import mk.gameIt.domain.CommentHardwareProduct;
 import mk.gameIt.domain.HardwareProduct;
 import mk.gameIt.domain.User;
 import mk.gameIt.repository.CommentHardwareProductRepository;
@@ -17,8 +16,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.Date;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by Stefan on 23.04.2016.
@@ -45,7 +42,6 @@ public class CommentHardwareProductServiceImplTest {
         hardwareProduct.setHardwareModelName("model1");
         hardwareProduct.setHardwareDescription("testGame1Desc");
         hardwareProduct.setHardwareProductionYear(new Date());
-        hardwareProduct.setHardwarePicturePath("dsa");
         hardwareProduct.setHardwarePerformance("perff1");
         hardwareProduct = hardwareProductRepository.save(hardwareProduct);
         commentHardwareProductObject.setUserId(user.getUserId());

@@ -5,6 +5,7 @@ import mk.gameIt.repository.NewsPostRepository;
 import mk.gameIt.service.NewsPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -15,6 +16,7 @@ import java.util.List;
  * Created by Stefan on 03.04.2016.
  */
 @Service
+@Transactional
 public class NewsPostServiceImpl implements NewsPostService {
     @Autowired
     NewsPostRepository newsPostRepository;

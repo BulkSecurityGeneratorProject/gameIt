@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,9 +27,8 @@ public class Game {
     @Column(nullable = false)
     private Date gameReleaseYear;
 
-    @NotNull
-    @Column(nullable = false, length = 300)
-    private String gamePicturePath;
+    @Column(nullable = true)
+    private Blob gamePicture;
 
     @NotNull
     @Column(nullable = false, length = 4000)
@@ -85,7 +85,7 @@ public class Game {
 
         if (!gameName.equals(game.gameName)) return false;
         if (!gameReleaseYear.equals(game.gameReleaseYear)) return false;
-        if (!gamePicturePath.equals(game.gamePicturePath)) return false;
+        if (!gamePicture.equals(game.gamePicture)) return false;
         return gameDescription.equals(game.gameDescription);
 
     }
@@ -94,7 +94,6 @@ public class Game {
     public int hashCode() {
         int result = gameName.hashCode();
         result = 31 * result + gameReleaseYear.hashCode();
-        result = 31 * result + gamePicturePath.hashCode();
         result = 31 * result + gameDescription.hashCode();
         return result;
     }
@@ -105,7 +104,7 @@ public class Game {
                 "gameId=" + gameId +
                 ", gameName='" + gameName + '\'' +
                 ", gameReleaseYear=" + gameReleaseYear +
-                ", gamePicturePath='" + gamePicturePath + '\'' +
+                ", gamePicture='" + gamePicture + '\'' +
                 ", gameDescription='" + gameDescription + '\'' +
                 ", gameMinimalPerformance='" + gameMinimalPerformance + '\'' +
                 ", gameOptimalPerformance='" + gameOptimalPerformance + '\'' +
@@ -179,12 +178,12 @@ public class Game {
         this.gameReleaseYear = gameReleaseYear;
     }
 
-    public String getGamePicturePath() {
-        return gamePicturePath;
+    public Blob getGamePicture() {
+        return gamePicture;
     }
 
-    public void setGamePicturePath(String gamePicturePath) {
-        this.gamePicturePath = gamePicturePath;
+    public void setGamePicture(Blob gamePicture) {
+        this.gamePicture = gamePicture;
     }
 
     public String getGameDescription() {

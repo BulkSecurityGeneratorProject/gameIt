@@ -14,6 +14,8 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -34,7 +36,11 @@ public class UserServiceImplTest {
 
 
     @Test
-    public void createNewUser() {
+    public void createNewUser() throws IOException, SQLException {
+        User user = userRepository.findOneByUsername("Peshou");
+        if(user != null){
+            userRepository.delete(user.getUserId());
+        }
        UserObject userObject = new UserObject();
         userObject.setUsername("Peshou");
         userObject.setEmail("stefan.pesik@gmail.com");

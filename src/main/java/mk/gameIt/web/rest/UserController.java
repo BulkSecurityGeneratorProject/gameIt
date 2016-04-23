@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import mk.gameIt.service.UserService;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.io.IOException;
 import java.net.URI;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -56,7 +58,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.POST)
-    public ResponseEntity<?> createNewUser(@RequestBody UserObject userObject) {
+    public ResponseEntity<?> createNewUser(@RequestBody UserObject userObject) throws IOException, SQLException {
         User user = userService.createNewUser(userObject);
         final URI location = ServletUriComponentsBuilder.
                 fromCurrentServletMapping().path("/users/{id}").build()

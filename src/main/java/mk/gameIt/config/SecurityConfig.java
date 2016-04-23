@@ -84,7 +84,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .deleteCookies("JSESSIONID")
                 .permitAll();
 
-
+    http.authorizeRequests()
+            .antMatchers("/api/logs/**").hasAuthority(Role.ROLE_ADMIN.name())
+            .antMatchers("/api/audits/**").hasAuthority(Role.ROLE_ADMIN.name())
+            .antMatchers("/metrics/**").hasAuthority(Role.ROLE_ADMIN.name())
+            .antMatchers("/health/**").hasAuthority(Role.ROLE_ADMIN.name())
+            .antMatchers("/trace/**").hasAuthority(Role.ROLE_ADMIN.name())
+            .antMatchers("/dump/**").hasAuthority(Role.ROLE_ADMIN.name())
+            .antMatchers("/shutdown/**").hasAuthority(Role.ROLE_ADMIN.name())
+            .antMatchers("/beans/**").hasAuthority(Role.ROLE_ADMIN.name())
+            .antMatchers("/configprops/**").hasAuthority(Role.ROLE_ADMIN.name())
+            .antMatchers("/info/**").hasAuthority(Role.ROLE_ADMIN.name())
+            .antMatchers("/autoconfig/**").hasAuthority(Role.ROLE_ADMIN.name())
+            .antMatchers("/env/**").hasAuthority(Role.ROLE_ADMIN.name())
+            .antMatchers("/mappings/**").hasAuthority(Role.ROLE_ADMIN.name())
+            .antMatchers("/liquibase/**").hasAuthority(Role.ROLE_ADMIN.name())
+            .antMatchers("/v2/api-docs/**").permitAll()
+            .antMatchers("/configuration/security").permitAll()
+            .antMatchers("/configuration/ui").permitAll()
+            .antMatchers("/swagger-ui/index.html").hasAuthority(Role.ROLE_ADMIN.name())
+            .antMatchers("/protected/**").authenticated() ;
         http
                 .authorizeRequests()
                 .antMatchers("/index.html", "/home.html", "/login.html", "/**", "/").permitAll()

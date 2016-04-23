@@ -5,6 +5,7 @@ import mk.gameIt.repository.CategoryRepository;
 import mk.gameIt.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * Created by Stefan on 23.04.2016.
  */
 @Service
+@Transactional
 public class CategoryServiceImpl implements CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;

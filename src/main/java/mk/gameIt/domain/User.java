@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.Email;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.sql.Blob;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class User {
 
     private String langKey;
 
-    private String profileImagePath;
+    private Blob profileImage;
 
     @Size(max = 20)
     @Column(name = "reset_key", length = 20)
@@ -177,12 +178,12 @@ public class User {
         this.langKey = langKey;
     }
 
-    public String getProfileImagePath() {
-        return profileImagePath;
+    public Blob getProfileImage() {
+        return profileImage;
     }
 
-    public void setProfileImagePath(String profileImagePath) {
-        this.profileImagePath = profileImagePath;
+    public void setProfileImage(Blob profileImage) {
+        this.profileImage = profileImage;
     }
 
     public String getResetKey() {

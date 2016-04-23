@@ -18,7 +18,6 @@ import java.util.List;
  * Created by Stefan on 23.04.2016.
  */
 @Service
-@Transactional
 public class CommentHardwareProductServiceImpl implements CommentHardwareProductService {
     @Autowired
     UserRepository userRepository;
@@ -26,6 +25,8 @@ public class CommentHardwareProductServiceImpl implements CommentHardwareProduct
     HardwareProductRepository hardwareProductRepository;
     @Autowired
     CommentHardwareProductRepository commentHardwareProductRepository;
+
+    @Transactional
     @Override
     public CommentHardwareProduct save(CommentHardwareProductObject commentHardwareProductObject) {
         CommentHardwareProduct commentHardwareProduct= new CommentHardwareProduct();

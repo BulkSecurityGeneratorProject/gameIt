@@ -2,6 +2,7 @@ package mk.gameIt.web.rest;
 
 import mk.gameIt.domain.Game;
 import mk.gameIt.service.GameService;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -32,5 +37,22 @@ public class GameController {
     @RequestMapping(value = "/games/{id}", method = RequestMethod.GET)
     public Game getGame(@PathVariable Long id){
         return gameService.findOne(id);
+    }
+
+    @RequestMapping(value = {"/games/{id}/picture"}, method = RequestMethod.GET)
+    public void gamePicture(HttpServletResponse response, @PathVariable Long id) throws IOException, SQLException {
+        OutputStream out = response.getOutputStream();
+        Game game = gameService.findOne(id);
+        if (game == null || game.getGamePicture() == null) {
+            return;
+        }
+        String contentDisposition = String.format("inline;filename=\"%s\"",
+                game.getGameName() + ".png?gameId=" + game.getGameId());
+        response.setHeader("Content-Disposition", contentDisposition);
+        response.setContentType("image/png");
+        response.setContentLength((int) game.getGamePicture().length());
+        IOUtils.copy(game.getGamePicture().getBinaryStream(), out);
+        out.flush();
+        out.close();
     }
 }

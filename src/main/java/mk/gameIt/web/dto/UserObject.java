@@ -1,13 +1,13 @@
 package mk.gameIt.web.dto;
 
-import mk.gameIt.domain.Provider;
 import mk.gameIt.domain.Role;
 import mk.gameIt.domain.User;
 import org.hibernate.validator.constraints.Email;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.sql.Blob;
 
 /**
  * Created by Stefan on 26.03.2016.
@@ -36,7 +36,7 @@ public class UserObject {
     @Size(min = 5, max = 100)
     private String email;
 
-    private String profileImagePath;
+    private MultipartFile profileImage;
 
     private Role role;
 
@@ -80,12 +80,12 @@ public class UserObject {
         this.email = email;
     }
 
-    public String getProfileImagePath() {
-        return profileImagePath;
+    public MultipartFile getProfileImage() {
+        return profileImage;
     }
 
-    public void setProfileImagePath(String profileImagePath) {
-        this.profileImagePath = profileImagePath;
+    public void setProfileImage(MultipartFile profileImage) {
+        this.profileImage = profileImage;
     }
 
     public Role getRole() {
@@ -98,23 +98,14 @@ public class UserObject {
     public UserObject(){
 
     }
-    public UserObject(User user){
-        this.username = user.getUsername();
-        this.password = null;
-        this.firstName = user.getFirstName();
-        this.lastName = user.getLastName();
-        this.email = user.getEmail();
-        this.profileImagePath = user.getProfileImagePath();
-        this.role = user.getRole();
-    }
 
-    public UserObject(String username, String password, String firstName, String lastName, String email, String profileImagePath, Role role) {
+    public UserObject(String username, String password, String firstName, String lastName, String email, MultipartFile profileImage, Role role) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.profileImagePath = profileImagePath;
+        this.profileImage = profileImage;
         this.role = role;
     }
 
@@ -126,7 +117,7 @@ public class UserObject {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", profileImagePath='" + profileImagePath + '\'' +
+                ", profileImage='" + profileImage + '\'' +
                 ", role=" + role +
                 '}';
     }

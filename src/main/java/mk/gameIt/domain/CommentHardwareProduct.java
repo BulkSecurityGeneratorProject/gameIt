@@ -38,8 +38,6 @@ public class CommentHardwareProduct implements Serializable {
     @Column(name = "commentText", nullable = false, length = 4000)
     private String commentText;
 
-
-    //TODO: INSERT COMMENT DATE AUTOMATICALLY ON CREATE
     @Column(nullable = false)
     private LocalDateTime commentDate;
 

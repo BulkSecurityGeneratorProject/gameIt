@@ -17,7 +17,6 @@ import java.util.List;
  * Created by Stefan on 22.04.2016.
  */
 @Service
-@Transactional
 public class CommentGameServiceImpl implements CommentGameService {
     @Autowired
     CommentGameRepository commentGameRepository;
@@ -26,6 +25,7 @@ public class CommentGameServiceImpl implements CommentGameService {
     @Autowired
     GameRepository gameRepository;
 
+    @Transactional
     @Override
     public CommentGame save(CommentGameObject commentGameObject) {
         CommentGame newGame = new CommentGame();

@@ -4,9 +4,12 @@ import mk.gameIt.domain.Provider;
 import mk.gameIt.domain.Role;
 import mk.gameIt.domain.User;
 import mk.gameIt.web.dto.UserObject;
+import org.apache.commons.io.IOUtils;
+import org.hibernate.type.BlobType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate3.support.BlobByteArrayType;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,7 +19,15 @@ import org.springframework.stereotype.Service;
 import mk.gameIt.repository.UserRepository;
 import mk.gameIt.service.UserService;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ResourceUtils;
 
+import javax.sql.rowset.serial.SerialBlob;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +74,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public User createNewUser(UserObject userObject) {
+    public User createNewUser(UserObject userObject) throws IOException, SQLException {
         User user = new User();
         user.setUsername(userObject.getUsername());
         user.setFirstName(userObject.getFirstName());
@@ -74,6 +85,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setLangKey("en");
         user.setProvider(Provider.LOCAL);
         user.setRole(Role.ROLE_USER);
+        if(userObject.getProfileImage()==null) {
+            File img = ResourceUtils.getFile("classpath:static/images/defaultProfileImage.png");
+            byte[] imag = IOUtils.toByteArray(new FileInputStream(img));
+            Blob imageBlob = new SerialBlob(imag);
+            user.setProfileImage(imageBlob);
+        }
         userRepository.save(user);
         log.debug("Created Information for User: {}", user);
         return user;

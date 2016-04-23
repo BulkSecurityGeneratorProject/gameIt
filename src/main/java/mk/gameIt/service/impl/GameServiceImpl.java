@@ -7,7 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.sql.rowset.serial.SerialBlob;
+import java.io.IOException;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -15,6 +21,7 @@ import java.util.List;
  */
 
 @Service
+@Transactional
 public class GameServiceImpl implements GameService {
     @Autowired
     private GameRepository gameRepository;
@@ -54,7 +61,12 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Game save(Game game) {
+    public Game save(Game game, MultipartFile image) throws IOException, SQLException {
+        Blob pictureBlob = null;
+        if (image != null) {
+            pictureBlob = new SerialBlob(image.getBytes());
+        }
+        game.setGamePicture(pictureBlob);
         return gameRepository.save(game);
     }
 

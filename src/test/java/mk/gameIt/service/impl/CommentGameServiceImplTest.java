@@ -42,7 +42,6 @@ public class CommentGameServiceImplTest {
         game.setGameName("testGame1");
         game.setGameDescription("testGame1Desc");
         game.setGameReleaseYear(new Date());
-        game.setGamePicturePath("dsa");
         game = gameRepository.save(game);
         commentGameObject.setUserId(user.getUserId());
         commentGameObject.setGameId(game.getGameId());

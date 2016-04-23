@@ -5,6 +5,7 @@ import mk.gameIt.repository.TagRepository;
 import mk.gameIt.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,12 +25,12 @@ public class TagServiceImpl implements TagService {
     public List<Tag> findAll() {
         return tagRepository.findAll();
     }
-
+    @Transactional
     @Override
     public void delete(Long id) {
         tagRepository.delete(id);
     }
-
+    @Transactional
     @Override
     public Tag save(Tag tag) {
         return tagRepository.save(tag);

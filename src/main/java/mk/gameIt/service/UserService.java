@@ -3,6 +3,9 @@ package mk.gameIt.service;
 import mk.gameIt.domain.User;
 import mk.gameIt.web.dto.UserObject;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -17,7 +20,7 @@ public interface UserService {
 
     User updateUser(Long id, UserObject userObject);
 
-    User createNewUser(UserObject userObject);
+    User createNewUser(UserObject userObject) throws IOException, SQLException;
 
     void deleteAll();
 
