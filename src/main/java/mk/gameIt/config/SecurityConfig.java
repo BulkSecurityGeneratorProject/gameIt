@@ -81,7 +81,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-    enhancer.addRecaptchaSupport(http.formLogin()).loginPage("/login");
+    http.httpBasic();
         http.logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/")

@@ -5,7 +5,7 @@
                 There was a problem logging in. Please try again.
             </div>
             <h2 class="page-header text-center" translate="login.title">Sign in</h2>
-            <form role="form" action="/login" method="POST">
+            <form role="form" ng-submit="loginLocal()">
                 <div class="form-group">
                     <label for="username" translate="login.form.username">Username:</label>
                     <input type="text" class="form-control" id="username" name="username"
