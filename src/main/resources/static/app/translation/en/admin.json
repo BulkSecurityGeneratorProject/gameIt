@@ -14,7 +14,12 @@
         "error": "<strong>An error has occurred!</strong> Settings could not be saved."
       },
       "users": {
-        "main": "Users"
+        "main": "Users",
+        "success": "User deleted successfully",
+        "error": "<strong>An error has occurred!</strong> Settings could not be saved.</span>"
+      },
+      "games": {
+        "main": "Insert a new Game"
       }
     }
   }

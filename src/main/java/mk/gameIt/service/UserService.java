@@ -2,6 +2,7 @@ package mk.gameIt.service;
 
 import mk.gameIt.domain.User;
 import mk.gameIt.web.dto.UserObject;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,13 +17,17 @@ public interface UserService {
 
     User findOne(Long id);
 
+    User findOneByUsername(String username);
+
     void deleteOne(Long id);
 
-    User updateUser(Long id, UserObject userObject);
+    User updateUser(String username, UserObject userObject);
 
     User createNewUser(UserObject userObject) throws IOException, SQLException;
 
     void deleteAll();
+
+    void updateUserImage(MultipartFile image) throws IOException, SQLException;
 
     void changeLangKey(String lang, String username);
 }

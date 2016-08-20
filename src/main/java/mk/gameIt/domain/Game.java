@@ -56,6 +56,7 @@ public class Game {
     @ManyToMany(mappedBy = "publishedGames")
     private List<Company> gameCompanies;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "gameId")
     private List<CommentGame> comments;
 
@@ -64,8 +65,6 @@ public class Game {
         gameVideos = new ArrayList<Video>();
         gameGenres = new ArrayList<Genre>();
         gameCompanies = new ArrayList<Company>();
-
-        //    prodolzenija = new ArrayList<ImaVerzija>();
     }
 
 

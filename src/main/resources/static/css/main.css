@@ -56,3 +56,10 @@ body {
 .social-buttons .row{
     padding-bottom: 10px;
 }
+
+.gameDescription {
+    word-wrap: break-word;
+}
+#map {
+    height: 100%;
+}

@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Blob;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,19 +39,10 @@ public class User {
     @Column(name="lastName")
     private String lastName;
 
-    @Column(nullable = false, columnDefinition = "TINYINT(1)")
-    private boolean activated = true;
-
     private String langKey;
 
+    @JsonIgnore
     private Blob profileImage;
-
-    @Size(max = 20)
-    @Column(name = "reset_key", length = 20)
-    private String resetKey;
-
-    @Column(name = "reset_date", nullable = true)
-    private ZonedDateTime resetDate = null;
 
     @Enumerated(EnumType.STRING)
     public Provider provider = Provider.LOCAL;
@@ -63,20 +55,14 @@ public class User {
   //  @JoinColumn(referencedColumnName = "id")
   //  private OAuthAccount client;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "userId")
     private List<CommentGame> commentsGame;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "userId")
-    private List<CommentHardwareProduct> commentsHardware;
 
     @OneToMany(mappedBy = "userId")
     private List<GameRating> gamesRatings;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "userId")
-    private List<HardwareProductRating> hardwareProductRatings;
+    private List<Location> locations;
 
     public User() {
        langKey = LangKey.en.name();
@@ -162,14 +148,6 @@ public class User {
         this.lastName = lastName;
     }
 
-    public boolean isActivated() {
-        return activated;
-    }
-
-    public void setActivated(boolean activated) {
-        this.activated = activated;
-    }
-
     public String getLangKey() {
         return langKey;
     }
@@ -186,20 +164,28 @@ public class User {
         this.profileImage = profileImage;
     }
 
-    public String getResetKey() {
-        return resetKey;
+    public List<CommentGame> getCommentsGame() {
+        return commentsGame;
     }
 
-    public void setResetKey(String resetKey) {
-        this.resetKey = resetKey;
+    public void setCommentsGame(List<CommentGame> commentsGame) {
+        this.commentsGame = commentsGame;
     }
 
-    public ZonedDateTime getResetDate() {
-        return resetDate;
+    public List<GameRating> getGamesRatings() {
+        return gamesRatings;
     }
 
-    public void setResetDate(ZonedDateTime resetDate) {
-        this.resetDate = resetDate;
+    public void setGamesRatings(List<GameRating> gamesRatings) {
+        this.gamesRatings = gamesRatings;
+    }
+
+    public List<Location> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(List<Location> locations) {
+        this.locations = locations;
     }
 
     public User(String username, String email, String passwordHash, String firstName, String lastName, boolean activated, boolean admin) {
@@ -208,8 +194,9 @@ public class User {
         this.passwordHash = passwordHash;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.activated = activated;
         this.langKey = LangKey.en.name();
+        this.commentsGame = new ArrayList<>();
+        this.gamesRatings = new ArrayList<>();
     }
 }
 

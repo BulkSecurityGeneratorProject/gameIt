@@ -38,7 +38,8 @@ var CSS_LIB = [
     'bower_components/flag-icon-css/css/flag-icon.min.css',
     'bower_components/metisMenu/dist/metisMenu.min.css',
     'bower_components/angular-toggle-switch/angular-toggle-switch.css',
-    'bower_components/angular-toggle-switch/angular-toggle-switch.bootstrap.css'
+    'bower_components/angular-toggle-switch/angular-toggle-switch.bootstrap.css',
+    'bower_components/c3/c3.css'
 ];
 
 var CSS_APP = [
@@ -89,10 +90,10 @@ var JS_LIB = [
     'bower_components/angular-translate-loader-partial/angular-translate-loader-partial.min.js',
     'bower_components/metisMenu/dist/metisMenu.min.js',
     'bower_components/angular-toggle-switch/angular-toggle-switch.min.js',
-    'bower_components/Chart.js/Chart.min.js'
-
-
-
+    'bower_components/Chart.js/Chart.min.js',
+    'bower_components/d3/d3.js',
+    'bower_components/c3/c3.js',
+    'bower_components/angular-password/angular-password.js'
 ];
 
 var JS_APP = [

@@ -18,7 +18,7 @@ public class GameObject {
     @NotNull
     private Date gameReleaseYear;
 
-    private Blob gamePicturePath;
+    private String gamePicture;
 
     @NotNull
     private String gameDescription;
@@ -34,11 +34,11 @@ public class GameObject {
     public GameObject() {
     }
 
-    public GameObject(Long gameId, String gameName, Date gameReleaseYear, Blob gamePicturePath, String gameDescription, String gameMinimalPerformance, String gameOptimalPerformance, Long gameNumberOfViews, Double gameGradeSum) {
+    public GameObject(Long gameId, String gameName, Date gameReleaseYear, String gamePicture, String gameDescription, String gameMinimalPerformance, String gameOptimalPerformance, Long gameNumberOfViews, Double gameGradeSum) {
         this.gameId = gameId;
         this.gameName = gameName;
         this.gameReleaseYear = gameReleaseYear;
-        this.gamePicturePath = gamePicturePath;
+        this.gamePicture = gamePicture;
         this.gameDescription = gameDescription;
         this.gameMinimalPerformance = gameMinimalPerformance;
         this.gameOptimalPerformance = gameOptimalPerformance;
@@ -70,12 +70,12 @@ public class GameObject {
         this.gameReleaseYear = gameReleaseYear;
     }
 
-    public Blob getGamePicturePath() {
-        return gamePicturePath;
+    public String getGamePicture() {
+        return gamePicture;
     }
 
-    public void setGamePicturePath(Blob gamePicturePath) {
-        this.gamePicturePath = gamePicturePath;
+    public void setGamePicture(String gamePicture) {
+        this.gamePicture = gamePicture;
     }
 
     public String getGameDescription() {

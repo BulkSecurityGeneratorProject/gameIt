@@ -7,18 +7,18 @@ gameItAngularApp.controller('AdminNewsPostController', ['$scope', '$rootScope','
         $translate.refresh();
         $scope.newsPost = {};
 
-        $http.get('/api/news').then(function success(response){
-            console.log(response);
-            $scope.inserted=response.data[0].postDescription;
-        })
-            $scope.click = function(){
+        // $http.get('/api/news').then(function success(response){
+        //     console.log(response);
+        //     $scope.inserted=response.data[0].postDescription;
+        // })
+            $scope.click = function() {
                 console.log($scope.newsPost);
            $http({
                method: 'POST',
                url: '/api/news',
                data: $scope.newsPost
            }).then(function success(response){
-               $scope.inserted =response.postDescription;
+               $scope.inserted = response.postDescription;
            });
         }
     }]);

@@ -50,3 +50,22 @@ video {
         display: none;
     }
 }
+
+.home a {
+    font-size: 16px;
+    color: #000000;
+    transition: all 0.7s ease-in;
+    text-decoration: none;
+}
+
+.home a:hover {
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #FFFFFF;
+    -webkit-text-fill-color: #FFFFFF;
+    transition: text-shadow 1s;
+    -moz-transition: text-shadow 1s; /* Firefox 4 */
+    -webkit-transition: text-shadow 1s; /* Safari and Chrome */
+    -o-transition: text-shadow 1s; /* Opera */
+    text-shadow: 1px 0px 30px #A5A609;
+    text-decoration: none;
+}

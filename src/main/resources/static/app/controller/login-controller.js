@@ -10,6 +10,22 @@ gameItAngularApp.controller('LoginController', ['$scope', '$rootScope', '$locati
         $scope.loginLocal = function () {
             CredentialsService.authenticate($scope.credentials, function () {
                 if ($rootScope.authenticated) {
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(function(position) {
+                            var locationObject = {
+                                latitude: position.coords.latitude,
+                                longitude: position.coords.longitude,
+                                username: $rootScope.loggedInUser.username
+                            };
+                            $http({
+                                method: 'POST',
+                                url: 'api/location',
+                                data: locationObject
+                            }).then(function success(response) {
+                                console.log("sucess add to map");
+                            })
+                        });
+                    }
                     $location.path("/");
                     $scope.error = false;
                 } else {

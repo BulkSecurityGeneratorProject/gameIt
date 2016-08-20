@@ -6,7 +6,6 @@ gameItAngularApp.controller('UserManagementController', ['$scope', '$rootScope',
         $translatePartialLoader.addPart('user-management');
         $translate.refresh();
 
-
         $scope.itemsByPage = 5;
         $scope.userList = UserService.query();
         $scope.displayedUsers = [].concat($scope.userList);
@@ -15,7 +14,8 @@ gameItAngularApp.controller('UserManagementController', ['$scope', '$rootScope',
         $scope.error = null;
 
         $scope.deleteUser = function (user) {
-            UserService.delete({username: user.username}), function (result) {
+            UserService.delete({id: user.userId}, function (result) {
+                console.log(result);
                 $scope.userList = UserService.query();
                 $scope.success = 'OK';
                 $scope.error = null;
@@ -23,7 +23,7 @@ gameItAngularApp.controller('UserManagementController', ['$scope', '$rootScope',
                 console.log(fail);
                 $scope.success = null;
                 $scope.error = 'ERROR';
-            }
+            });
         }
 
         /*  var editUserDialog = $modal({

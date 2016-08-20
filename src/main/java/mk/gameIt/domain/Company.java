@@ -26,14 +26,9 @@ public class Company {
     @JoinTable(name = "PublishedGame", joinColumns = {@JoinColumn(name = "companyId")}, inverseJoinColumns = {@JoinColumn(name = "gameId")})
     private List<Game> publishedGames;
 
-    @JsonIgnore
-    @ManyToMany
-    @JoinTable(name = "PublishedHardware", joinColumns = {@JoinColumn(name = "companyId")}, inverseJoinColumns = {@JoinColumn(name = "hardwareId")})
-    private List<HardwareProduct> publishedHardware;
 
     public Company() {
         publishedGames = new ArrayList<Game>();
-        publishedHardware = new ArrayList<HardwareProduct>();
     }
 
     @Override
@@ -61,14 +56,6 @@ public class Company {
                 "companyId=" + companyId +
                 ", companyName='" + companyName + '\'' +
                 '}';
-    }
-
-    public List<HardwareProduct> getPublishedHardware() {
-        return publishedHardware;
-    }
-
-    public void setPublishedHardware(List<HardwareProduct> publishedHardware) {
-        this.publishedHardware = publishedHardware;
     }
 
     public List<Game> getPublishedGames() {

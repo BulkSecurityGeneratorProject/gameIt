@@ -1,9 +1,14 @@
 {
-  "games":{
-    "header": "ЗДРАВО ТОМЧЕ БРАТЧЕ",
-    "game" : {
-
+  "games": {
+    "header": "Игри",
+    "viewGame": "Погледни",
+    "game": {
+      "grade": "Оцена",
+      "description": "<b>Опис на Играта</b>",
+      "releasedBy": "<b>Издава:</b>",
+      "releaseYear": "<b>Година на издавање:</b>",
+      "minPerform": "<b>Минимални Барања</b>",
+      "optPerform": "<b>Препорачани Барања</b>"
     }
-
   }
 }

@@ -4,17 +4,24 @@ import mk.gameIt.domain.Provider;
 import mk.gameIt.domain.Role;
 import mk.gameIt.domain.User;
 import mk.gameIt.repository.UserRepository;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.util.ResourceUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sql.rowset.serial.SerialBlob;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.LinkedHashMap;
 
 /**
@@ -43,14 +50,24 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
         //System.out.println(details.get("name"));
         User user = userRepository.findOneByUsername(authentication.getName());
         if(user == null){
-      //      OAuthAccount account = new OAuthAccount();
             user = new User();
             user.setUsername(authentication.getName());
             user.setRole(role);
             user.setProvider(provider);
+            if (user.getProfileImage() == null) {
+                File img = ResourceUtils.getFile("classpath:static/images/defaultProfileImage.png");
+                byte[] imag = IOUtils.toByteArray(new FileInputStream(img));
+                Blob imageBlob = null;
+                try {
+                    imageBlob = new SerialBlob(imag);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                user.setProfileImage(imageBlob);
+            }
             userRepository.save(user);
         }
-        session.setAttribute("user",user);
+        session.setAttribute("user", user);
         super.onAuthenticationSuccess(request,response,authentication);
     }
 }

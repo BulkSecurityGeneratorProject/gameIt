@@ -8,8 +8,15 @@ gameItAngularApp.controller('NavbarController', ['$scope', '$rootScope','$state'
 
         $scope.changeLanguage = function (langKey) {
             $translate.use(langKey);
-            $rootScope.language=langKey;
-
+            $rootScope.language = langKey;
+            if ($rootScope.authenticated) {
+                $http({
+                    method: 'POST',
+                    url: 'api/lang',
+                    data: langKey
+                });
+            }
+            console.log("Changing language")
         };
 
         CredentialsService.authenticate();

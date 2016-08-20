@@ -36,7 +36,7 @@ public class UserObject {
     @Size(min = 5, max = 100)
     private String email;
 
-    private MultipartFile profileImage;
+    private String profileImage;
 
     private Role role;
 
@@ -80,11 +80,11 @@ public class UserObject {
         this.email = email;
     }
 
-    public MultipartFile getProfileImage() {
+    public String getProfileImage() {
         return profileImage;
     }
 
-    public void setProfileImage(MultipartFile profileImage) {
+    public void setProfileImage(String profileImage) {
         this.profileImage = profileImage;
     }
 
@@ -99,7 +99,7 @@ public class UserObject {
 
     }
 
-    public UserObject(String username, String password, String firstName, String lastName, String email, MultipartFile profileImage, Role role) {
+    public UserObject(String username, String password, String firstName, String lastName, String email, String profileImage, Role role) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;

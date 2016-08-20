@@ -2,22 +2,50 @@
     "register": {
         "title": "Registration",
         "form": {
+            "username": "Username",
+            "username.placeholder": "Your username",
+            "password": "Password",
+            "password.placeholder": "Your password",
+            "email": "E-mail",
+            "email.placeholder": "Your e-mail address",
+            "confirm": "Password Confirmation",
+            "confirm.placeholder": "Confirm your password",
             "button": "Register"
         },
         "messages": {
             "validate": {
-                "login": {
+                "username": {
+                    "name": "Username",
                     "required": "Your username is required.",
                     "minlength": "Your username is required to be at least 1 character.",
                     "maxlength": "Your username cannot be longer than 50 characters.",
                     "pattern": "Your username can only contain lower-case letters and digits."
+                },
+                "email": {
+                    "name": "E-mail",
+                    "required": "Your e-mail is required.",
+                    "minlength": "Your e-mail is required to be at least 5 characters.",
+                    "maxlength": "Your e-mail cannot be longer than 100 characters.",
+                    "invalid": "Your e-mail is invalid."
+                },
+                "password": {
+                    "name": "Password",
+                    "required": "Your password is required.",
+                    "minlength": "Your password is required to be at least 8 character.",
+                    "maxlength": "Your password cannot be longer than 50 characters.",
+                    "pattern": "Your password can only contain lower-case letters and digits."
+                },
+                "confirmPassword": {
+                    "name": "Password Confirmation",
+                    "required": "Your password confirmation is required."
                 }
             },
             "success": "<strong>Registration saved!</strong> Please check your email for confirmation.",
             "error": {
                 "fail": "<strong>Registration failed!</strong> Please try again later.",
-                "userexists": "<strong>Login name already registered!</strong> Please choose another one.",
-                "emailexists": "<strong>E-mail is already in use!</strong> Please choose another one."
+                "userexists": "<strong>Username name already registered!</strong> Please choose another one.",
+                "emailexists": "<strong>E-mail is already in use!</strong> Please choose another one.",
+                "password":  "The password and its confirmation do not match!"
             }
         }
     }

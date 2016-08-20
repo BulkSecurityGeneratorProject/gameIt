@@ -1,0 +1,108 @@
+
+<div class="container settings-content">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-3">
+
+            <h2>User settings for <b>{{settingsAccount.username}}</b></h2>
+
+            <br><br>
+            <div class="alert alert-success settings-tools" ng-show="success">
+                <strong>Settings saved!</strong>
+            </div>
+            <div class="alert alert-danger settings-tools" ng-show="error">
+                <strong>An error has occurred!</strong> Settings could not be saved.
+            </div>
+            <div class="alert alert-danger settings-tools" ng-show="errorEmailExists">
+                <strong>E-mail is already in use!</strong> Please choose another one.
+            </div>
+
+
+            <!--<form name="formImg" role="form" show-validation novalidate ng-submit="submit()">-->
+                <!--<div class="form-group">-->
+                    <!--<h4>Change your profile image</h4>-->
+                    <!--<img data-ng-src="data:image/PNG;base64,{{settingsAccount.userImage}}" class="img-responsive" style="width:200px;height:200px">-->
+                    <!--<input type="file" ngf-select file-model="file" ng-model="file" name="file"-->
+                           <!--ngf-pattern=".png,.jpg"-->
+                           <!--accept="image/*" required ngf-model-invalid="errorFiles"-->
+                           <!--ngf-resize="{width: 200, height: 200}" ngf-max-size="3MB">-->
+
+                    <!--</input>-->
+                    <!--<p class="help-block"-->
+                       <!--ng-show="formImg.file.$error.pattern">-->
+                        <!--Your account picture can only contain JPG and PNG images-->
+                    <!--</p>-->
+                <!--</div>-->
+                <!--<button type="submit" ng-disabled="formImg.$invalid" class="btn btn-primary">Save Picture</button>-->
+            <!--</form>-->
+
+            <form name="form" role="form" show-validation novalidate ng-submit="submit()" >
+                <div class="form-group text-center">
+                    <h4>Change your profile image</h4>
+                    <div class="text-center"><img data-ng-src="data:image/PNG;base64,{{settingsAccount.profileImage}}"  style="width:468px;height:300px"></div>
+                    <div class="text-center"> <input type="file" ngf-select file-model="file" ng-model="file" name="file"
+                           ngf-pattern=".png,.jpg"
+                           accept="image/*" ngf-model-invalid="errorFiles"
+                           ngf-resize="{width: 468, height: 300}" ngf-max-size="5MB"></div>
+
+                    </input>
+                    <p class="help-block"
+                       ng-show="form.file.$error.pattern">
+                        Your account picture can only contain JPG and PNG images
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="firstName">First Name</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName"
+                           placeholder="Your first name"
+                           ng-model="settingsAccount.firstName" ng-minlength=1 ng-maxlength=50 required maxlength="50">
+                    <div ng-show="form.firstName.$dirty && form.firstName.$invalid">
+                        <p class="help-block"
+                           ng-show="form.firstName.$error.required">
+                            Your first name is required.
+                        </p>
+                        <p class="help-block"
+                           ng-show="form.firstName.$error.minlength">
+                            Your first name is required to be at least 1 character.
+                        </p>
+                        <p class="help-block"
+                           ng-show="form.firstName.$error.maxlength">
+                            Your first name cannot be longer than 50 characters.
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="lastName">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Your last name"
+                           ng-model="settingsAccount.lastName" ng-minlength=1 ng-maxlength=50 required maxlength="50">
+                    <div ng-show="form.lastName.$dirty && form.lastName.$invalid">
+                        <p class="help-block"
+                           ng-show="form.lastName.$error.required">
+                            Your last name is required.
+                        </p>
+                        <p class="help-block"
+                           ng-show="form.lastName.$error.minlength">
+                            Your last name is required to be at least 1 character.
+                        </p>
+                        <p class="help-block"
+                           ng-show="form.lastName.$error.maxlength">
+                            Your last name cannot be longer than 50 characters.
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="email">E-mail</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Your e-mail"
+                           ng-model="settingsAccount.email" ng-minlength=5 ng-maxlength=100 disabled maxlength="100"/>
+                </div>
+
+                <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+    <div class=row">
+        <div class="col-md-12" style="height:500px">
+            <div id="map"></div>
+
+        </div>
+    </div>
+</div>

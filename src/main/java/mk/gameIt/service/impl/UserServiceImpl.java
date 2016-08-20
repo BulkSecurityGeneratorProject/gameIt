@@ -9,8 +9,12 @@ import org.hibernate.type.BlobType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.orm.hibernate3.support.BlobByteArrayType;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,6 +24,7 @@ import mk.gameIt.repository.UserRepository;
 import mk.gameIt.service.UserService;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ResourceUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.sql.rowset.serial.SerialBlob;
 import java.io.File;
@@ -55,14 +60,18 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public void deleteOne(Long id) {
+    public User findOneByUsername(String username) {
+        return userRepository.findOneByUsername(username);
+    }
 
+    @Override
+    public void deleteOne(Long id) {
         userRepository.delete(id);
     }
 
     @Override
-    public User updateUser(Long id, UserObject userObject) {
-        User user = userRepository.findOne(id);
+    public User updateUser(String username, UserObject userObject) {
+        User user = userRepository.findOneByUsername(username);
         user.setFirstName(userObject.getFirstName());
         user.setLastName(userObject.getLastName());
         //userObject.get
@@ -102,36 +111,34 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    public void updateUserImage(MultipartFile image) throws IOException, SQLException {
+        String username = null;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication.isAuthenticated()) {
+            Object principal = authentication.getPrincipal();
+            if (principal instanceof UserDetails) {
+                username = ((UserDetails) principal).getUsername();
+            } else {
+                username = principal.toString();
+            }
+            User user = findOneByUsername(username);
+            if (user != null) {
+                Blob pictureBlob = null;
+                if (image != null && "image/png".equals(image.getContentType())) {
+                    pictureBlob = new SerialBlob(image.getBytes());
+                    user.setProfileImage(pictureBlob);
+                    userRepository.save(user);
+                }
+            }
+        }
+    }
+
+    @Override
     public void changeLangKey(String lang, String username) {
         User user = userRepository.findOneByUsername(username);
         user.setLangKey(lang);
         userRepository.save(user);
         log.debug("Changed Language Key for User: {}", user);
-    }
-
-    public User requestPasswordReset(String email) {
-        User user = userRepository.findOneByEmail(email);
-        if (user.isActivated()) {
-            user.setResetKey(RandomUtil.generateResetKey());
-            user.setResetDate(ZonedDateTime.now());
-            userRepository.save(user);
-            return user;
-        }
-        return null;
-    }
-
-    public User finishPasswordReset(String newPassword, String resetKey) {
-        log.debug("Reset user password for reset key {}", resetKey);
-
-        User user = userRepository.findOneByResetKey(resetKey);
-        if (!user.getResetDate().isAfter(ZonedDateTime.now().minusHours(24))) {
-            user.setPasswordHash(passwordEncoder.encode(newPassword));
-            user.setResetKey(null);
-            user.setResetDate(null);
-            userRepository.save(user);
-            return user;
-        }
-        return null;
     }
 
     @Override

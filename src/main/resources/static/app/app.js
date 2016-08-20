@@ -2,8 +2,8 @@
  * Created by Stefan on 24.03.2016.
  */
 var gameItAngularApp = angular.module('gameItApp', [
-    'ui.router', 'ngResource', 'textAngular', 'pascalprecht.translate','angularTranslateApp',
-        'LocalStorageModule',
+    'ui.router', 'ngResource', 'textAngular', 'pascalprecht.translate', 'angularTranslateApp',
+    'LocalStorageModule',
     'ngCookies',
     'ngAria',
     'ngFileUpload',
@@ -12,17 +12,14 @@ var gameItAngularApp = angular.module('gameItApp', [
     'toastr',
     'angular-loading-bar',
     'ngAnimate',
-    'infinite-scroll'
-
-
-
-
+    'infinite-scroll',
+    'ngPasswordStrength'
 ]);
 
 gameItAngularApp.run([
     '$rootScope', '$location', '$window', '$http', '$state', 'CredentialsService',
     function ($rootScope, $location, $window, $http, $state, CredentialService) {
-        $rootScope.language='mk';
+        $rootScope.language = 'mk';
 
         $rootScope.$on('$stateChangeStart',
             function (event, toState, toParams, fromState, fromParams, options) {
@@ -37,9 +34,10 @@ gameItAngularApp.run([
                 console.log(unfoundState.toParams); // {a:1, b:2}
                 console.log(unfoundState.options); // {inherit:false} + default options
 
-               // $state.go('notFound');
+                // $state.go('notFound');
             });
     }]);
+
 gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider',
     function ($httpProvider, $stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
@@ -84,18 +82,36 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
                     }
                 }
             })
-
+            .state('settings', {
+                url: "/settings",
+                parent: 'main',
+                views: {
+                    'page@': {
+                        templateUrl: 'views/settings.html',
+                        controller: 'SettingsController'
+                    }
+                }
+            })
+            .state('password', {
+                url: "/password",
+                parent: 'main',
+                views: {
+                    'page@': {
+                        templateUrl: 'views/password.html',
+                        controller: 'PasswordController'
+                    }
+                }
+            })
             .state('games', {
                 url: "/games",
-                parent:'main',
-                views:{
-                    'page@':{
+                parent: 'main',
+                views: {
+                    'page@': {
                         templateUrl: 'views/games.html',
                         controller: 'GamesController'
                     }
                 }
             })
-
             .state('games.game', {
                 url: "/:id",
                 parent: 'games',
@@ -106,29 +122,6 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
                     }
                 }
             })
-
-            .state('hardware', {
-                url: "/hardware",
-                parent: 'main',
-                views:{
-                    'page@':{
-                        templateUrl: 'views/hardware.html',
-                        controller: 'HardwareController'
-                    }
-                }
-            })
-
-            .state('hardware.product', {
-                url:"/:id",
-                parent: 'hardware',
-                views: {
-                    'page@':{
-                        templateUrl: 'views/product.html',
-                        cotroller: 'ProductController'
-                    }
-                }
-            })
-
             .state('register', {
                 url: "/register",
                 parent: 'main',
@@ -152,18 +145,18 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
             .state('admin', {
                 url: "/administrator",
                 parent: 'main',
-                views:{
-                    'page@':{
+                views: {
+                    'page@': {
                         templateUrl: 'views/admin/admin.html',
                         controller: 'AdminController'
                     }
                 }
             })
-            .state('admin.metrics',{
+            .state('metrics', {
                 url: "/metrics",
                 parent: 'admin',
                 views: {
-                    'admin':{
+                    'admin': {
                         templateUrl: 'views/admin/metrics.html',
                         controller: 'AdminMetricsController'
                     }
@@ -179,6 +172,36 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
                     }
                 }
             })
+            .state('admin-graphics-table', {
+                url: "/admin-graphics-table",
+                parent: 'admin',
+                views: {
+                    'admin': {
+                        templateUrl: 'views/admin/admin-graphics-table.html',
+                        controller: 'AdminGraphicsTableController'
+                    }
+                }
+            })
+            .state('admin-command-board', {
+                url: "/admin-command-board",
+                parent: 'admin',
+                views: {
+                    'admin': {
+                        templateUrl: 'views/admin/admin-command-board.html',
+                        controller: 'AdminCommandBoardController'
+                    }
+                }
+            })
+            .state('admin-games', {
+                url: "/admin-games",
+                parent: 'admin',
+                views: {
+                    'admin': {
+                        templateUrl: 'views/admin/admin-games.html',
+                        controller: 'AdminGamesController'
+                    }
+                }
+            })
             .state('user-management', {
                 url: "/user-management",
                 parent: 'admin',
@@ -190,6 +213,6 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
                 }
             });
 
-       // $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+        // $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
     }]);
 

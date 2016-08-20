@@ -1,16 +1,14 @@
 /**
  * Created by TOMMY on 03-Apr-16.
  */
-gameItAngularApp.controller('GamesController',['$rootScope','$scope', '$translate', '$translatePartialLoader', 'GamesService', '$state',
-    function($rootScope,$scope, $translate, $translatePartialLoader,GamesService, $state){
+gameItAngularApp.controller('GamesController', ['$rootScope', '$scope', '$http', '$translate', '$translatePartialLoader', 'ApiGames', 'GamesService', '$state',
+    function ($rootScope, $scope, $http, $translate, $translatePartialLoader, ApiGames, GamesService, $state) {
         $translatePartialLoader.addPart('games');
         $translate.refresh();
 
+        $scope.gameList = new ApiGames();
 
-        $scope.gamesList=GamesService.query();
-        console.log($scope.gamesList);
-        $scope.text="ADJE TOMMY BABA";
-        $scope.viewGame = function(gameId) {
-            $state.go('games.game', {id:gameId});
+        $scope.viewGame = function (gameId) {
+            $state.go('games.game', {id: gameId});
         }
-}]);
+    }]);

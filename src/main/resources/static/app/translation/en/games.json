@@ -1,9 +1,14 @@
 {
-  "games":{
-    "header": "Hi TOMMY MAN",
-    "game" : {
-
+  "games": {
+    "header": "Games",
+    "viewGame": "View Game",
+    "game": {
+      "grade": "Grade",
+      "description": "<b>Game Description</b>",
+      "releasedBy": "<b>Released By:</b>",
+      "releaseYear": "<b>Release Year:</b>",
+      "minPerform": "<b>Minimum Requirements</b>",
+      "optPerform": "<b>Recommended Requirements</b>"
     }
-
   }
 }

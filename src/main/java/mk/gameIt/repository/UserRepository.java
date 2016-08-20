@@ -8,8 +8,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface UserRepository extends JpaRepository<User,Long> {
     User findOneByUsername(String username);
-
-    User findOneByEmail(String email);
-
-    User findOneByResetKey(String resetKey);
 }

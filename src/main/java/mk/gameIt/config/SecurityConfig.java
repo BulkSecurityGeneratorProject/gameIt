@@ -65,8 +65,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     UserDetailsService userDetailsService;
     @Autowired
     OAuth2ClientContext oAuth2ClientContext;
-    @Autowired
-    private FormLoginConfigurerEnhancer enhancer;
+//    @Autowired
+//    private FormLoginConfigurerEnhancer enhancer;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -80,7 +80,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
     http.httpBasic();
         http.logout()
                 .logoutUrl("/logout")

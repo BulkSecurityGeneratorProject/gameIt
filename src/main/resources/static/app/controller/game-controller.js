@@ -5,7 +5,7 @@ gameItAngularApp.controller('GameController', ['$rootScope', '$scope', '$transla
     function ($rootScope, $scope, $translate, $translatePartialLoader, GamesService, $state) {
         $translatePartialLoader.addPart('games');
         $translate.refresh();
-        console.log($state);
+
         var gameId = $state.params.id;
         $scope.gamesList = GamesService.query();
         GamesService.get({id: gameId}, function (response) {
