@@ -8,6 +8,7 @@ import mk.gameIt.service.LocationService;
 import mk.gameIt.web.dto.LocationObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class LocationServiceImpl implements LocationService {
     }
 
     @Override
+    @Transactional
     public Location save(LocationObject object) {
         Location location = new Location();
         location.setLatitude(object.getLatitude());
@@ -45,6 +47,7 @@ public class LocationServiceImpl implements LocationService {
     }
 
     @Override
+    @Transactional
     public void deleteByUser(User user) {
         List<Location> locationList = locationRepository.findByUserId(user);
         locationRepository.delete(locationList);

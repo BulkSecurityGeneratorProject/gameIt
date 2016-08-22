@@ -1,6 +1,6 @@
 {
     "settings": {
-        "title": "Кориснички подесувања за <b>{{username}}</b>",
+        "title": "Кориснички подесувања за ",
         "form": {
             "firstname": "Име",
             "firstname.placeholder": "Вашето име",

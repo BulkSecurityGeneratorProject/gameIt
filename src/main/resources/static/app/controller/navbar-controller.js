@@ -36,4 +36,14 @@ gameItAngularApp.controller('NavbarController', ['$scope', '$rootScope','$state'
                 $rootScope.administrator = false;
             });
         };
+        $scope.search = function(searchText) {
+            console.log("searching with" + $scope.searchText);
+            if ($scope.searchText != undefined) {
+                if ($scope.$state.current.name == 'search') {
+                    $state.transitionTo('search', {searchInput: $scope.searchText}, {reload: true, notify: true});
+                } else {
+                    $state.go('search', {searchInput: $scope.searchText});
+                }
+            }
+        };
     }]);

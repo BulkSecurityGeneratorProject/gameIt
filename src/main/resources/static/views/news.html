@@ -4,4 +4,23 @@
             <h1 class="page-header" translate="news.header">News</h1>
         </div>
     </div>
+    <div infinite-scroll="newsPostList.nextPage()" infinite-scroll-disabled="newsPostList.busy" infinite-scroll-distance="0">
+        <div class="row" ng-repeat="newsPost in newsPostList.items" style="border: 1px solid black">
+            <div class="col-sm-4">
+                <img ng-src="{{newsPost.publishedPicturePath}}" class="img-responsive"/>
+            </div>
+            <div class="col-sm-8">
+                <h2 class="text-center">{{newsPost.postTitle}}</h2>
+                <h4 class="text-center">
+                    {{newsPost.postAddDate.dayOfMonth}}-{{newsPost.postAddDate.monthValue}}-{{newsPost.postAddDate.year}}
+                    {{newsPost.postAddDate.hour}}:{{newsPost.postAddDate.minute}}</h4>
+                <div ta-bind ng-model="newsPost.postDescription"></div>
+                <div><a href="" ng-click="viewNewsPost(newsPost.postId)" class="btn btn-primary pull-right" role="button">
+                    <span translate="news.viewNewsPost">View Game</span></a></div>
+            </div>
+
+        </div>
+        <br/>
+        <div style='clear: both;'></div>
+    </div>
 </div>

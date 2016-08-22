@@ -2,7 +2,7 @@
   "admin": {
     "title": "Administration",
     "gamesChart": {
-      "title": "5 Most Viewed Games"
+      "title": "Most Viewed Games"
     },
     "sidenav": {
       "dashboard": {

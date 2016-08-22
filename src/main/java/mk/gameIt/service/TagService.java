@@ -10,6 +10,7 @@ import java.util.List;
 public interface TagService {
     Tag findOne(Long id);
     List<Tag> findAll();
+    Tag findOneByTagName(String tagName);
     void delete(Long id);
     Tag save(Tag tag);
 }

@@ -2,6 +2,9 @@ package mk.gameIt.service;
 
 import mk.gameIt.domain.NewsPost;
 import mk.gameIt.web.dto.NewsPostObject;
+import mk.gameIt.web.dto.TagObject;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -10,11 +13,11 @@ import java.util.List;
  */
 public interface NewsPostService {
     List<NewsPost> findAll();
-
-    NewsPost save(NewsPost newsPost);
+    Page<NewsPost> findAll(Pageable pageable);
+    NewsPost save(NewsPost newsPost, TagObject tagObject);
 
     NewsPost findOne(Long id);
-
+    NewsPost incrementNumberOfViews(NewsPost newsPost);
     void deleteAll();
 
     void delete(Long id);

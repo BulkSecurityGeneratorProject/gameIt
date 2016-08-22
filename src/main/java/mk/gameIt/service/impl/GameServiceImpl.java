@@ -60,6 +60,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    @Transactional
     public synchronized Game incrementNumberOfViews(Game game) {
         game.setGameNumberOfViews(game.getGameNumberOfViews()+1);
         return gameRepository.save(game);
@@ -71,6 +72,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    @Transactional
     public Game save(Game game, MultipartFile image) throws IOException, SQLException {
         Blob pictureBlob = null;
         if (image != null) {
@@ -83,6 +85,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
      //   Game game = gameRepository.findOne(id);
      //   log.debug("Deleted Game: {}", game);

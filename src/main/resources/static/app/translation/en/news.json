@@ -3,7 +3,10 @@
       "header": "News",
       "form":{
         "postTitle": "Enter title here",
-        "publish": "Publish"
-      }
+        "publish": "Publish",
+        "tags": "Enter Tags",
+        "publishedPicturePath": "Path to the internet picture"
+      },
+    "viewNewsPost": "View Post"
   }
 }

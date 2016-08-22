@@ -85,7 +85,7 @@ public class AccountController {
     }
 
     @RequestMapping("/authenticate")
-    public Principal user(Principal user, HttpServletRequest request) {
+    public Principal user(Principal user) {
             return user;
     }
 

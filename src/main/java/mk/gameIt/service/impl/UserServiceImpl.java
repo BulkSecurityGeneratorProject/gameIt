@@ -65,11 +65,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    @Transactional
     public void deleteOne(Long id) {
         userRepository.delete(id);
     }
 
     @Override
+    @Transactional
     public User updateUser(String username, UserObject userObject) {
         User user = userRepository.findOneByUsername(username);
         user.setFirstName(userObject.getFirstName());
@@ -83,6 +85,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    @Transactional
     public User createNewUser(UserObject userObject) throws IOException, SQLException {
         User user = new User();
         user.setUsername(userObject.getUsername());
@@ -111,6 +114,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    @Transactional
     public void updateUserImage(MultipartFile image) throws IOException, SQLException {
         String username = null;
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -134,6 +138,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    @Transactional
     public void changeLangKey(String lang, String username) {
         User user = userRepository.findOneByUsername(username);
         user.setLangKey(lang);

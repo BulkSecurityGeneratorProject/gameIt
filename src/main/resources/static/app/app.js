@@ -2,7 +2,11 @@
  * Created by Stefan on 24.03.2016.
  */
 var gameItAngularApp = angular.module('gameItApp', [
-    'ui.router', 'ngResource', 'textAngular', 'pascalprecht.translate', 'angularTranslateApp',
+    'ui.router',
+    'ngResource',
+    'textAngular',
+    'pascalprecht.translate',
+    'angularTranslateApp',
     'LocalStorageModule',
     'ngCookies',
     'ngAria',
@@ -18,10 +22,11 @@ var gameItAngularApp = angular.module('gameItApp', [
 ]);
 
 gameItAngularApp.run([
-    '$rootScope', '$location', '$window', '$http', '$state', 'CredentialsService',
-    function ($rootScope, $location, $window, $http, $state, CredentialService) {
+    '$rootScope', '$location', '$window', '$http', '$state', 'CredentialsService','$stateParams',
+    function ($rootScope, $location, $window, $http, $state, CredentialService, $stateParams) {
         $rootScope.language = 'mk';
-
+        $rootScope.$state = $state;
+        $rootScope.$stateParams = $stateParams;
         $rootScope.$on('$stateChangeStart',
             function (event, toState, toParams, fromState, fromParams, options) {
             });
@@ -80,6 +85,27 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
                     'page@': {
                         templateUrl: 'views/news.html',
                         controller: 'NewsController'
+                    }
+                }
+            })
+            .state('search',{
+                url: '/search',
+                parent: 'main',
+                params: {searchInput: null},
+                views: {
+                    'page@': {
+                        templateUrl: 'views/search.html',
+                        controller: 'SearchController'
+                    }
+                },
+            })
+            .state('news.single', {
+                url: "/:id",
+                parent: 'news',
+                views: {
+                    'page@': {
+                        templateUrl: 'views/singleNewsPost.html',
+                        controller: 'SingleNewsPostController'
                     }
                 }
             })

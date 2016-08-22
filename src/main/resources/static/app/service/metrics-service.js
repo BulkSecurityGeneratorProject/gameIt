@@ -20,6 +20,4 @@ gameItAngularApp.factory('MetricsService', ['$rootScope', '$http', function ($ro
             return response.data;
         });
     }
-
-
 }]);

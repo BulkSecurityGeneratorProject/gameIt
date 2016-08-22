@@ -44,7 +44,6 @@ public class GameController {
             Pageable pageable = new PageRequest(page, size);
             List<Game> returnedList = gameService.findAll(pageable).getContent();
             list = getGamesWithPictures(returnedList);
-            System.out.println(list);
             return list;
         } else {
             List<Game> returnedList = gameService.findAll();
@@ -68,10 +67,17 @@ public class GameController {
     }
 
     @RequestMapping(value = "/games/{id}", method = RequestMethod.GET)
-    public Game getGame(@PathVariable Long id) {
+    public GameObject getGame(@PathVariable Long id) throws UnsupportedEncodingException, SQLException {
         Game game = gameService.findOne(id);
         game = gameService.incrementNumberOfViews(game);
-        return game;
+        String base64Encoded = null;
+        if (game.getGamePicture() != null) {
+            byte[] encodeBase64 = Base64.encode(game.getGamePicture().getBytes(1, (int) game.getGamePicture().length()));
+            base64Encoded = new String(encodeBase64, "UTF-8");
+        }
+        GameObject gameObject = new GameObject(game.getGameId(), game.getGameName(), game.getGameReleaseYear(), base64Encoded, game.getGameDescription(), game.getGameMinimalPerformance(), game.getGameOptimalPerformance(), game.getGameNumberOfViews(), game.getGameGradeSum());
+
+        return gameObject;
     }
 
     @RequestMapping(value = "/games/{id}/picture", method = RequestMethod.GET)
@@ -91,15 +97,14 @@ public class GameController {
         out.close();
     }
 
-    @RequestMapping(value="/games/sortByViews", method = RequestMethod.GET)
+    @RequestMapping(value = "/games/sortByViews", method = RequestMethod.GET)
     public ResponseEntity<List<Game>> sortGamesByViews() {
         try {
             List<Game> games = gameService.findAll();
             Collections.sort(games, new GameNumberOfViewsComparator());
             games = games.subList(0, 5);
             return new ResponseEntity<List<Game>>(HttpStatus.OK).ok(games);
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             return new ResponseEntity<List<Game>>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

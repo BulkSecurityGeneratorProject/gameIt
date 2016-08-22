@@ -9,7 +9,7 @@
 
     <!-- Concatenated CSS -->
     <link href="dest/lib.css?rev=ce0310371b3fef3be2864b120aac9eae" rel="stylesheet">
-    <link href="dest/app.css?rev=06ba9f4b831dd052b511af0cfc814070" rel="stylesheet">
+    <link href="dest/app.css?rev=a1fa5d4fd41afc10bcce60d403e1ced9" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -22,11 +22,14 @@
 <div ui-view="navbar"></div>
 
 
-<div ui-view="page"></div>
+<div ui-view="page">
 
-<footer class="footer">
-    <h3 class="pull-right">All rights Reserved</h3>
+</div>
+
+<footer id="footer" ng-hide="$state.current.name === 'home'">
+    <p class="pull-right">Copyright &copy; Game it. All Rights Reserved.</p>
 </footer>
+
 <!--Recaptcha-->
 <script
         src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit"
@@ -38,8 +41,8 @@
 <!-- Concatenated libraries -->
 <script src="dest/lib.js?rev=287b9db13c456e48f5780ad3bd3101e8"></script>
 <!-- Concatenated application -->
-<script src="dest/src.js?rev=98117467a1971e199510c4a73a197134"></script>
+<script src="dest/src.js?rev=ab0368a01fde235ff3c62007ab9a8fc8"></script>
 <!-- All html templates -->
-<script src="dest/templates.js?rev=4451706fec20aa28f1fdaae0b4dd35b0"></script>
+<script src="dest/templates.js?rev=218cd0422b7808bfbd624f99c5e58952"></script>
 </body>
 </html>

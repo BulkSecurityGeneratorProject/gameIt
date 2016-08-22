@@ -1,6 +1,9 @@
 package mk.gameIt.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,6 +16,7 @@ import java.util.List;
  * Created by Stefan on 24.03.2016.
  */
 @Entity
+@Indexed
 @Table(name = "Game")
 public class Game {
     @Id
@@ -20,6 +24,7 @@ public class Game {
     private Long gameId;
 
     @NotNull
+    @Field
     @Column(nullable = false)
     private String gameName;
 
@@ -32,8 +37,10 @@ public class Game {
     private Blob gamePicture;
 
     @NotNull
+    @Field(store = Store.NO)
     @Column(nullable = false, length = 4000)
     private String gameDescription;
+
     @Column(length = 1000)
     private String gameMinimalPerformance;
     @Column(length = 1000)

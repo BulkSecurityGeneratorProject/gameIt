@@ -1,0 +1,9 @@
+{
+  "search": {
+    "header": "Search",
+    "viewGame": "View Game",
+    "messages": {
+      "noData": "The search operation did not produce any results"
+    }
+  }
+}

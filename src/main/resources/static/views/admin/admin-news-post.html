@@ -12,7 +12,18 @@
                            placeholder="{{'news.form.postTitle' | translate}}"/>
                 </div>
                 <div class="row">
+                    <input type="text" ng-model="newsPost.publishedPicturePath" class="form-control"
+                           placeholder="{{'news.form.publishedPicturePath' | translate}}"/>
+                </div>
+                <div class="row">
                     <text-angular ng-model="newsPost.postDescription"></text-angular>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label translate="news.form.tags">Enter Tags</label>
+                        <input type="text" class="form-control" name="tags" ng-model="tagObject.tagName"/>
+                    </div>
+
                 </div>
             </div>
             <div class="col-sm-2">
