@@ -13,13 +13,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.codec.Base64;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -54,5 +52,12 @@ public class LocationController {
     public ResponseEntity<Location> saveNewLocation(@RequestBody LocationObject locationObject) throws URISyntaxException {
         Location savedLocation = locationService.save(locationObject);
         return ResponseEntity.created(new URI("api/location/"+savedLocation.getLocationId())).body(savedLocation);
+    }
+
+    @RequestMapping(value = "/location/{username}", method = RequestMethod.DELETE)
+    public void deleteAllUserLocations(@PathVariable String username) {
+        User user = userService.findOneByUsername(username);
+        locationService.deleteByUser(user);
+        user.getLocations().clear();
     }
 }

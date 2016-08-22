@@ -8,12 +8,14 @@ import mk.gameIt.domain.Role;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices;
 import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -59,14 +61,15 @@ import java.util.List;
 @EnableWebSecurity
 @EnableOAuth2Client
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
+@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final Logger log = LoggerFactory.getLogger(SecurityConfig.class);
     @Autowired
     UserDetailsService userDetailsService;
     @Autowired
     OAuth2ClientContext oAuth2ClientContext;
-//    @Autowired
-//    private FormLoginConfigurerEnhancer enhancer;
+    @Autowired
+    private FormLoginConfigurerEnhancer enhancer;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -80,7 +83,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-    http.httpBasic();
+//    http.httpBasic();
+        enhancer.addRecaptchaSupport(http.formLogin()).loginPage("/login");
         http.logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/")

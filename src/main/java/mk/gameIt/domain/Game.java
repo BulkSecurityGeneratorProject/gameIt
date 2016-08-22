@@ -27,6 +27,7 @@ public class Game {
     @Column(nullable = false)
     private Date gameReleaseYear;
 
+    @JsonIgnore
     @Column(nullable = true)
     private Blob gamePicture;
 
@@ -56,7 +57,6 @@ public class Game {
     @ManyToMany(mappedBy = "publishedGames")
     private List<Company> gameCompanies;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "gameId")
     private List<CommentGame> comments;
 

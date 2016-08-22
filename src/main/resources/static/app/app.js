@@ -13,7 +13,8 @@ var gameItAngularApp = angular.module('gameItApp', [
     'angular-loading-bar',
     'ngAnimate',
     'infinite-scroll',
-    'ngPasswordStrength'
+    'ngPasswordStrength',
+    'vcRecaptcha'
 ]);
 
 gameItAngularApp.run([
@@ -162,7 +163,7 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
                     }
                 }
             })
-            .state('admin-news-post', {
+            .state('admin.admin-news-post', {
                 url: "/admin-news-post",
                 parent: 'admin',
                 views: {
@@ -172,7 +173,7 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
                     }
                 }
             })
-            .state('admin-graphics-table', {
+            .state('admin.admin-graphics-table', {
                 url: "/admin-graphics-table",
                 parent: 'admin',
                 views: {
@@ -182,7 +183,7 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
                     }
                 }
             })
-            .state('admin-command-board', {
+            .state('admin.admin-command-board', {
                 url: "/admin-command-board",
                 parent: 'admin',
                 views: {
@@ -192,7 +193,7 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
                     }
                 }
             })
-            .state('admin-games', {
+            .state('admin.admin-games', {
                 url: "/admin-games",
                 parent: 'admin',
                 views: {
@@ -202,7 +203,7 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
                     }
                 }
             })
-            .state('user-management', {
+            .state('admin.user-management', {
                 url: "/user-management",
                 parent: 'admin',
                 views: {

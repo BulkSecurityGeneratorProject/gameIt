@@ -93,7 +93,8 @@ var JS_LIB = [
     'bower_components/Chart.js/Chart.min.js',
     'bower_components/d3/d3.js',
     'bower_components/c3/c3.js',
-    'bower_components/angular-password/angular-password.js'
+    'bower_components/angular-password/angular-password.js',
+    'bower_components/angular-recaptcha/release/angular-recaptcha.js'
 ];
 
 var JS_APP = [

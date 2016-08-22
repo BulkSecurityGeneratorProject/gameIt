@@ -1,6 +1,7 @@
 package mk.gameIt.web.rest;
 
 import mk.gameIt.domain.Game;
+import mk.gameIt.domain.comparators.GameNumberOfViewsComparator;
 import mk.gameIt.service.GameService;
 import mk.gameIt.web.dto.GameObject;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
@@ -9,7 +10,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.codec.Base64;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +22,7 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -70,7 +74,7 @@ public class GameController {
         return game;
     }
 
-    @RequestMapping(value = {"/games/{id}/picture"}, method = RequestMethod.GET)
+    @RequestMapping(value = "/games/{id}/picture", method = RequestMethod.GET)
     public void gamePicture(HttpServletResponse response, @PathVariable Long id) throws IOException, SQLException {
         OutputStream out = response.getOutputStream();
         Game game = gameService.findOne(id);
@@ -85,5 +89,18 @@ public class GameController {
         IOUtils.copy(game.getGamePicture().getBinaryStream(), out);
         out.flush();
         out.close();
+    }
+
+    @RequestMapping(value="/games/sortByViews", method = RequestMethod.GET)
+    public ResponseEntity<List<Game>> sortGamesByViews() {
+        try {
+            List<Game> games = gameService.findAll();
+            Collections.sort(games, new GameNumberOfViewsComparator());
+            games = games.subList(0, 5);
+            return new ResponseEntity<List<Game>>(HttpStatus.OK).ok(games);
+        }
+        catch(Exception e) {
+            return new ResponseEntity<List<Game>>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

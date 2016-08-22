@@ -1,6 +1,9 @@
 {
   "admin": {
     "title": "Администрација",
+    "gamesChart": {
+      "title": "5 Најпрегледани игри"
+    },
     "sidenav": {
       "dashboard": {
         "main": "Командна табла"

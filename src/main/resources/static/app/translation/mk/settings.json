@@ -1,13 +1,20 @@
 {
     "settings": {
-        "title": "Кориснички подесувања за [<b>{{username}}</b>]",
+        "title": "Кориснички подесувања за <b>{{username}}</b>",
         "form": {
             "firstname": "Име",
             "firstname.placeholder": "Вашето име",
             "lastname": "Презиме",
             "lastname.placeholder": "Вашето презиме",
             "language": "Јазик",
-            "button": "Зачувај"
+            "email": "E-mail",
+            "email.placeholder": "Вашата e-mail адреса",
+            "button": "Зачувај",
+            "profileImage": "Променете ја вашата профилна слика"
+        },
+        "map": {
+            "buttonDelete": "Избриши",
+            "title": "Историја на локациите на корисничките најави"
         },
         "messages": {
             "error": {

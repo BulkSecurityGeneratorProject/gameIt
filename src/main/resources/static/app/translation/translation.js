@@ -10,5 +10,5 @@ angular.module('angularTranslateApp', ['pascalprecht.translate'])
             });
             $translateProvider.preferredLanguage('mk');
             // Enable escaping of HTML
-            //$translateProvider.useSanitizeValueStrategy('escape');
+            $translateProvider.useSanitizeValueStrategy('escapeParameters');
         }]);

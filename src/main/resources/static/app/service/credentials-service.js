@@ -3,12 +3,10 @@
  */
 gameItAngularApp.factory('CredentialsService', ['$http', '$rootScope', '$translate', function ($http, $rootScope, $translate) {
     return {
-            authenticate: function (credentials, callback) {
-            var headers = credentials ? {authorization: "Basic " + btoa(credentials.username + ":" + credentials.password)} : {};
+            authenticate: function (callback) {
             $http({
                 method: 'GET',
                 url: 'api/authenticate',
-                headers: headers
             }).then(function success(response) {
                 if (response.data.name) {
                     if ($rootScope.loggedInUser === undefined) {

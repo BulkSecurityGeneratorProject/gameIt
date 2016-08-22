@@ -1,6 +1,9 @@
 {
   "admin": {
     "title": "Administration",
+    "gamesChart": {
+      "title": "5 Most Viewed Games"
+    },
     "sidenav": {
       "dashboard": {
         "main": "Dashboard"

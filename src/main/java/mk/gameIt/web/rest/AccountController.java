@@ -1,10 +1,14 @@
 package mk.gameIt.web.rest;
 
+import com.github.mkopylec.recaptcha.RecaptchaProperties;
+import com.github.mkopylec.recaptcha.validation.RecaptchaValidator;
+import com.github.mkopylec.recaptcha.validation.ValidationResult;
 import mk.gameIt.domain.Role;
 import mk.gameIt.domain.User;
 import mk.gameIt.repository.UserRepository;
 import mk.gameIt.service.UserService;
 import mk.gameIt.web.dto.UserObject;
+import org.apache.catalina.connector.Response;
 import org.apache.http.protocol.HTTP;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +23,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.codec.Base64;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
@@ -34,6 +39,9 @@ public class AccountController {
     private final Logger log = LoggerFactory.getLogger(AccountController.class);
 
     @Autowired
+    private RecaptchaValidator recaptchaValidator;
+
+    @Autowired
     private UserRepository userRepository;
     @Autowired
     private UserService userService;
@@ -43,7 +51,7 @@ public class AccountController {
         User newUser = null;
         try {
             newUser = userService.createNewUser(userObject);
-            return new ResponseEntity<User>(HttpStatus.CREATED).created(URI.create("api/user/"+newUser.getUserId())).body(newUser);
+            return new ResponseEntity<User>(HttpStatus.CREATED).created(URI.create("api/user/" + newUser.getUserId())).body(newUser);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -77,8 +85,8 @@ public class AccountController {
     }
 
     @RequestMapping("/authenticate")
-    public Principal user(Principal user) {
-        return user;
+    public Principal user(Principal user, HttpServletRequest request) {
+            return user;
     }
 
     @RequestMapping(value = "/lang", method = RequestMethod.POST)
@@ -113,7 +121,7 @@ public class AccountController {
         }
         User currentUser = userService.findOneByUsername(username);
         if (currentUser != null) {
-            return "{\"langKey\": " + "\""+ currentUser.getLangKey() +"\""+'}';
+            return "{\"langKey\": " + "\"" + currentUser.getLangKey() + "\"" + '}';
         }
         return null;
     }

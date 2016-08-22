@@ -1,13 +1,20 @@
 {
     "settings": {
-        "title": "User settings for [<b>{{username}}</b>]",
+        "title": "User settings for <b>{{username}}</b>",
         "form": {
             "firstname": "First Name",
             "firstname.placeholder": "Your first name",
             "lastname": "Last Name",
             "lastname.placeholder": "Your last name",
             "language": "Language",
-            "button": "Save"
+            "email": "E-mail",
+            "email.placeholder": "Your e-mail address",
+            "button": "Save",
+            "profileImage": "Change your profile image"
+        },
+        "map": {
+            "buttonDelete": "Delete",
+            "title": "User login locations history"
         },
         "messages": {
             "error": {
@@ -25,6 +32,9 @@
                     "required": "Your last name is required.",
                     "minlength": "Your last name is required to be at least 1 character",
                     "maxlength": "Your last name cannot be longer than 50 characters"
+                },
+                "image": {
+                    "requiredInput": "Your account picture can only contain JPG and PNG images"
                 }
             }
         }

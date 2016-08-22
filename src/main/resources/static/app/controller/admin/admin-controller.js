@@ -1,10 +1,10 @@
 /**
  * Created by Stefan on 02.04.2016.
  */
-gameItAngularApp.controller('AdminController', ['$scope', '$rootScope', '$http','$translate', '$translatePartialLoader',
-    function ($scope, $rootScope, $http, $translate, $translatePartialLoader) {
-        $scope.hello = "hellossssssz";
-        // $scope.account = AccountService.query();
+gameItAngularApp.controller('AdminController', ['$scope', '$rootScope', '$http','$translate', '$translatePartialLoader','$state',
+    function ($scope, $rootScope, $http, $translate, $translatePartialLoader, $state) {
         $translatePartialLoader.addPart('admin');
         $translate.refresh();
+
+        $state.go('admin.admin-command-board');
     }]);

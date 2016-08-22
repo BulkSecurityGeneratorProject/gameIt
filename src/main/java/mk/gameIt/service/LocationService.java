@@ -1,6 +1,7 @@
 package mk.gameIt.service;
 
 import mk.gameIt.domain.Location;
+import mk.gameIt.domain.User;
 import mk.gameIt.web.dto.LocationObject;
 
 import java.util.List;
@@ -12,5 +13,5 @@ public interface LocationService {
      List<Location> findAll();
      Location findOne(Long id);
      Location save(LocationObject object);
-
+     void deleteByUser(User user);
 }

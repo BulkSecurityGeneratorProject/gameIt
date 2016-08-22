@@ -48,6 +48,15 @@ gameItAngularApp.controller('SettingsController', ['$rootScope', '$scope', '$htt
         }
         initMap();
 
+        $scope.deleteLocations = function () {
+            $http({
+                method: 'DELETE',
+                url: "api/location/" + $rootScope.loggedInUser.username
+            }).then(function success(response){
+                initMap();
+            });
+        };
+
         $scope.success = null;
         $scope.error = null;
         function getUser() {

@@ -20,6 +20,7 @@ public class LocationServiceImpl implements LocationService {
     private LocationRepository locationRepository;
     @Autowired
     private UserRepository userRepository;
+
     @Override
     public List<Location> findAll() {
         return locationRepository.findAll();
@@ -41,5 +42,11 @@ public class LocationServiceImpl implements LocationService {
         user.getLocations().add(location);
         userRepository.save(user);
         return location;
+    }
+
+    @Override
+    public void deleteByUser(User user) {
+        List<Location> locationList = locationRepository.findByUserId(user);
+        locationRepository.delete(locationList);
     }
 }

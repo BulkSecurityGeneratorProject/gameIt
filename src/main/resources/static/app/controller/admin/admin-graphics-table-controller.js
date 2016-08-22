@@ -7,21 +7,42 @@ gameItAngularApp.controller('AdminGraphicsTableController', ['$scope', '$rootSco
         $translatePartialLoader.addPart('admin');
         $translate.refresh();
 
-        var gameList = GamesService.query();
+        $scope.gameList = [];
+        $http({
+            method: 'GET',
+            url: 'api/games/sortByViews'
+        }).then(function success(response) {
+            $scope.gameList = response.data
+            createGamesChart();
+        }, function error(response) {
+            $("#gamesChart").html("There was a problem with loading the data");
+        });
         var userList = UserService.query();
         console.log(userList);
         var numComments = 0;
-        for (i = 0; i < userList.length; i++) {
+        for (var i = 0; i < userList.length; i++) {
             numComments += userList[i].commentsGame.length;
         }
         console.log(numComments);
-        var chart = c3.generate({
-            bindto: '#chart',
-            data: {
-                columns: [
-                    ['data1', 30, 200, 100, 400, 150, 250],
-                    ['data2', 50, 20, 10, 40, 15, 25]
-                ]
+        function createGamesChart(gameList) {
+            var chart = c3.generate({
+                bindto: '#gamesChart',
+                data: {
+                    columns: [],
+                    type: 'bar'
+                }
+            });
+            for(var i=0; i < $scope.gameList.length; i++){
+                var gameName = $scope.gameList[i].gameName;
+                var numViews = $scope.gameList[i].gameNumberOfViews;
+                // setTimeout(function () {
+                    chart.load({
+                        columns: [
+                            [gameName, numViews]
+                        ]
+                    });
+                // }, 2000);
             }
-        });
+        }
+
     }]);
