@@ -1,8 +1,8 @@
 /**
  * Created by Stefan on 02.04.2016.
  */
-gameItAngularApp.controller('AdminNewsPostController', ['$scope', '$rootScope','NewsPostService','$http', '$translate', '$translatePartialLoader',
-    function ($scope, $rootScope,NewsPostService,$http, $translate, $translatePartialLoader) {
+gameItAngularApp.controller('AdminNewsPostController', ['$scope', '$rootScope','NewsPostService','$http', '$translate', '$translatePartialLoader','$state',
+    function ($scope, $rootScope,NewsPostService,$http, $translate, $translatePartialLoader, $state) {
         $translatePartialLoader.addPart('news');
         $translate.refresh();
         $scope.newsPost = {};
@@ -22,6 +22,7 @@ gameItAngularApp.controller('AdminNewsPostController', ['$scope', '$rootScope','
                }
            }).then(function success(response){
                $scope.inserted = response.postDescription;
+               $state.go('admin.admin-news-post-success');
            });
         }
     }]);
