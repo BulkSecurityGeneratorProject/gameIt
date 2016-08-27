@@ -6,15 +6,19 @@ gameItAngularApp.factory('NewsPostService',[ '$resource', function ($resource) {
         'update': {method: 'PUT'}
     });
 }]);
-gameItAngularApp.factory('ApiNews', ['$http', function ($http) {
+gameItAngularApp.factory('ApiNews', ['$http', '$rootScope', function ($http, $rootScope) {
     var ApiNews = function() {
         this.items = [];
         this.page = 0;
         this.size = 5;
-        this.busy = false;
+        this.busy = $rootScope.searchTagResultList !== undefined;
     };
 
     ApiNews.prototype.nextPage = function () {
+        // if ($rootScope.searchTagResultList) {
+        //     this.busy = true
+        //     return;
+        // }
         if (this.busy) return;
         this.busy = true;
 

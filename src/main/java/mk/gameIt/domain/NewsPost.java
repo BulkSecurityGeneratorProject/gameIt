@@ -1,5 +1,7 @@
 package mk.gameIt.domain;
 
+import org.hibernate.search.annotations.Indexed;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;

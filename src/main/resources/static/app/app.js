@@ -29,6 +29,9 @@ gameItAngularApp.run([
         $rootScope.$stateParams = $stateParams;
         $rootScope.$on('$stateChangeStart',
             function (event, toState, toParams, fromState, fromParams, options) {
+                if (fromState.name == 'news') {
+                    $rootScope.searchTagResultList = undefined;
+                }
             });
         $rootScope.$on('$stateChangeSuccess',
             function (event, toState, toParams, fromState, fromParams) {

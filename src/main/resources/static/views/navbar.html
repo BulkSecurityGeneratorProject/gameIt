@@ -97,18 +97,20 @@
                         <ul class="dropdown-menu">
                             <li ng-class="{active: language == 'en'}">
                                 <a href="" ng-click="changeLanguage('en')">
-                                    <span class="flag-icon flag-icon-gb"></span>
+                                    <span class="flag-icon flag-icon-gb hidden-sm"></span>
                                     <span class="hidden-sm" translate="global.menu.buttonLang_en">
                                     English
                                     </span>
+                                    <span class="flag-icon flag-icon-gb visible-sm" style="text-align:center"></span>
                                 </a>
                             </li>
                             <li ng-class="{active: language == 'mk'}">
                                 <a href="" ng-click="changeLanguage('mk')">
-                                    <span class="flag-icon flag-icon-mk"></span>
+                                    <span class="flag-icon flag-icon-mk hidden-sm"></span>
                                      <span class="hidden-sm" translate="global.menu.buttonLang_mk">
                                     Macedonian
                                     </span>
+                                    <span class=" flag-icon flag-icon-mk visible-sm" style="text-align:center"></span>
                                 </a>
                             </li>
                         </ul>

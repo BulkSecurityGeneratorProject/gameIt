@@ -11,6 +11,8 @@ import mk.gameIt.web.dto.TagObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.codec.Base64;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,6 +47,22 @@ public class NewsPostController {
         }
     }
 
+    @RequestMapping(value = "/news/tag/{tagName}", method = RequestMethod.GET)
+    public ResponseEntity getAllNewsPosts(@PathVariable String tagName) {
+        List<NewsPost> newsPosts = newsPostService.findAll();
+        Tag tag = tagService.findOneByTagName(tagName);
+        List<NewsPost> resultList = new ArrayList<>();
+        for(NewsPost newsPost: newsPosts)  {
+            if (newsPost.getTags().contains(tag)) {
+                resultList.add(newsPost);
+            }
+        }
+        if (resultList != null) {
+            return new ResponseEntity(HttpStatus.OK).ok(resultList);
+        }
+
+        return new ResponseEntity(HttpStatus.CONFLICT).ok().build();
+    }
 
     @RequestMapping(value = "/news", method = RequestMethod.POST)
     public NewsPost saveNewsPost(@RequestBody NewsPostObject newsPostObject) {
