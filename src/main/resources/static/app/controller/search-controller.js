@@ -21,7 +21,7 @@ gameItAngularApp.controller('SearchController', ['$rootScope', '$scope', '$locat
 
             $scope.searchInput = null;
         } else {
-            $location.path("/");
+            $state.go('home');
         };
 
         $scope.viewGame = function (gameId) {

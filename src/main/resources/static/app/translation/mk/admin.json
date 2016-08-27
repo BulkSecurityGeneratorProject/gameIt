@@ -4,6 +4,10 @@
     "gamesChart": {
       "title": "Најпрегледани игри"
     },
+    "newsPost": {
+      "success": "<strong>Успех!</strong> Новостае додадена",
+      "error":  "<strong>Грешка!</strong> Новоста не е додадена"
+    },
     "sidenav": {
       "dashboard": {
         "main": "Командна табла"

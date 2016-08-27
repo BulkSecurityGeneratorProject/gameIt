@@ -4,6 +4,10 @@
     "gamesChart": {
       "title": "Most Viewed Games"
     },
+    "newsPost": {
+      "success": "<strong>Success!</strong> The post has been created",
+      "error":  "<strong>Error!</strong> The post has not been created"
+    },
     "sidenav": {
       "dashboard": {
         "main": "Dashboard"

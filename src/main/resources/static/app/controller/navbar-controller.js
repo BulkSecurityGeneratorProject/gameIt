@@ -28,7 +28,7 @@ gameItAngularApp.controller('NavbarController', ['$scope', '$rootScope','$state'
             }).then(function success(response) {
                 $rootScope.authenticated = false;
                 $rootScope.loggedInUser = undefined;
-                $location.path("/");
+                $state.go('home');
                 $rootScope.administrator = false;
             }, function error(response) {
                 $rootScope.authenticated = false;

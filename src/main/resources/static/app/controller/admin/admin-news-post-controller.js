@@ -22,7 +22,12 @@ gameItAngularApp.controller('AdminNewsPostController', ['$scope', '$rootScope','
                }
            }).then(function success(response){
                $scope.inserted = response.postDescription;
-               $state.go('admin.admin-news-post-success');
+               $scope.success = 'SUCCESS';
+               $scope.error = undefined;
+             //  $state.go('admin.admin-news-post-success');
+           }, function error(response) {
+               $scope.error = 'ERROR';
+               $scope.success = undefined;
            });
         }
     }]);
