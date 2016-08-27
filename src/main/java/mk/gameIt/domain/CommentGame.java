@@ -17,7 +17,6 @@ import java.util.Date;
 public class CommentGame implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "userId", referencedColumnName = "userId")
     private User userId;

@@ -9,7 +9,11 @@
       "releasedBy": "<b>Издава:</b>",
       "releaseYear": "<b>Година на издавање:</b>",
       "minPerform": "<b>Минимални Барања</b>",
-      "optPerform": "<b>Препорачани Барања</b>"
+      "optPerform": "<b>Препорачани Барања</b>",
+      "commentText": "Внесете го вашиот коментар",
+      "leaveAComment": "Оставете коментар",
+      "loginToComment": "Треба да сте најавени за да коментирате",
+      "postCommentButton": "Коментирај"
     }
   }
 }

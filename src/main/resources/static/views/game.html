@@ -1,7 +1,8 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <h1 class="page-header text-center">{{game.gameName}} - <span translate="games.game.grade">Grade</span>: {{game.gameGradeSum}}</h1>
+            <h1 class="page-header text-center">{{game.gameName}} - <span translate="games.game.grade">Grade</span>:
+                {{game.gameGradeSum}}</h1>
             <div class="row">
                 <div class="col-sm-5">
                     <h1 class="text-center"><img ng-src="{{game.gamePicture}}" class="img-responsive"/></h1>
@@ -12,7 +13,8 @@
                 </div>
             </div>
 
-            <h2><span translate="games.game.releasedBy">Released By</span> <span ng-repeat="company in game.gameCompanies">{{company.companyName}} </span></h2>
+            <h2><span translate="games.game.releasedBy">Released By</span> <span
+                    ng-repeat="company in game.gameCompanies">{{company.companyName}} </span></h2>
             <h4><span translate="games.game.releaseYear"></span> {{game.gameReleaseYear | date}}</h4>
             <div class="row">
                 <div class="col-sm-6" ng-show="game.gameMinimalPerformance">
@@ -27,52 +29,46 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <!-- Blog Comments -->
-
-            <!-- Comments Form -->
             <div class="well">
-                <h4>Leave a Comment:</h4>
+                <h4 ng-show="loggedInUser" class="text-center" translate="games.game.leaveAComment">Leave a
+                    Comment:</h4>
+                <h4 ng-hide="loggedInUser" translate="games.game.loginToComment">You must be logged in to comment</h4>
                 <form role="form" ng-submit="addComment()">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="commentText" ng-model="comment.commentText"/>
-                        <span>{{comment.commentText}}</span>
+                        <input type="text" class="form-control" placeholder="{{'games.game.commentText' | translate}}"
+                               name="commentText" ng-disabled="!loggedInUser" ng-model="comment.commentText"/>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled="!loggedInUser"
+                            translate="games.game.postCommentButton">Submit
+                    </button>
                 </form>
             </div>
 
             <hr>
 
-            <!-- Posted Comments -->
-
-            <!-- Comment -->
-            <div class="media">
-                <a class="pull-left" href="#">
-                    <img class="media-object" src="http://placehold.it/64x64" alt="">
-                </a>
-                <div class="media-body">
-                    <h4 class="media-heading">Start Bootstrap
-                        <small>August 25, 2014 at 9:30 PM</small>
-                    </h4>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+            <div class="row" ng-repeat="comment in game.comments">
+                <div class="col-sm-12">
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <a href="">
+                                <img class="media-object" class="img-responsive" width="128px" height="128px"
+                                     data-ng-src="data:image/PNG;base64,{{comment.userId.userProfileImageToString}}">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{comment.userId.username}}
+                                <small>
+                                    {{comment.commentDate.dayOfMonth}}-{{comment.commentDate.month}}-{{comment.commentDate.year}}
+                                    {{comment.commentDate.hour}}:{{comment.commentDate.minute}}
+                                </small>
+                            </h4>
+                            {{comment.commentText}}
+                        </div>
+                    </div>
+                    <hr/>
                 </div>
             </div>
-
-            <!-- Comment -->
-            <div class="media">
-                <a class="pull-left" href="#">
-                    <img class="media-object" src="http://placehold.it/64x64" alt="">
-                </a>
-                <div class="media-body">
-                    <h4 class="media-heading">Start Bootstrap
-                        <small>August 25, 2014 at 9:30 PM</small>
-                    </h4>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-
-                </div>
-            </div>
-
-        </div>
         </div>
     </div>
 </div>
+

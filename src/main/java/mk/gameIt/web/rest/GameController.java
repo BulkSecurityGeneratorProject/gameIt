@@ -50,7 +50,6 @@ public class GameController {
     private UserService userService;
     @Autowired
     private CommentGameService commentGameService;
-
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -117,22 +116,11 @@ public class GameController {
         }
     }
 
-    @RequestMapping(value = "/games/comment")
-    public Game commentGame(@RequestBody CommentGameObject commentGameObject) throws UnsupportedEncodingException {
-        String username = null;
-        User user = null;
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication.isAuthenticated()) {
-            Object principal = authentication.getPrincipal();
-            if (principal instanceof UserDetails) {
-                username = ((UserDetails) principal).getUsername();
-            } else {
-                username = principal.toString();
-            }
-            user = userService.findOneByUsername(username);
-
-            commentGameObject.setUserId(user.getUserId());
-            CommentGame commentGame = commentGameService.save(commentGameObject);
+    @RequestMapping(value = "/games/comment", method = RequestMethod.POST)
+    public Game commentGame(@RequestBody CommentGameObject object) { //} Long gameId, @RequestParam String commentText) {
+        User user = userService.currentLoggedInUser();
+        if (user != null) {
+            CommentGame commentGame = commentGameService.save(object.getGameId(), object.getCommentText(), user);
             Game game = commentGame.getGameId();
             game.getComments().add(commentGame);
             gameRepository.save(game);

@@ -9,7 +9,11 @@
       "releasedBy": "<b>Released By:</b>",
       "releaseYear": "<b>Release Year:</b>",
       "minPerform": "<b>Minimum Requirements</b>",
-      "optPerform": "<b>Recommended Requirements</b>"
+      "optPerform": "<b>Recommended Requirements</b>",
+      "commentText": "Enter your comment",
+      "leaveAComment": "Leave a Comment",
+      "loginToComment": "You must be logged in to comment",
+      "postCommentButton": "Post"
     }
   }
 }

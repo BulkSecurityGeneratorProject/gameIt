@@ -2,11 +2,14 @@ package mk.gameIt.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
+import org.springframework.security.crypto.codec.Base64;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.UnsupportedEncodingException;
 import java.sql.Blob;
+import java.sql.SQLException;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,12 +58,15 @@ public class User {
   //  @JoinColumn(referencedColumnName = "id")
   //  private OAuthAccount client;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "userId")
     private List<CommentGame> commentsGame;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "userId")
     private List<GameRating> gamesRatings;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "userId")
     private List<Location> locations;
 
@@ -197,6 +203,39 @@ public class User {
         this.langKey = LangKey.en.name();
         this.commentsGame = new ArrayList<>();
         this.gamesRatings = new ArrayList<>();
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", langKey='" + langKey + '\'' +
+                ", profileImage=" + getUserProfileImageToString() +
+                ", provider=" + provider +
+                ", role=" + role +
+                '}';
+    }
+
+    public String getUserProfileImageToString()  {
+        String base64Encoded = null;
+        if (this.getProfileImage() != null) {
+            byte[] encodeBase64 = new byte[0];
+            try {
+                encodeBase64 = Base64.encode(this.getProfileImage().getBytes(1, (int) this.getProfileImage().length()));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                base64Encoded = new String(encodeBase64, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
+        return base64Encoded;
     }
 }
 

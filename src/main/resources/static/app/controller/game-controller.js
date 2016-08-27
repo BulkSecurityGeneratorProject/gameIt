@@ -10,17 +10,20 @@ gameItAngularApp.controller('GameController', ['$rootScope', '$scope', '$http', 
         $scope.comment = {};
 
         $scope.addComment = function () {
-            console.log($rootScope.loggedInUser);
             console.log(gameId);
             console.log($scope.comment.commentText);
             $scope.comment.gameId = gameId;
-            $scope.comment.userId = $rootScope.loggedInUser.userId;
             $http({
-                type: 'POST',
+                method: 'POST',
                 url: '/api/games/comment',
-                data: {'commentGameObject': $scope.comment}
+                data: $scope.comment
+            // {
+            //         'gameId': gameId,
+            //         'commentText': $scope.comment.commentText
+            //     }
             }).then(function success(response) {
-                console.log(response);
+                $scope.game = response.data;
+                $scope.commentText = null;
             });
         };
 

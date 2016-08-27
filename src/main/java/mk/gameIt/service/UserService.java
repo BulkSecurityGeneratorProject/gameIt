@@ -25,7 +25,7 @@ public interface UserService {
 
     User createNewUser(UserObject userObject) throws IOException, SQLException;
 
-    void deleteAll();
+    User currentLoggedInUser();
 
     void updateUserImage(MultipartFile image) throws IOException, SQLException;
 

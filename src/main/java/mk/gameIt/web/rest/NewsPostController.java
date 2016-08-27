@@ -39,7 +39,6 @@ public class NewsPostController {
         if (page != null && size != null) {
             Pageable pageable = new PageRequest(page, size);
             List<NewsPost> returnedList = newsPostService.findAll(pageable).getContent();
-
             return returnedList;
         } else {
             List<NewsPost> returnedList = newsPostService.findAll();
@@ -57,6 +56,7 @@ public class NewsPostController {
                 resultList.add(newsPost);
             }
         }
+
         if (resultList != null) {
             return new ResponseEntity(HttpStatus.OK).ok(resultList);
         }
@@ -66,8 +66,6 @@ public class NewsPostController {
 
     @RequestMapping(value = "/news", method = RequestMethod.POST)
     public NewsPost saveNewsPost(@RequestBody NewsPostObject newsPostObject) {
-        System.out.println(newsPostObject.getNewsPost());
-        System.out.println(newsPostObject.getTagObject().getTagName());
         return newsPostService.save(newsPostObject.getNewsPost(), newsPostObject.getTagObject());
     }
 

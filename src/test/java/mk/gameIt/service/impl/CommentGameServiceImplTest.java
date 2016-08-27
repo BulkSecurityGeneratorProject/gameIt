@@ -43,8 +43,8 @@ public class CommentGameServiceImplTest {
         game.setGameDescription("testGame1Desc");
         game.setGameReleaseYear(new Date());
         game = gameRepository.save(game);
-        commentGameObject.setUserId(user.getUserId());
-        commentGameObject.setGameId(game.getGameId());
-        commentGameService.save(commentGameObject);
+//        commentGameObject.setUserId(user.getUserId());
+//        commentGameObject.setGameId(game.getGameId());
+//        commentGameService.save(commentGameObject);
     }
 }

@@ -33,25 +33,18 @@ public class LocationController {
 
     @RequestMapping(value = "/location", method = RequestMethod.GET)
     public List<Location> getAllUserLocations() {
-        String username = null;
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication.isAuthenticated()) {
-            Object principal = authentication.getPrincipal();
-            if (principal instanceof UserDetails) {
-                username = ((UserDetails) principal).getUsername();
-            } else {
-                username = principal.toString();
-            }
-            User user = userService.findOneByUsername(username);
+        User user = userService.currentLoggedInUser();
+        if (user != null) {
             return user.getLocations();
         }
+
         return null;
     }
 
     @RequestMapping(value = "/location", method = RequestMethod.POST)
     public ResponseEntity<Location> saveNewLocation(@RequestBody LocationObject locationObject) throws URISyntaxException {
         Location savedLocation = locationService.save(locationObject);
-        return ResponseEntity.created(new URI("api/location/"+savedLocation.getLocationId())).body(savedLocation);
+        return ResponseEntity.created(new URI("api/location/" + savedLocation.getLocationId())).body(savedLocation);
     }
 
     @RequestMapping(value = "/location/{username}", method = RequestMethod.DELETE)

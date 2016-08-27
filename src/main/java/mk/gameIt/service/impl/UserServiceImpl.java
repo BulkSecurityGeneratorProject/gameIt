@@ -109,8 +109,20 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public void deleteAll() {
-        userRepository.deleteAll();
+    public User currentLoggedInUser() {
+        User user = null;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication.isAuthenticated()) {
+            Object principal = authentication.getPrincipal();
+            String username = null;
+            if (principal instanceof UserDetails) {
+                username = ((UserDetails) principal).getUsername();
+            } else {
+                username = principal.toString();
+            }
+            user = userRepository.findOneByUsername(username);
+        }
+        return user;
     }
 
     @Override

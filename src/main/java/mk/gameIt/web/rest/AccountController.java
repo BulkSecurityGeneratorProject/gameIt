@@ -63,16 +63,8 @@ public class AccountController {
 
     @RequestMapping("/me")
     public ResponseEntity<UserObject> getLoggedInUser() throws SQLException, UnsupportedEncodingException {
-        String username = null;
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication.isAuthenticated()) {
-            Object principal = authentication.getPrincipal();
-            if (principal instanceof UserDetails) {
-                username = ((UserDetails) principal).getUsername();
-            } else {
-                username = principal.toString();
-            }
-            User user = userService.findOneByUsername(username);
+        User user = userService.currentLoggedInUser();
+        if (user != null) {
             String base64Encoded = null;
             if (user.getProfileImage() != null) {
                 byte[] encodeBase64 = Base64.encode(user.getProfileImage().getBytes(1, (int) user.getProfileImage().length()));
@@ -81,6 +73,7 @@ public class AccountController {
             UserObject userObject = new UserObject(user.getUsername(), null, user.getUsername(), user.getLastName(), user.getEmail(), base64Encoded, user.getRole());
             return new ResponseEntity<User>(HttpStatus.OK).ok(userObject);
         }
+
         return new ResponseEntity(HttpStatus.FORBIDDEN);
     }
 
@@ -91,38 +84,23 @@ public class AccountController {
 
     @RequestMapping(value = "/lang", method = RequestMethod.POST)
     public ResponseEntity changeLanguage(@RequestBody String lang) {
-        String username = null;
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication.isAuthenticated()) {
-            Object principal = authentication.getPrincipal();
-            if (principal instanceof UserDetails) {
-                username = ((UserDetails) principal).getUsername();
-            } else {
-                username = principal.toString();
-            }
-            userService.changeLangKey(lang, username);
+        User currentUser =  userService.currentLoggedInUser();
+        if (currentUser != null){
+            userService.changeLangKey(lang, currentUser.getUsername());
             return new ResponseEntity(HttpStatus.OK).ok().build();
         }
+
         return new ResponseEntity(HttpStatus.FORBIDDEN);
     }
 
     @RequestMapping(value = "/lang", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String getLanguage() {
-        String username = null;
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication.isAuthenticated()) {
-            Object principal = authentication.getPrincipal();
-            if (principal instanceof UserDetails) {
-                username = ((UserDetails) principal).getUsername();
-            } else {
-                username = principal.toString();
-            }
-        }
-        User currentUser = userService.findOneByUsername(username);
+        User currentUser = userService.currentLoggedInUser();
         if (currentUser != null) {
             return "{\"langKey\": " + "\"" + currentUser.getLangKey() + "\"" + '}';
         }
+
         return null;
     }
 }
