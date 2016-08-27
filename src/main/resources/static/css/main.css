@@ -58,6 +58,7 @@ body {
 
 .gameDescription {
     word-wrap: break-word;
+    text-align: justify;
 }
 
 #map {
@@ -72,4 +73,7 @@ body {
     left:0px;
     right:0px;
     margin-bottom:0px;
+}
+textarea {
+    resize: none;
 }

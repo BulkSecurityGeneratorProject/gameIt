@@ -4,6 +4,8 @@ import mk.gameIt.domain.Provider;
 import mk.gameIt.domain.Role;
 import mk.gameIt.domain.User;
 import mk.gameIt.web.dto.UserObject;
+import mk.gameIt.web.exceptions.EmailExistsException;
+import mk.gameIt.web.exceptions.UsernameExistsException;
 import org.apache.commons.io.IOUtils;
 import org.hibernate.type.BlobType;
 import org.slf4j.Logger;
@@ -86,7 +88,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional
-    public User createNewUser(UserObject userObject) throws IOException, SQLException {
+    public User createNewUser(UserObject userObject) throws IOException, SQLException, UsernameExistsException, EmailExistsException {
+        User duplicateUser = userRepository.findOneByEmail(userObject.getEmail());
+        if (duplicateUser != null) {
+            throw new EmailExistsException();
+        }
+
+        duplicateUser = userRepository.findOneByUsername(userObject.getUsername());
+        if (duplicateUser != null) {
+            throw new UsernameExistsException();
+        }
+
         User user = new User();
         user.setUsername(userObject.getUsername());
         user.setFirstName(userObject.getFirstName());

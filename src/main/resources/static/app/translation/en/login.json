@@ -1,6 +1,8 @@
 {
   "login": {
     "title": "Sign in",
+    "successRegister": "<strong>Registration was successful!</strong> You can now log in.",
+    "loginLocation": "We have noted your current login location. You can find it in the Settings Map",
     "form": {
       "username": "Username",
       "username.placeholder": "Your username",

@@ -1,8 +1,8 @@
 /**
  * Created by Stefan on 31.03.2016.
  */
-gameItAngularApp.controller('UserManagementController', ['$scope', '$rootScope', 'UserService', '$translate','$translatePartialLoader',
-    function ($scope, $rootScope, UserService, $translate, $translatePartialLoader) {
+gameItAngularApp.controller('UserManagementController', ['$scope','toastr', '$rootScope', 'UserService', '$translate','$translatePartialLoader',
+    function ($scope, toastr, $rootScope, UserService, $translate, $translatePartialLoader) {
         $translatePartialLoader.addPart('user-management');
         $translate.refresh();
 
@@ -10,21 +10,27 @@ gameItAngularApp.controller('UserManagementController', ['$scope', '$rootScope',
         $scope.userList = UserService.query();
         $scope.displayedUsers = [].concat($scope.userList);
         console.log($scope.userList);
-        $scope.success = null;
-        $scope.error = null;
 
         $scope.deleteUser = function (user) {
             UserService.delete({id: user.userId}, function (result) {
                 console.log(result);
                 $scope.userList = UserService.query();
-                $scope.success = 'OK';
-                $scope.error = null;
+                $translate('admin.sidenav.users.success').then(function (translatedMessage) {
+                    toastr.success(translatedMessage, {
+                        closeButton: true,
+                        allowHtml: true
+                    });
+                });
             }, function (fail) {
                 console.log(fail);
-                $scope.success = null;
-                $scope.error = 'ERROR';
+                $translate('admin.sidenav.users.error').then(function (translatedMessage) {
+                    toastr.error(translatedMessage, {
+                        closeButton: true,
+                        allowHtml: true
+                    });
+                });
             });
-        }
+        };
 
         /*  var editUserDialog = $modal({
          scope: $scope,

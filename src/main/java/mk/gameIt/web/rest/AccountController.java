@@ -7,7 +7,10 @@ import mk.gameIt.domain.Role;
 import mk.gameIt.domain.User;
 import mk.gameIt.repository.UserRepository;
 import mk.gameIt.service.UserService;
+import mk.gameIt.web.dto.ExceptionObject;
 import mk.gameIt.web.dto.UserObject;
+import mk.gameIt.web.exceptions.EmailExistsException;
+import mk.gameIt.web.exceptions.UsernameExistsException;
 import org.apache.catalina.connector.Response;
 import org.apache.http.protocol.HTTP;
 import org.slf4j.Logger;
@@ -47,7 +50,8 @@ public class AccountController {
     private UserService userService;
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResponseEntity<User> createNewAccount(@RequestBody UserObject userObject) {
+    @ResponseBody
+    public ResponseEntity createNewAccount(@RequestBody UserObject userObject) {
         User newUser = null;
         try {
             newUser = userService.createNewUser(userObject);
@@ -55,7 +59,13 @@ public class AccountController {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (SQLException e) {
-            e.printStackTrace();
+          //  e.printStackTrace();
+            System.out.println(e.getMessage());
+        } catch (UsernameExistsException e) {
+            return ResponseEntity.badRequest().body(new ExceptionObject(e.getMessage()));
+        } catch (EmailExistsException e) {
+          return ResponseEntity.badRequest().body(new ExceptionObject(e.getMessage()));
+
         }
         System.out.println(userObject);
         return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);

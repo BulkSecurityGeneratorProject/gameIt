@@ -3,15 +3,30 @@
     "header": "Games",
     "viewGame": "View Game",
     "game": {
-      "name": "Name",
+      "name": "<b>Game name:</b>",
+      "name.placeholder": "Enter the game name",
+      "picturePath": "<b>Game picture path:</b>",
+      "picturePath.placeholder": "Enter the game picture path (link)",
       "grade": "Grade",
-      "description": "<b>Game Description</b>",
+      "description": "<b>Game Description:</b>",
+      "description.placeholder": "Enter the description for the game",
       "releasedBy": "<b>Released By:</b>",
       "releaseYear": "<b>Release Year:</b>",
-      "minPerform": "<b>Minimum Requirements</b>",
-      "optPerform": "<b>Recommended Requirements</b>",
+      "releaseYear.placeholder": "Click to select the release year",
+      "minPerform": {
+        "name": "<b>Minimum Requirements:</b>",
+        "processor": "Processor:",
+        "ram": "RAM:",
+        "hdd": "HDD:",
+        "graphics": "Graphics Card:"
+      },
+      "optPerform": {
+        "name": "<b>Recommended Requirements:</b>"
+      },
+      "insert": "Insert Game",
       "commentText": "Enter your comment",
       "leaveAComment": "Leave a Comment",
+      "commentSuccess": "Your comment has been added successfully",
       "loginToComment": "You must be logged in to comment",
       "postCommentButton": "Post"
     }

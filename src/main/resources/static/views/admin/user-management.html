@@ -2,12 +2,6 @@
     <div class="row">
         <div class="col-sm-12">
             <h2 translate="userManagement.home.title">Users</h2>
-            <div class="alert alert-success" ng-show="success">
-                <strong translate="admin.sidenav.users.success">Settings saved!</strong>
-            </div>
-            <div class="alert alert-danger" ng-show="error">
-                <span translate="admin.sidenav.users.error"><strong>An error has occurred!</strong> Settings could not be saved.</span>
-            </div>
             <table st-table="displayedUsers" st-safe-src="userList" class="table table-hover table-stripped">
                 <thead>
                 <tr>

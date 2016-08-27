@@ -3,16 +3,31 @@
     "header": "Игри",
     "viewGame": "Погледни",
     "game": {
-      "name": "Име",
+      "name": "<b>Име на играта:</b>",
+      "name.placeholder": "Внеси го името на играта",
+      "picturePath": "<b>Патека до слика за играта:</b>",
+      "picturePath.placeholder": "Тука внесете ја патеката од сликата за играта (линк)",
       "grade": "Оцена",
-      "description": "<b>Опис на Играта</b>",
+      "description": "<b>Опис на Играта:</b>",
+      "description.placeholder": "Внеси опис за играта",
       "releasedBy": "<b>Издава:</b>",
       "releaseYear": "<b>Година на издавање:</b>",
-      "minPerform": "<b>Минимални Барања</b>",
-      "optPerform": "<b>Препорачани Барања</b>",
+      "releaseYear.placeholder": "Притиснете за да селектирате датум",
+      "minPerform": {
+        "name": "<b>Минимални Барања:</b>",
+        "processor": "Процесор:",
+        "ram": "RAM:",
+        "hdd": "HDD:",
+        "graphics": "Графичка картичка:"
+      },
+      "optPerform": {
+        "name": "<b>Препорачани Барања:</b>"
+      },
+      "insert": "Додади игра",
       "commentText": "Внесете го вашиот коментар",
+      "commentSuccess": "Вашиот коментар е успешно додаден.",
       "leaveAComment": "Оставете коментар",
-      "loginToComment": "Треба да сте најавени за да коментирате",
+      "loginToComment": "Најавете се за да коментирате",
       "postCommentButton": "Коментирај"
     }
   }

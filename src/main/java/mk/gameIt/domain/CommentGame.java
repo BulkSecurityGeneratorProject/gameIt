@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.Date;
 
 /**
@@ -14,7 +15,7 @@ import java.util.Date;
 @Entity
 @Table
 @IdClass(CommentGameId.class)
-public class CommentGame implements Serializable {
+public class CommentGame implements Serializable, Comparable<CommentGame> {
     private static final long serialVersionUID = 1L;
     @Id
     @ManyToOne
@@ -28,13 +29,11 @@ public class CommentGame implements Serializable {
     private Game gameId;
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long commentId;
 
     @NotNull
     @Column(name = "commentText", nullable = false,  length = 4000)
     private String commentText;
-
 
     @Column(nullable = false)
     private LocalDateTime commentDate;
@@ -98,5 +97,10 @@ public class CommentGame implements Serializable {
 
     public void setCommentDate(LocalDateTime commentDate) {
         this.commentDate = commentDate;
+    }
+
+    @Override
+    public int compareTo(CommentGame o) {
+        return o.commentDate.compareTo(this.commentDate);
     }
 }

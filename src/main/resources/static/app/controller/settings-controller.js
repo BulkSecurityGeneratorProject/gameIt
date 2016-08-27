@@ -1,15 +1,13 @@
 /**
  * Created by Stefan on 19.8.2016.
  */
-gameItAngularApp.controller('SettingsController', ['$rootScope', '$scope', '$http', 'Upload', '$translate', '$translatePartialLoader', '$state', 'CredentialsService', 'UserService',
-    function ($rootScope, $scope, $http, Upload, $translate, $translatePartialLoader, $state, CredentialsService, UserService) {
+gameItAngularApp.controller('SettingsController', ['$rootScope','toastr', '$scope', '$http', 'Upload', '$translate', '$translatePartialLoader', '$state', 'CredentialsService', 'UserService',
+    function ($rootScope,toastr, $scope, $http, Upload, $translate, $translatePartialLoader, $state, CredentialsService, UserService) {
         $translatePartialLoader.addPart('settings');
         $translate.refresh();
 
         var map;
-
         function initMap() {
-            console.log("init map called");
             var locationObject = undefined;
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
@@ -33,7 +31,7 @@ gameItAngularApp.controller('SettingsController', ['$rootScope', '$scope', '$htt
                 method: 'GET',
                 url: 'api/location'
             }).then(function success(response) {
-                for (i = 0; i < response.data.length; i++) {
+                for (var i = 0; i < response.data.length; i++) {
                     var position = {
                         lat: response.data[i].latitude,
                         lng: response.data[i].longitude
@@ -54,6 +52,9 @@ gameItAngularApp.controller('SettingsController', ['$rootScope', '$scope', '$htt
                 url: "api/location/" + $rootScope.loggedInUser.username
             }).then(function success(response){
                 initMap();
+                toastr.info('Your login locations have been deleted.', 'Information', {
+                    closeButton: true
+                });
             });
         };
 
@@ -64,7 +65,6 @@ gameItAngularApp.controller('SettingsController', ['$rootScope', '$scope', '$htt
                 method: 'GET',
                 url: 'api/me'
             }).then(function success(response) {
-                console.log(response);
                 $scope.settingsAccount = copyAccount(response.data);
             });
         }
@@ -78,12 +78,22 @@ gameItAngularApp.controller('SettingsController', ['$rootScope', '$scope', '$htt
                 } else {
                     getUser();
                 }
-                $scope.error = null;
-                $scope.success = 'OK';
+
+                $translate('settings.messages.success').then(function (translatedMessage) {
+                    toastr.success(translatedMessage, {
+                        closeButton: true,
+                        allowHtml: true
+                    });
+                });
 
             }, function failure() {
-                $scope.success = null;
-                $scope.error = 'ERROR';
+
+                $translate('settings.messages.error.fail').then(function (translatedMessage) {
+                    toastr.error(translatedMessage, {
+                        closeButton: true,
+                        allowHtml: true
+                    });
+                });
             });
         };
 
@@ -121,7 +131,6 @@ gameItAngularApp.controller('SettingsController', ['$rootScope', '$scope', '$htt
                 profileImage: account.profileImage,
                 authorities: account.authorities,
                 userId: account.userId
-
             }
         };
     }]);

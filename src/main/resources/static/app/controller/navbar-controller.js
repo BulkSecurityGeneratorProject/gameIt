@@ -16,7 +16,6 @@ gameItAngularApp.controller('NavbarController', ['$scope', '$rootScope','$state'
                     data: langKey
                 });
             }
-            console.log("Changing language")
         };
 
         CredentialsService.authenticate();
@@ -37,7 +36,6 @@ gameItAngularApp.controller('NavbarController', ['$scope', '$rootScope','$state'
             });
         };
         $scope.search = function(searchText) {
-            console.log("searching with" + $scope.searchText);
             if ($scope.searchText != undefined) {
                 if ($scope.$state.current.name == 'search') {
                     $state.transitionTo('search', {searchInput: $scope.searchText}, {reload: true, notify: true});

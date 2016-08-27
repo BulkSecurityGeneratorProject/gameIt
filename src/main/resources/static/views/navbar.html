@@ -80,8 +80,8 @@
                                 &#xA0;<span translate="global.menu.account.register">Register</span></a></li>
                         </ul>
                     </li>
-                    <li ui-sref-active="active" ng-show="administrator">
-                        <a href="" ui-sref="admin">
+                    <li ng-class="{active: $state.includes('admin')}" ui-sref-active="active" ng-show="administrator">
+                        <a href="" ui-sref="admin.admin-command-board">
                             <span><i class="fa fa-user-secret"></i></span>
                             <span translate="global.menu.admin.main" class="hidden-sm"> Administration</span></a>
                     </li>
@@ -97,20 +97,26 @@
                         <ul class="dropdown-menu">
                             <li ng-class="{active: language == 'en'}">
                                 <a href="" ng-click="changeLanguage('en')">
-                                    <span class="flag-icon flag-icon-gb hidden-sm"></span>
-                                    <span class="hidden-sm" translate="global.menu.buttonLang_en">
-                                    English
-                                    </span>
-                                    <span class="flag-icon flag-icon-gb visible-sm" style="text-align:center"></span>
+                                    <div class="visible-sm">
+                                        <span class="flag-icon flag-icon-gb"></span>
+                                        {{'global.menu.buttonLang_en_small' | translate}}
+                                    </div>
+                                    <div class="hidden-sm">
+                                        <span class="flag-icon flag-icon-gb"></span>
+                                        <span translate="global.menu.buttonLang_en">English</span>
+                                    </div>
                                 </a>
                             </li>
                             <li ng-class="{active: language == 'mk'}">
                                 <a href="" ng-click="changeLanguage('mk')">
-                                    <span class="flag-icon flag-icon-mk hidden-sm"></span>
-                                     <span class="hidden-sm" translate="global.menu.buttonLang_mk">
-                                    Macedonian
-                                    </span>
-                                    <span class=" flag-icon flag-icon-mk visible-sm" style="text-align:center"></span>
+                                    <div class="visible-sm">
+                                        <span class="flag-icon flag-icon-mk"></span>
+                                        {{'global.menu.buttonLang_mk_small' | translate}}
+                                    </div>
+                                    <div class="hidden-sm">
+                                        <span class="flag-icon flag-icon-mk"></span>
+                                        <span translate="global.menu.buttonLang_mk">Macedonian</span>
+                                    </div>
                                 </a>
                             </li>
                         </ul>

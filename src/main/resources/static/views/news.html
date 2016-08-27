@@ -4,7 +4,7 @@
             <h1 class="page-header" translate="news.header">News</h1>
         </div>
     </div>
-    <div infinite-scroll="newsPostList.nextPage()" infinite-scroll-disabled="newsPostList.busy && searchTagResultList" infinite-scroll-distance="0">
+    <div infinite-scroll="newsPostList.nextPage()" infinite-scroll-disabled="newsPostList.busy" infinite-scroll-distance="0">
         <div class="row" ng-repeat="newsPost in newsPostList.items" style="border: 1px solid black">
             <div class="col-sm-4">
                 <img ng-src="{{newsPost.publishedPicturePath}}" class="img-responsive"/>

@@ -1,6 +1,7 @@
 {
     "global": {
         "title": "GameIt",
+        "footer": "Copyright &copy; Game It. Сите права се задржани.",
         "menu": {
             "home": "Дома",
             "news": "Новости",
@@ -22,8 +23,9 @@
             },
             "language": "Јазик",
             "buttonLang_mk": "Македонски",
-            "buttonLang_en": "Англиски"
-
+            "buttonLang_en": "Англиски",
+            "buttonLang_mk_small": "МКД",
+            "buttonLang_en_small": "АНГ"
 
         },
         "form": {

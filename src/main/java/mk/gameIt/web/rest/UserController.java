@@ -3,6 +3,8 @@ package mk.gameIt.web.rest;
 import mk.gameIt.domain.Game;
 import mk.gameIt.domain.User;
 import mk.gameIt.web.dto.UserObject;
+import mk.gameIt.web.exceptions.EmailExistsException;
+import mk.gameIt.web.exceptions.UsernameExistsException;
 import org.apache.catalina.connector.Response;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.slf4j.Logger;
@@ -70,7 +72,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.POST)
-    public ResponseEntity<?> createNewUser(@RequestBody UserObject userObject) throws IOException, SQLException {
+    public ResponseEntity<?> createNewUser(@RequestBody UserObject userObject) throws IOException, SQLException, EmailExistsException, UsernameExistsException {
         User user = userService.createNewUser(userObject);
         final URI location = ServletUriComponentsBuilder.
                 fromCurrentServletMapping().path("/users/{id}").build()

@@ -1,8 +1,8 @@
 /**
  * Created by TOMMY on 03-Apr-16.
  */
-gameItAngularApp.controller('GameController', ['$rootScope', '$scope', '$http', '$translate', '$translatePartialLoader', 'GamesService', '$state',
-    function ($rootScope, $scope, $http, $translate, $translatePartialLoader, GamesService, $state) {
+gameItAngularApp.controller('GameController', ['$rootScope', 'toastr', '$scope', '$http', '$translate', '$translatePartialLoader', 'GamesService', '$state',
+    function ($rootScope, toastr, $scope, $http, $translate, $translatePartialLoader, GamesService, $state) {
         $translatePartialLoader.addPart('games');
         $translate.refresh();
 
@@ -10,27 +10,28 @@ gameItAngularApp.controller('GameController', ['$rootScope', '$scope', '$http', 
         $scope.comment = {};
 
         $scope.addComment = function () {
-            console.log(gameId);
-            console.log($scope.comment.commentText);
             $scope.comment.gameId = gameId;
             $http({
                 method: 'POST',
                 url: '/api/games/comment',
                 data: $scope.comment
-            // {
-            //         'gameId': gameId,
-            //         'commentText': $scope.comment.commentText
-            //     }
             }).then(function success(response) {
                 $scope.game = response.data;
-                $scope.commentText = null;
+                $scope.comment = {};
+                $translate('games.game.commentSuccess').then(function (translatedMessage) {
+                    toastr.success(translatedMessage, {
+                        closeButton: true,
+                        allowHtml: true
+                    });
+                });
             });
         };
 
         $scope.gamesList = GamesService.query();
         GamesService.get({id: gameId}, function (response) {
             $scope.game = response;
-            console.log(response);
+            $scope.minPerf = $scope.game.gameMinimalPerformance.split("@AND@");
+            $scope.optPerf = $scope.game.gameOptimalPerformance.split("@AND@");
         });
 
     }]);

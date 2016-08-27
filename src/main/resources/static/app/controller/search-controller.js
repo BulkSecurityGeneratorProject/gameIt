@@ -14,7 +14,6 @@ gameItAngularApp.controller('SearchController', ['$rootScope', '$scope', '$locat
                     if($scope.resultList.length == 0) {
                         $scope.noData = "NODATA";
                     }
-                    console.log($scope.resultList);
                 }, function failure(response) {
                     console.log(response);
                 });

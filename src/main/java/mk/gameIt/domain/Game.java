@@ -50,9 +50,6 @@ public class Game {
     @Column(nullable = true)
     private Double gameGradeSum = (double) 0;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "game")
-    private List<Video> gameVideos;
-
     @ManyToMany
     @JoinTable(name = "GameGenre", joinColumns = {@JoinColumn(name = "gameId")}, inverseJoinColumns = {@JoinColumn(name = "genreId")})
     private List<Genre> gameGenres;
@@ -67,8 +64,9 @@ public class Game {
     private List<CommentGame> comments;
 
     public Game() {
+        gameGradeSum = new Double(0);
+        gameNumberOfViews = new Long(0);
         comments = new ArrayList<CommentGame>();
-        gameVideos = new ArrayList<Video>();
         gameGenres = new ArrayList<Genre>();
         gameCompanies = new ArrayList<Company>();
     }
@@ -132,14 +130,6 @@ public class Game {
 
     public void setGameCompanies(List<Company> gameCompanies) {
         this.gameCompanies = gameCompanies;
-    }
-
-    public List<Video> getgameVideos() {
-        return gameVideos;
-    }
-
-    public void setgameVideos(List<Video> gameVideos) {
-        this.gameVideos = gameVideos;
     }
 
     public List<Genre> getGameGenres() {

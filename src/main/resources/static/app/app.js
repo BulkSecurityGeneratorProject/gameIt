@@ -31,7 +31,7 @@ gameItAngularApp.run([
         $rootScope.$on('$stateChangeStart',
             function (event, toState, toParams, fromState, fromParams, options) {
                 if (fromState.name == 'news') {
-                    $rootScope.searchTagResultList = undefined;
+                    $rootScope.searchTagResultList = null;
                 }
             });
         $rootScope.$on('$stateChangeSuccess',
@@ -80,6 +80,9 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
                         templateUrl: 'views/login.html',
                         controller: 'LoginController'
                     }
+                },
+                params: {
+                    justRegistered: null
                 }
             })
             .state('news', {
@@ -90,7 +93,11 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
                         templateUrl: 'views/news.html',
                         controller: 'NewsController'
                     }
+                },
+                params: {
+                    tagNewsPostList: null
                 }
+
             })
             .state('search',{
                 url: '/search',
@@ -176,6 +183,7 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
             .state('admin', {
                 url: "/administrator",
                 parent: 'main',
+                abstract: true,
                 views: {
                     'page@': {
                         templateUrl: 'views/admin/admin.html',

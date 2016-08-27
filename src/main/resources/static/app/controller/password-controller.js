@@ -5,6 +5,4 @@ gameItAngularApp.controller('PasswordController', ['$rootScope', '$scope', '$tra
     function ($rootScope, $scope, $translate, $translatePartialLoader, $state) {
         $translatePartialLoader.addPart('password');
         $translate.refresh();
-
-
     }]);

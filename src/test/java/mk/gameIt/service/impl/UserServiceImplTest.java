@@ -5,6 +5,8 @@ import mk.gameIt.domain.User;
 import mk.gameIt.repository.UserRepository;
 import mk.gameIt.service.UserService;
 import mk.gameIt.web.dto.UserObject;
+import mk.gameIt.web.exceptions.EmailExistsException;
+import mk.gameIt.web.exceptions.UsernameExistsException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,7 +38,7 @@ public class UserServiceImplTest {
 
 
     @Test
-    public void createNewUser() throws IOException, SQLException {
+    public void createNewUser() throws IOException, SQLException, EmailExistsException, UsernameExistsException {
         User user = userRepository.findOneByUsername("Peshou");
         if(user != null){
             userRepository.delete(user.getUserId());

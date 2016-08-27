@@ -43,6 +43,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
 public class GameController {
+
     private final Logger log = LoggerFactory.getLogger(GameController.class);
     @Autowired
     private GameService gameService;
@@ -72,52 +73,33 @@ public class GameController {
 
     @RequestMapping(value = "/games", method = RequestMethod.POST)
     public Game saveNewGame(@RequestBody GameObject gameObject) throws IOException, SQLException {
-
         return gameService.save(gameObject);
     }
-
 
     @RequestMapping(value = "/games/{id}", method = RequestMethod.GET)
     public Game getGame(@PathVariable Long id) throws UnsupportedEncodingException, SQLException {
         Game game = gameService.findOne(id);
         game = gameService.incrementNumberOfViews(game);
-
-        //  GameObject gameObject = new GameObject(game.getGameId(), game.getGameName(), game.getGameReleaseYear(), base64Encoded, game.getGameDescription(), game.getGameMinimalPerformance(), game.getGameOptimalPerformance(), game.getGameNumberOfViews(), game.getGameGradeSum());
-
         return game;
     }
-
-  /*  @RequestMapping(value = "/games/{id}/picture", method = RequestMethod.GET)
-    public void gamePicture(HttpServletResponse response, @PathVariable Long id) throws IOException, SQLException {
-        OutputStream out = response.getOutputStream();
-        Game game = gameService.findOne(id);
-        if (game == null || game.getGamePicture() == null) {
-            return;
-        }
-        String contentDisposition = String.format("inline;filename=\"%s\"",
-                game.getGameName() + ".png?gameId=" + game.getGameId());
-        response.setHeader("Content-Disposition", contentDisposition);
-        response.setContentType("image/png");
-        response.setContentLength((int) game.getGamePicture().length());
-        IOUtils.copy(game.getGamePicture().getBinaryStream(), out);
-        out.flush();
-        out.close();
-    }*/
 
     @RequestMapping(value = "/games/sortByViews", method = RequestMethod.GET)
     public ResponseEntity<List<Game>> sortGamesByViews() {
         try {
             List<Game> games = gameService.findAll();
             Collections.sort(games, new GameNumberOfViewsComparator());
-            games = games.subList(0, 5);
+            if (games.size() > 5) {
+                games = games.subList(0, 5);
+            }
+
             return new ResponseEntity<List<Game>>(HttpStatus.OK).ok(games);
         } catch (Exception e) {
-            return new ResponseEntity<List<Game>>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<List<Game>>(HttpStatus.NO_CONTENT);
         }
     }
 
     @RequestMapping(value = "/games/comment", method = RequestMethod.POST)
-    public Game commentGame(@RequestBody CommentGameObject object) { //} Long gameId, @RequestParam String commentText) {
+    public Game commentGame(@RequestBody CommentGameObject object) {
         User user = userService.currentLoggedInUser();
         if (user != null) {
             CommentGame commentGame = commentGameService.save(object.getGameId(), object.getCommentText(), user);
@@ -126,6 +108,7 @@ public class GameController {
             gameRepository.save(game);
             user.getCommentsGame().add(commentGame);
             userRepository.save(user);
+            Collections.sort(game.getComments());
             return game;
         } else {
             return null;

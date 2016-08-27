@@ -21,7 +21,6 @@ gameItAngularApp.factory('CredentialsService', ['$http', '$rootScope', '$transla
                         method: 'GET',
                         url: 'api/lang'
                     }).then(function success(response) {
-                        console.log(response.data.langKey);
                         $rootScope.language = response.data.langKey;
                         $translate.use($rootScope.language);
                     }).catch(function error(response){
@@ -40,19 +39,15 @@ gameItAngularApp.factory('CredentialsService', ['$http', '$rootScope', '$transla
             });
 
         },
-        register: function(credentials, callback) {
+        register: function(credentials, callbackSuccess, callbackError) {
             $http({
                 method: 'POST',
                 url: 'api/register',
                 data: credentials
             }).then(function success(response){
-                console.log("Successful register");
-                console.log(response);
-                callback && callback();
+                callbackSuccess && callbackSuccess(response);
             }, function failure(response) {
-                console.log("Failed register");
-                console.log(response);
-                callback && callback();
+                callbackError && callbackError(response);
             });
         },
         updateAccount: function(credentials, callbackSuccess, callbackFailure) {
@@ -61,12 +56,8 @@ gameItAngularApp.factory('CredentialsService', ['$http', '$rootScope', '$transla
                 url: 'api/users/'+credentials.username,
                 data: credentials
             }).then(function success(response){
-                console.log("Successful update");
-                console.log(response);
                 callbackSuccess && callbackSuccess();
             }, function failure(response) {
-                console.log("Failed update");
-                console.log(response);
                 callbackFailure && callbackFailure();
             });
         }

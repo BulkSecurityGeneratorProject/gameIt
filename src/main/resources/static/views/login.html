@@ -1,6 +1,9 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-6">
+            <div class="alert alert-success" ng-show="successRegister">
+                <span translate="login.successRegister"><strong>Registration saved!</strong> You can now log in</span>
+            </div>
             <div class="alert alert-danger" ng-show="error" translate="login.messages.error.authentication">
                 There was a problem logging in. Please try again.
             </div>

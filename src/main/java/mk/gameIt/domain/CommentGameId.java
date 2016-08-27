@@ -7,8 +7,11 @@ import java.io.Serializable;
  */
 public class CommentGameId implements Serializable {
     private static final long serialVersionUID = 1L;
+
     private Long userId;
+
     private Long gameId;
+
     private Long commentId;
 
     public Long getCommentId() {

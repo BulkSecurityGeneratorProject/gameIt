@@ -6,5 +6,4 @@ gameItAngularApp.controller('AdminController', ['$scope', '$rootScope', '$http',
         $translatePartialLoader.addPart('admin');
         $translate.refresh();
 
-        $state.go('admin.admin-command-board');
     }]);

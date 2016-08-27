@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-sm-7">
                     <h2 translate="games.game.description" class="text-center">Game Description</h2>
-                    <h4 class="text-center gameDescription">{{game.gameDescription}}</h4>
+                    <h4 class="text-center gameDescription" style="text-align: justify;">{{game.gameDescription}}</h4>
                 </div>
             </div>
 
@@ -18,10 +18,50 @@
             <h4><span translate="games.game.releaseYear"></span> {{game.gameReleaseYear | date}}</h4>
             <div class="row">
                 <div class="col-sm-6" ng-show="game.gameMinimalPerformance">
-                    <h2 translate="games.game.minPerform" class="text-center">Minimum Requirements</h2>
+                    <h3 translate="games.game.minPerform.name" class="text-center">Minimum Requirements</h3>
+                    <table class="table table-bordered table-responsive table-hover">
+                        <tbody>
+                        <tr>
+                            <th translate="games.game.minPerform.processor">Processor:</th>
+                            <td>{{minPerf[0]}}</td>
+                        </tr>
+                        <tr>
+                            <th translate="games.game.minPerform.graphics">Graphics Card:</th>
+                            <td>{{minPerf[1]}}</td>
+                        </tr>
+                        <tr>
+                            <th translate="games.game.minPerform.ram">RAM:</th>
+                            <td>{{minPerf[2]}}</td>
+                        </tr>
+                        <tr>
+                            <th translate="games.game.minPerform.hdd">HDD:</th>
+                            <td>{{minPerf[3]}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="col-sm-6" ng-show="game.gameOptimalPerformance">
-                    <h2 translate="games.game.optPerform" class="text-center">Recommended Requirements</h2>
+                    <h3 translate="games.game.optPerform.name" class="text-center">Recommended Requirements</h3>
+                    <table class="table table-bordered table-responsive table-hover">
+                        <tbody>
+                        <tr>
+                            <th translate="games.game.minPerform.processor">Processor:</th>
+                            <td>{{optPerf[0]}}</td>
+                        </tr>
+                        <tr>
+                            <th translate="games.game.minPerform.graphics">Graphics Card:</th>
+                            <td>{{optPerf[1]}}</td>
+                        </tr>
+                        <tr>
+                            <th translate="games.game.minPerform.ram">RAM:</th>
+                            <td>{{optPerf[2]}}</td>
+                        </tr>
+                        <tr>
+                            <th translate="games.game.minPerform.hdd">HDD:</th>
+                            <td>{{optPerf[3]}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -35,7 +75,7 @@
                 <h4 ng-hide="loggedInUser" translate="games.game.loginToComment">You must be logged in to comment</h4>
                 <form role="form" ng-submit="addComment()">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="{{'games.game.commentText' | translate}}"
+                        <textarea rows="4" class="form-control" placeholder="{{'games.game.commentText' | translate}}"
                                name="commentText" ng-disabled="!loggedInUser" ng-model="comment.commentText"/>
                     </div>
                     <button type="submit" class="btn btn-primary" ng-disabled="!loggedInUser"

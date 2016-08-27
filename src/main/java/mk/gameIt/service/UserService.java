@@ -2,6 +2,8 @@ package mk.gameIt.service;
 
 import mk.gameIt.domain.User;
 import mk.gameIt.web.dto.UserObject;
+import mk.gameIt.web.exceptions.EmailExistsException;
+import mk.gameIt.web.exceptions.UsernameExistsException;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileNotFoundException;
@@ -23,7 +25,7 @@ public interface UserService {
 
     User updateUser(String username, UserObject userObject);
 
-    User createNewUser(UserObject userObject) throws IOException, SQLException;
+    User createNewUser(UserObject userObject) throws IOException, SQLException, UsernameExistsException, EmailExistsException;
 
     User currentLoggedInUser();
 
