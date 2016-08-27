@@ -23,7 +23,7 @@ import static org.junit.Assert.*;
 /**
  * Created by Stefan on 06.04.2016.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = GameItApplication.class)
 @WebAppConfiguration
 public class NewsPostServiceImplTest {

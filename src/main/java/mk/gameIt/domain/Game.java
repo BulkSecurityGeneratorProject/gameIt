@@ -32,9 +32,8 @@ public class Game {
     @Column(nullable = false)
     private Date gameReleaseYear;
 
-    @JsonIgnore
-    @Column(nullable = true)
-    private Blob gamePicture;
+    @Column(nullable = true, length = 4000)
+    private String gamePicture;
 
     @NotNull
     @Field(store = Store.NO)
@@ -83,7 +82,6 @@ public class Game {
         Game game = (Game) o;
 
         if (!gameName.equals(game.gameName)) return false;
-        if (!gameReleaseYear.equals(game.gameReleaseYear)) return false;
         if (!gamePicture.equals(game.gamePicture)) return false;
         return gameDescription.equals(game.gameDescription);
 
@@ -92,7 +90,6 @@ public class Game {
     @Override
     public int hashCode() {
         int result = gameName.hashCode();
-        result = 31 * result + gameReleaseYear.hashCode();
         result = 31 * result + gameDescription.hashCode();
         return result;
     }
@@ -177,11 +174,12 @@ public class Game {
         this.gameReleaseYear = gameReleaseYear;
     }
 
-    public Blob getGamePicture() {
+
+    public String getGamePicture() {
         return gamePicture;
     }
 
-    public void setGamePicture(Blob gamePicture) {
+    public void setGamePicture(String gamePicture) {
         this.gamePicture = gamePicture;
     }
 

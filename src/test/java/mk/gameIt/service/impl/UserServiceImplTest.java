@@ -24,7 +24,7 @@ import static org.junit.Assert.*;
 /**
  * Created by Stefan on 16.04.2016.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = GameItApplication.class)
 @WebAppConfiguration
 public class UserServiceImplTest {

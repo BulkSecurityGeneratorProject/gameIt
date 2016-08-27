@@ -3,6 +3,7 @@
     "header": "Игри",
     "viewGame": "Погледни",
     "game": {
+      "name": "Име",
       "grade": "Оцена",
       "description": "<b>Опис на Играта</b>",
       "releasedBy": "<b>Издава:</b>",

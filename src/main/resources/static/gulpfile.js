@@ -39,7 +39,8 @@ var CSS_LIB = [
     'bower_components/metisMenu/dist/metisMenu.min.css',
     'bower_components/angular-toggle-switch/angular-toggle-switch.css',
     'bower_components/angular-toggle-switch/angular-toggle-switch.bootstrap.css',
-    'bower_components/c3/c3.css'
+    'bower_components/c3/c3.css',
+    'bower_components/angular-datepicker/dist/angular-datepicker.css'
 ];
 
 var CSS_APP = [
@@ -94,7 +95,8 @@ var JS_LIB = [
     'bower_components/d3/d3.js',
     'bower_components/c3/c3.js',
     'bower_components/angular-password/angular-password.js',
-    'bower_components/angular-recaptcha/release/angular-recaptcha.js'
+    'bower_components/angular-recaptcha/release/angular-recaptcha.js',
+    'bower_components/angular-datepicker/dist/angular-datepicker.js'
 ];
 
 var JS_APP = [

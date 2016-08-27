@@ -3,6 +3,7 @@ package mk.gameIt.service.impl;
 import mk.gameIt.domain.Game;
 import mk.gameIt.repository.GameRepository;
 import mk.gameIt.service.GameService;
+import mk.gameIt.web.dto.GameObject;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -73,12 +74,8 @@ public class GameServiceImpl implements GameService {
 
     @Override
     @Transactional
-    public Game save(Game game, MultipartFile image) throws IOException, SQLException {
-        Blob pictureBlob = null;
-        if (image != null) {
-            pictureBlob = new SerialBlob(image.getBytes());
-        }
-        game.setGamePicture(pictureBlob);
+    public Game save(GameObject gameObject) throws IOException, SQLException {
+        Game game = gameObject.getGame();
         game = gameRepository.save(game);
         log.debug("Created Game: {}", game);
         return game;

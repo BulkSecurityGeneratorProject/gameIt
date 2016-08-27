@@ -20,7 +20,7 @@ import java.util.Date;
 /**
  * Created by Stefan on 22.04.2016.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = GameItApplication.class)
 @WebAppConfiguration
 public class CommentGameServiceImplTest {

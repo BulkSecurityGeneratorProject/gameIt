@@ -50,7 +50,8 @@
     "angular-chart.js": "~0.5.2",
     "c3": "0.4.10",
     "angular-password": "1.0.1",
-    "angular-recaptcha": "3.0.4"
+    "angular-recaptcha": "3.0.4",
+    "angular-datepicker": "2.0.3"
   },
   "resolutions": {
     "angular": "1.5.0",

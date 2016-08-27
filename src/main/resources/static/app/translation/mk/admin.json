@@ -5,8 +5,12 @@
       "title": "Најпрегледани игри"
     },
     "newsPost": {
-      "success": "<strong>Успех!</strong> Новостае додадена",
+      "success": "<strong>Успех!</strong> Новоста е додадена",
       "error":  "<strong>Грешка!</strong> Новоста не е додадена"
+    },
+    "game": {
+      "success": "<strong>Успех!</strong> Играта е додадена",
+      "error":  "<strong>Грешка!</strong> Играта не е додадена"
     },
     "sidenav": {
       "dashboard": {

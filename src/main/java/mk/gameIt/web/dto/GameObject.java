@@ -1,5 +1,7 @@
 package mk.gameIt.web.dto;
 
+import mk.gameIt.domain.Game;
+
 import javax.validation.constraints.NotNull;
 import java.sql.Blob;
 import java.util.Date;
@@ -34,8 +36,8 @@ public class GameObject {
     public GameObject() {
     }
 
-    public GameObject(Long gameId, String gameName, Date gameReleaseYear, String gamePicture, String gameDescription, String gameMinimalPerformance, String gameOptimalPerformance, Long gameNumberOfViews, Double gameGradeSum) {
-        this.gameId = gameId;
+    public GameObject(String gameName, Date gameReleaseYear, String gamePicture, String gameDescription, String gameMinimalPerformance, String gameOptimalPerformance, Long gameNumberOfViews, Double gameGradeSum) {
+
         this.gameName = gameName;
         this.gameReleaseYear = gameReleaseYear;
         this.gamePicture = gamePicture;
@@ -44,6 +46,17 @@ public class GameObject {
         this.gameOptimalPerformance = gameOptimalPerformance;
         this.gameNumberOfViews = gameNumberOfViews;
         this.gameGradeSum = gameGradeSum;
+    }
+
+    public Game getGame() {
+        Game game = new Game();
+        game.setGameName(this.gameName);
+        game.setGameReleaseYear(this.gameReleaseYear);
+        game.setGamePicture(this.gamePicture);
+        game.setGameDescription(this.gameDescription);
+        game.setGameMinimalPerformance(this.gameMinimalPerformance);
+        game.setGameOptimalPerformance(this.gameOptimalPerformance);
+        return game;
     }
 
     public Long getGameId() {

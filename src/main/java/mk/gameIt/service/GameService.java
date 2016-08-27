@@ -1,6 +1,7 @@
 package mk.gameIt.service;
 
 import mk.gameIt.domain.Game;
+import mk.gameIt.web.dto.GameObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,6 +18,6 @@ public interface GameService {
     Page<Game> findAll(Pageable pageable);
     Game incrementNumberOfViews(Game game);
     Game findOne(Long id);
-    Game save(Game game, MultipartFile image) throws IOException, SQLException;
+    Game save(GameObject gameObject) throws IOException, SQLException;
     void delete(Long id);
 }

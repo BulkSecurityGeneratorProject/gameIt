@@ -18,7 +18,8 @@ var gameItAngularApp = angular.module('gameItApp', [
     'ngAnimate',
     'infinite-scroll',
     'ngPasswordStrength',
-    'vcRecaptcha'
+    'vcRecaptcha',
+    'datePicker'
 ]);
 
 gameItAngularApp.run([

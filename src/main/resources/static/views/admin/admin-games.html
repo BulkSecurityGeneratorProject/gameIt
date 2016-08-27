@@ -1,7 +1,56 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12">
-            <h1 class="page-header text-center" translate="admin.sidenav.games.main">Games</h1>
+            <h1 class="page-header text-center" translate="admin.sidenav.games.main">Add new game</h1>
         </div>
     </div>
+    <div class="alert alert-success" ng-show="success" translate="admin.game.success">
+        <strong>Success!</strong> The post has been added.
+    </div>
+    <div class="alert alert-danger" ng-show="error" translate="admin.game.error">
+        <strong>Error!</strong> The post has not been added.
+    </div>
+
+    <form role="form" name="form" show-validation ng-submit="addNewGame()">
+        <div class="row">
+            <div class="col-sm-10">
+                <div class="form-group">
+                    Game name:
+                    <input type="text" ng-model="game.gameName" class="form-control"
+                           placeholder="{{'games.game.name' | translate}}" required/>
+                </div>
+                <div class="form-group">
+                    Picture path:
+                    <input type="text" ng-model="game.gamePicture" class="form-control"
+                            required/>
+                </div>
+                <div class="form-group">
+                  Game description:  <input type="text" ng-model="game.gameDescription" class="form-control"
+                            placeholder="{{'games.game.description' | translate}}" required/>
+                </div>
+
+                <div class="form-group">
+                  Minimal performance   <textarea    ng-model="game.gameMinimalPerformance" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    Optimal performance   <textarea ng-model="game.gameOptimalPerformance" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <div date-picker ng-model="game.gameReleaseYear">
+                </div>
+
+            </div>
+            <div class="col-sm-2">
+                <div class="row pull-right">
+                    <button type="submit" class="btn btn-primary">
+                        <span translate="news.form.publish" ng-disabled="form.$invalid">Publish</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+    <br>
+    <hr/>
 </div>

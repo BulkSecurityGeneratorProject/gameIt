@@ -3,6 +3,7 @@
     "header": "Games",
     "viewGame": "View Game",
     "game": {
+      "name": "Name",
       "grade": "Grade",
       "description": "<b>Game Description</b>",
       "releasedBy": "<b>Released By:</b>",
