@@ -23,4 +23,6 @@ public interface NewsPostService {
     void delete(Long id);
 
     NewsPost update(Long id, NewsPostObject newsPostObject);
+
+
 }
