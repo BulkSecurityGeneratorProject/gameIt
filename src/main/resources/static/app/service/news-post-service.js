@@ -8,18 +8,13 @@ gameItAngularApp.factory('NewsPostService',[ '$resource', function ($resource) {
 }]);
 gameItAngularApp.factory('ApiNews', ['$http', '$rootScope', function ($http, $rootScope) {
     var ApiNews = function(busy) {
-        console.log(busy);
-        this.items = [];
+            this.items = [];
         this.page = 0;
         this.size = 5;
         this.busy = busy;
     };
 
     ApiNews.prototype.nextPage = function () {
-        // if ($rootScope.searchTagResultList) {
-        //     this.busy = true
-        //     return;
-        // }
         if (this.busy) return;
         this.busy = true;
 

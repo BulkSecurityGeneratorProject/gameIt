@@ -12,6 +12,17 @@
                     <h4 class="text-center gameDescription" style="text-align: justify;">{{game.gameDescription}}</h4>
                 </div>
             </div>
+            <div ng-show="authenticated">
+                <span uib-rating ng-model="userRating" disabled="isReadOnly" ng-change="updateRating(game.gameId)"
+                      max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null"
+                      titles="['one','two','three']" aria-labelledby="default-rating"></span>
+                <span class="label"
+                      ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}"
+                      ng-show="overStar && !isReadonly">{{percent}}%</span>
+            </div>
+            <div ng-hide="authenticated">
+                <h4 translate="games.game.rateLogIn">You need to be logged in to rate the game</h4>
+            </div>
 
             <h2><span translate="games.game.releasedBy">Released By</span> <span
                     ng-repeat="company in game.gameCompanies">{{company.companyName}} </span></h2>
@@ -76,7 +87,7 @@
                 <form role="form" ng-submit="addComment()">
                     <div class="form-group">
                         <textarea rows="4" class="form-control" placeholder="{{'games.game.commentText' | translate}}"
-                               name="commentText" ng-disabled="!loggedInUser" ng-model="comment.commentText"/>
+                                  name="commentText" ng-disabled="!loggedInUser" ng-model="comment.commentText"/>
                     </div>
                     <button type="submit" class="btn btn-primary" ng-disabled="!loggedInUser"
                             translate="games.game.postCommentButton">Submit

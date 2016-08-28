@@ -1,8 +1,6 @@
 package mk.gameIt.web.rest;
 
-import mk.gameIt.domain.CommentGame;
-import mk.gameIt.domain.Game;
-import mk.gameIt.domain.User;
+import mk.gameIt.domain.*;
 import mk.gameIt.domain.comparators.GameNumberOfViewsComparator;
 import mk.gameIt.repository.GameRepository;
 import mk.gameIt.repository.UserRepository;
@@ -71,6 +69,17 @@ public class GameController {
         }
     }
 
+    @RequestMapping(value = "/games/{id}", method = RequestMethod.PUT)
+    public ResponseEntity updateGame(@RequestBody GameObject gameObject) {
+        try {
+            Game game = gameService.updateGame(gameObject);
+            return new ResponseEntity(HttpStatus.OK).ok(game);
+        } catch(Exception e) {
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
     @RequestMapping(value = "/games", method = RequestMethod.POST)
     public Game saveNewGame(@RequestBody GameObject gameObject) throws IOException, SQLException {
         return gameService.save(gameObject);
@@ -80,7 +89,21 @@ public class GameController {
     public Game getGame(@PathVariable Long id) throws UnsupportedEncodingException, SQLException {
         Game game = gameService.findOne(id);
         game = gameService.incrementNumberOfViews(game);
+
         return game;
+    }
+
+    @RequestMapping(value = "/games/{id}/rate", method = RequestMethod.POST)
+    public ResponseEntity rateGame(@PathVariable Long id, @RequestBody Integer rating) {
+        try {
+            User user = userService.currentLoggedInUser();
+            Game game = gameService.findOne(id);
+            game = gameService.rate(game, user, rating);
+            return new ResponseEntity(HttpStatus.OK).ok(game);
+        }
+        catch(Exception e) {
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @RequestMapping(value = "/games/sortByViews", method = RequestMethod.GET)
@@ -103,9 +126,11 @@ public class GameController {
         User user = userService.currentLoggedInUser();
         if (user != null) {
             CommentGame commentGame = commentGameService.save(object.getGameId(), object.getCommentText(), user);
+
             Game game = commentGame.getGameId();
             game.getComments().add(commentGame);
             gameRepository.save(game);
+
             user.getCommentsGame().add(commentGame);
             userRepository.save(user);
             Collections.sort(game.getComments());

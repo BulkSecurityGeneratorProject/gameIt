@@ -39,7 +39,6 @@ public class MainController {
         List searchResults = null;
         try {
             searchResults = gameSearch.search(query);
-            System.out.println(searchResults);
             return new ResponseEntity<List<GameObject>>(HttpStatus.OK).ok(searchResults);
         }
         catch (Exception ex) {

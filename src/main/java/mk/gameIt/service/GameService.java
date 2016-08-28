@@ -1,6 +1,7 @@
 package mk.gameIt.service;
 
 import mk.gameIt.domain.Game;
+import mk.gameIt.domain.User;
 import mk.gameIt.web.dto.GameObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,4 +21,8 @@ public interface GameService {
     Game findOne(Long id);
     Game save(GameObject gameObject) throws IOException, SQLException;
     void delete(Long id);
+
+    Game rate(Game game, User user, Integer rating);
+
+    Game updateGame(GameObject gameObject);
 }

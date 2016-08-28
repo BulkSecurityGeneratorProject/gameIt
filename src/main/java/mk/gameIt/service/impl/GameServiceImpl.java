@@ -1,7 +1,12 @@
 package mk.gameIt.service.impl;
 
 import mk.gameIt.domain.Game;
+import mk.gameIt.domain.GameRating;
+import mk.gameIt.domain.GameRatingId;
+import mk.gameIt.domain.User;
+import mk.gameIt.repository.GameRatingRepository;
 import mk.gameIt.repository.GameRepository;
+import mk.gameIt.repository.UserRepository;
 import mk.gameIt.service.GameService;
 import mk.gameIt.web.dto.GameObject;
 import org.slf4j.Logger;
@@ -29,6 +34,12 @@ public class GameServiceImpl implements GameService {
 
     @Autowired
     private GameRepository gameRepository;
+
+    @Autowired
+    private GameRatingRepository gameRatingRepository;
+
+    @Autowired
+    private UserRepository  userRepository;
 
 
     @Override
@@ -88,5 +99,41 @@ public class GameServiceImpl implements GameService {
      //   log.debug("Deleted Game: {}", game);
         gameRepository.delete(id);
 
+    }
+
+    @Override
+    public Game rate(Game game, User user, Integer rating) {
+        GameRatingId id = new GameRatingId();
+        id.setUserId(user.getUserId());
+        id.setGameId(game.getGameId());
+        GameRating gameRating = gameRatingRepository.findOne(id);
+
+        if (gameRating != null) {
+            gameRating.setRating(rating);
+        } else {
+            gameRating = new GameRating();
+            gameRating.setRating(rating);
+            gameRating.setUserId(user);
+            gameRating.setGameId(game);
+            gameRating = gameRatingRepository.save(gameRating);
+            game.getRatings().add(gameRating);
+
+            user.getGamesRatings().add(gameRating);
+            userRepository.save(user);
+        }
+
+        game.recalculateGameGradeSum();
+        gameRepository.save(game);
+
+
+        return game;
+    }
+
+    @Override
+    public Game updateGame(GameObject gameObject) {
+        Game game = gameRepository.findOne(gameObject.getGameId());
+        game.setGameDescription(gameObject.getGameDescription());
+        game.setGamePicture(gameObject.getGamePicture());
+        return gameRepository.save(game);
     }
 }

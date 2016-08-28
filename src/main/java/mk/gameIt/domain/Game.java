@@ -212,4 +212,14 @@ public class Game {
     public void setGameGradeSum(double gameGradeSum) {
         this.gameGradeSum = gameGradeSum;
     }
+
+    public void recalculateGameGradeSum() {
+        double gameGradeSum = 0;
+        for(GameRating rating: this.ratings) {
+            gameGradeSum += rating.getRating();
+        }
+        gameGradeSum /= this.ratings.size();
+
+        this.setGameGradeSum(gameGradeSum);
+    }
 }

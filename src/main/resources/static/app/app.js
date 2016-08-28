@@ -13,6 +13,7 @@ var gameItAngularApp = angular.module('gameItApp', [
     'ngFileUpload',
     'smart-table',
     'ui.bootstrap',
+    'ngAnimate',
     'toastr',
     'angular-loading-bar',
     'ngAnimate',

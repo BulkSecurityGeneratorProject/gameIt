@@ -1,0 +1,38 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title" translate="games.game.editGame">Edit Game</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <div class="form-group">
+        <label class="control-label" translate="games.game.name">Game Name:</label>
+        <input type="text" ng-model="game.gameId" id="gameId" name="gameId"
+               class="form-control" required readonly="true"/>
+    </div>
+    <div class="form-group">
+        <label class="control-label" for="gameName" translate="games.game.name">Game Name:</label>
+        <input type="text" ng-model="game.gameName" id="gameName" name="gameName"
+               class="form-control" readonly="true"
+               placeholder="{{'games.game.name.placeholder' | translate}}" required/>
+    </div>
+    <div class="form-group">
+        <label class="control-label" for="gamePicturePath" translate="games.game.picturePath">Game
+            picture
+            path:</label>
+        <input type="text" name="picturePath" ng-model="game.gamePicture"
+               placeholder="{{'games.game.picturePath.placeholder' |  translate}}"
+               id="gamePicturePath"
+               class="form-control"
+               required/>
+    </div>
+    <div class="form-group">
+        <label class="control-label" for="gameDescription" translate="games.game.description"> Game
+            description: </label>
+        <textarea rows="5" type="text" name="gameDescription" id="gameDescription"
+                  ng-model="game.gameDescription"
+                  class="form-control"
+                  placeholder="{{'games.game.description.placeholder' | translate}}" required/>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()" translate="games.game.save">Save</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()" translate="games.game.cancel">Cancel</button>
+</div>

@@ -13,6 +13,7 @@
       "releasedBy": "<b>Released By:</b>",
       "releaseYear": "<b>Release Year:</b>",
       "releaseYear.placeholder": "Click to select the release year",
+      "rateLogIn": "You need to be logged in to rate the game",
       "minPerform": {
         "name": "<b>Minimum Requirements:</b>",
         "processor": "Processor:",
@@ -23,6 +24,11 @@
       "optPerform": {
         "name": "<b>Recommended Requirements:</b>"
       },
+      "edit": "Edit",
+      "editGame": "Edit Game",
+      "editSave": "Updated Game!",
+      "save": "Save",
+      "cancel": "Cancel",
       "insert": "Insert Game",
       "commentText": "Enter your comment",
       "leaveAComment": "Leave a Comment",

@@ -17,7 +17,6 @@ public class GameRating implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "userId", referencedColumnName = "userId")
     private User userId;
 
