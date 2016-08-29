@@ -49,6 +49,7 @@ public class NewsPostServiceImpl implements NewsPostService {
     public NewsPost save(NewsPost newPost, TagObject tagObject) {
         NewsPost post = new NewsPost();
         post.setPostDescription(newPost.getPostDescription());
+        post.setSmallDescription(newPost.getSmallDescription());
         post.setPostAddDate(newPost.getPostAddDate());
         post.setPublishedPicturePath(newPost.getPublishedPicturePath());
 
@@ -112,8 +113,9 @@ public class NewsPostServiceImpl implements NewsPostService {
     @Override
     public NewsPost update(Long id, NewsPostObject newsPostObject) {
         NewsPost newsPost1 = newsPostRepository.findOne(id);
-        //TODO:  FINISH UPDATING NEWS POST
-        // newsPost1.set(newsPost.get);
+        newsPost1.setSmallDescription(newsPostObject.getNewsPost().getSmallDescription());
+        newsPost1.setPublishedPicturePath(newsPostObject.getNewsPost().getPublishedPicturePath());
+        newsPost1.setPostDescription(newsPostObject.getNewsPost().getPostDescription());
         return newsPostRepository.save(newsPost1);
     }
 

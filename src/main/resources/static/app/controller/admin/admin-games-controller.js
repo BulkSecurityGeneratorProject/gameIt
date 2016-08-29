@@ -28,40 +28,5 @@ gameItAngularApp.controller('AdminGamesController', ['$scope', 'toastr', '$rootS
             });
         };
 
-        $scope.itemsByPage = 5;
-        $scope.gameList = GamesService.query();
-        $scope.displayedGames = [].concat($scope.gameList);
 
-        $scope.viewGame = function (size, game) {
-            $scope.selectedGameId = game.gameId;
-
-            $scope.open = function (size) {
-                var modalInstance = $uibModal.open({
-                    animation: true,
-                    ariaLabelledBy: 'modal-title',
-                    ariaDescribedBy: 'modal-body',
-                    templateUrl: 'views/admin/modals/admin-game-modal.html',
-                    controller: 'AdminGameModalController',
-                    size: size,
-                    resolve: {
-                        param: function () {
-                            return {'data': $scope.selectedGameId};
-                        }
-                    }
-                });
-
-                modalInstance.result.then(function () {
-                    $scope.gameList = GamesService.query();
-                    $translate('games.game.editSave').then(function (translatedMessage) {
-                        toastr.success(translatedMessage, {
-                            closeButton: true,
-                            allowHtml: true
-                        });
-                    });
-                }, function () {
-                    console.log('modalClosed');
-                });
-            };
-            $scope.open(size);
-        }
     }]);

@@ -23,6 +23,10 @@
                            placeholder="{{'news.form.publishedPicturePath' | translate}}" required/>
                 </div>
                 <div class="row">
+                    <textarea rows="4" ng-model="newsPost.smallDescription" class="form-control"
+                           placeholder="{{'news.form.smallDescription' | translate}}" required/>
+                </div>
+                <div class="row">
                     <text-angular ng-model="newsPost.postDescription" required></text-angular>
                 </div>
                 <div class="row">

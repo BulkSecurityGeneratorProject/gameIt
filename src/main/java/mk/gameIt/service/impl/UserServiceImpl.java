@@ -171,6 +171,18 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    public void changeAdmin(User user, Boolean admin) {
+        if (admin != null) {
+            if (admin) {
+                user.setRole(Role.ROLE_ADMIN);
+            } else {
+                user.setRole(Role.ROLE_USER);
+            }
+            userRepository.save(user);
+        }
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findOneByUsername(username);
 

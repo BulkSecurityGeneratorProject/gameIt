@@ -32,4 +32,6 @@ public interface UserService {
     void updateUserImage(MultipartFile image) throws IOException, SQLException;
 
     void changeLangKey(String lang, String username);
+
+    void changeAdmin(User user, Boolean admin);
 }

@@ -1,12 +1,26 @@
 {
   "news": {
-      "header": "News",
-      "form":{
-        "postTitle": "Enter title here",
-        "publish": "Publish",
-        "tags": "Enter Tags",
-        "publishedPicturePath": "Path to the internet picture"
-      },
+    "header": "News",
+    "form": {
+      "postTitle": "Enter title here",
+      "publish": "Publish",
+      "tags": "Enter Tags",
+      "publishedPicturePath": "Path to the internet picture",
+      "smallDescription": "Enter the small description for the News Post"
+    },
+    "modal": {
+      "title": "News Post Title",
+      "smallDes": "News Post Small Description",
+      "description": "News Post Description",
+      "picturePath": "News Post PicturePath",
+      "save": "Save",
+      "cancel": "Cancel"
+    },
+    "title": "Title",
+    "smallDescription": "Small Description",
+    "description": "Description",
+    "picturePath": "Picture Path",
+    "editNewsPost": "Edit News Post",
     "viewNewsPost": "View Post"
   }
 }

@@ -54,13 +54,13 @@ public class Game {
     @JoinTable(name = "GameGenre", joinColumns = {@JoinColumn(name = "gameId")}, inverseJoinColumns = {@JoinColumn(name = "genreId")})
     private List<Genre> gameGenres;
 
-    @OneToMany(mappedBy = "gameId")
+    @OneToMany(mappedBy = "gameId", cascade = CascadeType.REMOVE)
     private List<GameRating> ratings;
 
-    @ManyToMany(mappedBy = "publishedGames")
+    @ManyToMany(mappedBy = "publishedGames", cascade = CascadeType.REMOVE)
     private List<Company> gameCompanies;
 
-    @OneToMany(mappedBy = "gameId")
+    @OneToMany(mappedBy = "gameId", cascade = CascadeType.REMOVE)
     private List<CommentGame> comments;
 
     public Game() {

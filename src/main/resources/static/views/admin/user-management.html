@@ -26,7 +26,12 @@
                     <td>{{user.email}}</td>
                     <td>{{user.firstName}}</td>
                     <td>{{user.lastName}}</td>
-                    <td>{{user.role == "ROLE_ADMIN"}}</td>
+                    <td><input type="checkbox"
+                               ng-model="user.isAdmin"
+                               ng-change="makeAdmin(user)"
+                               ng-checked="user.role == 'ROLE_ADMIN'"/>
+
+                    </td>
                     <td>
                         <button class="btn btn-danger" ng-click="deleteUser(user)">Delete</button>
                     </td>

@@ -31,6 +31,72 @@
                   class="form-control"
                   placeholder="{{'games.game.description.placeholder' | translate}}" required/>
     </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center" translate="games.game.minPerform.name">
+                        Minimal performance:</h3>
+                </div>
+                <div class="panel-body">
+                    <div>
+                        <label translate="games.game.minPerform.processor">Processor:</label>
+                        <input type="text" class="form-control" ng-model="minPerf.proc"/>
+                    </div>
+                    <div>
+                        <label translate="games.game.minPerform.graphics">Graphics Card:</label>
+                        <input type="text" class="form-control" ng-model="minPerf.graph"/>
+                    </div>
+                    <div>
+                        <label translate="games.game.minPerform.ram">RAM:</label>
+                        <input type="text" class="form-control" ng-model="minPerf.ram"/>
+                    </div>
+                    <div>
+                        <label translate="games.game.minPerform.hdd">HDD:</label>
+                        <input type="text" class="form-control" ng-model="minPerf.hdd"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center" translate="games.game.optPerform.name">
+                        Optimal performance: </h3>
+                </div>
+                <div class="panel-body">
+                    <div>
+                        <label translate="games.game.minPerform.processor">Processor:</label>
+                        <input type="text" class="form-control" ng-model="optPerf.proc"/>
+                    </div>
+                    <div>
+                        <label translate="games.game.minPerform.graphics">Graphics Card:</label>
+                        <input type="text" class="form-control" ng-model="optPerf.graph"/>
+                    </div>
+                    <div>
+                        <label translate="games.game.minPerform.ram">RAM:</label>
+                        <input type="text" class="form-control" ng-model="optPerf.ram"/>
+                    </div>
+                    <div>
+                        <label translate="games.game.minPerform.hdd">HDD:</label>
+                        <input type="text" class="form-control" ng-model="optPerf.hdd"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-3">
+                <label class="control-label" for="releaseYear" translate="games.game.releaseYear">Game
+                    release year:</label>
+                <input date-time class="form-control" id="releaseYear" name="releaseYear"
+                       placeholder="{{'games.game.releaseYear.placeholder' | translate}}"
+                       format="YYYY"
+                       ng-model="game.gameReleaseYear" required>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary" type="button" ng-click="ok()" translate="games.game.save">Save</button>

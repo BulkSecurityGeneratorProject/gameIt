@@ -11,6 +11,8 @@ gameItAngularApp.controller('NewsController', ['$rootScope', '$scope', '$transla
             $scope.newsPostList.items = $state.params.tagNewsPostList;
         }
 
+        console.log($scope.newsPostList);
+
         $scope.viewNewsPost = function (newsPostId) {
             $state.go('news.single', {id: newsPostId});
         }

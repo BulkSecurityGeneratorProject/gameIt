@@ -20,12 +20,14 @@
         "main": "Charts"
       },
       "newsPost": {
+        "edit": "Edit News Post",
         "main": "News Post",
         "success": "Settings saved!",
         "error": "<strong>An error has occurred!</strong> Settings could not be saved."
       },
       "users": {
         "main": "Users",
+        "adminChanged": "Admin change successfull",
         "success": "User deleted successfully",
         "error": "<strong>An error has occurred!</strong> Settings could not be saved.</span>"
       },
@@ -33,6 +35,9 @@
         "main": "Insert a new Game",
         "edit": "Edit Game",
         "header": "Games"
+      },
+      "edit": {
+        "main": "Edit"
       }
     }
   }

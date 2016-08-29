@@ -202,6 +202,16 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
                     }
                 }
             })
+            .state('admin.admin-edit', {
+                url: "/admin-edit",
+                parent: 'admin',
+                views: {
+                    'admin': {
+                        templateUrl: 'views/admin/admin-edit.html',
+                        controller: 'AdminEditConroller'
+                    }
+                }
+            })
             .state('admin.admin-news-post', {
                 url: "/admin-news-post",
                 parent: 'admin',

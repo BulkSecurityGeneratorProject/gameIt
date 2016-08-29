@@ -59,15 +59,15 @@ public class User {
   //  private OAuthAccount client;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "userId")
+    @OneToMany(mappedBy = "userId", cascade = CascadeType.REMOVE)
     private List<CommentGame> commentsGame;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "userId")
+    @OneToMany(mappedBy = "userId", cascade = CascadeType.REMOVE)
     private List<GameRating> gamesRatings;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "userId")
+    @OneToMany(mappedBy = "userId", cascade = CascadeType.REMOVE)
     private List<Location> locations;
 
     public User() {

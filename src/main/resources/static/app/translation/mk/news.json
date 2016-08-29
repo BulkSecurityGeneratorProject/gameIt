@@ -5,8 +5,25 @@
       "postTitle": "Внесете го насловот тука",
       "publish": "Публикувај",
       "tags": "Внеси Тагови",
-      "publishedPicturePath": "Патека до сликата за новоста"
+      "publishedPicturePath": "Патека до сликата за новоста",
+      "smallDescription": "Внесете го помалиот опис за новоста",
+      "save": "Зачувај",
+      "cancel": "Откажи"
     },
+    "modal": {
+      "title": "Наслов",
+      "smallDes": "Мал опис",
+      "description": "Опис",
+      "picturePath": "Патека до слика",
+      "save": "Зачувај",
+      "cancel": "Откажи"
+    },
+    "title": "Наслов",
+    "smallDescription": "Мал опис",
+    "description": "Опис",
+
+    "picturePath": "Патека до слика",
+    "editNewsPost": "Промени новост",
     "viewNewsPost": "Погледни новост"
   }
 }

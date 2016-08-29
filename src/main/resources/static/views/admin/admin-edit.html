@@ -1,0 +1,81 @@
+<uib-tabset active="activeJustified" justified="true" type="pills" active="0" class="gamesTabs">
+    <uib-tab index="0"  heading="{{'admin.sidenav.newsPost.edit' | translate}}">
+        <table st-table="displayedNews" st-safe-src="newsList" class="table table-hover table-stripped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th translate="news.title">"News Post Title</th>
+                <th translate="news.smallDescription">News Small Description</th>
+                <th translate="news.description">News Post Description</th>
+                <th translate="news.picturePath">News Post Picture Path</th>
+            </tr>
+            <!--  <tr>
+                  <th>
+                      <input st-search="" placeholder="Global search..." class="input-sm form-control"/>
+                  </th>
+              </tr>-->
+            </thead>
+            <tbody>
+            <tr ng-repeat="newsPost in displayedNews" class="">
+                <td>{{newsPost.postId}}</td>
+                <td>{{newsPost.postTitle}}</td>
+                <td>{{newsPost.smallDescription}}</td>
+                <td class="description">{{newsPost.description | limitTo: 100: 0}}...</td>
+                <td>
+                    <button type="button" class="btn btn-info" ng-click="viewPost('lg', newsPost)"
+                            translate="news.editNewsPost">Edit News Post!
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="6" class="text-center">
+                    <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="5"></div>
+                </td>
+            </tr>
+            </tfoot>
+
+        </table>
+    </uib-tab>
+    <uib-tab index="1" heading="{{'admin.sidenav.games.edit' | translate}}">
+        <table st-table="displayedGames" st-safe-src="gameList" class="table table-hover table-stripped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th translate="games.game.name">Game name</th>
+                <th translate="games.game.picturePath">Game Picture Path</th>
+                <th translate="games.game.description">Game Description</th>
+                <th translate="games.game.edit">Edit</th>
+            </tr>
+            <!--  <tr>
+                  <th>
+                      <input st-search="" placeholder="Global search..." class="input-sm form-control"/>
+                  </th>
+              </tr>-->
+            </thead>
+            <tbody>
+            <tr ng-repeat="game in displayedGames" class="">
+                <td>{{game.gameId}}</td>
+                <td>{{game.gameName}}</td>
+                <td>{{game.gamePicture}}</td>
+                <td class="description">{{game.gameDescription | limitTo: 100: 0}}...</td>
+                <td>
+                    <button type="button" class="btn btn-info" ng-click="viewGame('lg',game)"
+                            translate="games.game.edit">Edit Game!
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="6" class="text-center">
+                    <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="5"></div>
+                </td>
+            </tr>
+            </tfoot>
+
+        </table>
+
+    </uib-tab>
+</uib-tabset>

@@ -47,6 +47,12 @@ public class UserController {
         }
         return responseEntity;
     }
+    @RequestMapping(value = "/users/{id}/admin", method = RequestMethod.POST)
+    public ResponseEntity changeAdmin(@PathVariable Long id, @RequestBody Boolean admin) {
+        User user = userService.findOne(id);
+        userService.changeAdmin(user,admin);
+        return new ResponseEntity(HttpStatus.OK).ok().build();
+    }
 
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getOneUser(@PathVariable Long id) {

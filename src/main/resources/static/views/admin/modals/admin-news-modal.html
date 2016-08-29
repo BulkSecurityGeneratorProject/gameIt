@@ -1,0 +1,38 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title" translate="news.editNewsPost">Edit News Post</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <div class="form-group">
+        <label class="control-label" for="postTitle" translate="news.modal.title">Game Name:</label>
+        <input type="text" ng-model="newsPost.postTitle" id="postTitle" name="postTitle"
+               class="form-control" readonly="true"
+               required/>
+    </div>
+    <div class="form-group">
+        <label class="control-label" for="publishedPicturePath" translate="news.modal.picturePath">News Post
+            picture
+            path:</label>
+        <input type="text" name="publishedPicturePath" ng-model="newsPost.publishedPicturePath"
+               placeholder="{{'news.form.publishedPicturePath' |  translate}}"
+               id="publishedPicturePath"
+               class="form-control"
+               required/>
+    </div>
+    <div class="form-group">
+        <label class="control-label" for="smallDescription" translate="news.modal.smallDes"> NewsPost
+            small description: </label>
+        <textarea rows="5" type="text" name="smallDescription" id="smallDescription"
+                  ng-model="newsPost.smallDescription"
+                  class="form-control"
+                  placeholder="{{'news.form.smallDescription' | translate}}" required/>
+    </div>
+    <div class="form-group">
+        <label class="control-label" translate="news.modal.description"> NewsPost
+            description: </label>
+        <text-angular ng-model="newsPost.postDescription" required></text-angular>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()" translate="news.modal.save">Save</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()" translate="news.modal.cancel">Cancel</button>
+</div>

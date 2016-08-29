@@ -134,6 +134,9 @@ public class GameServiceImpl implements GameService {
         Game game = gameRepository.findOne(gameObject.getGameId());
         game.setGameDescription(gameObject.getGameDescription());
         game.setGamePicture(gameObject.getGamePicture());
+        game.setGameMinimalPerformance(gameObject.getGameMinimalPerformance());
+        game.setGameOptimalPerformance(gameObject.getGameOptimalPerformance());
+        game.setGameReleaseYear(gameObject.getGameReleaseYear());
         return gameRepository.save(game);
     }
 }

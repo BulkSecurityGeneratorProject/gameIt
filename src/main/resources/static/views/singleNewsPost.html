@@ -13,8 +13,10 @@
                 {{newsPost.postAddDate.hour}}:{{newsPost.postAddDate.minute}}</p>
             <hr>
             <!-- Preview Image -->
-            <img class="img-responsive" ng-src="{{newsPost.publishedPicturePath}}" alt="">
-            <hr>
+            <div class="text-center">
+                <img class="img-responsive" ng-src="{{newsPost.publishedPicturePath}}" alt="">
+                <hr>
+            </div>
             <!-- Post Content -->
             <div ta-bind ng-model="newsPost.postDescription"></div>
         </div>

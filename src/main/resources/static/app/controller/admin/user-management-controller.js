@@ -1,8 +1,8 @@
 /**
  * Created by Stefan on 31.03.2016.
  */
-gameItAngularApp.controller('UserManagementController', ['$scope','toastr', '$rootScope', 'UserService', '$translate','$translatePartialLoader',
-    function ($scope, toastr, $rootScope, UserService, $translate, $translatePartialLoader) {
+gameItAngularApp.controller('UserManagementController', ['$scope','toastr','$http', '$rootScope', 'UserService', '$translate','$translatePartialLoader',
+    function ($scope, toastr,$http, $rootScope, UserService, $translate, $translatePartialLoader) {
         $translatePartialLoader.addPart('user-management');
         $translate.refresh();
 
@@ -31,7 +31,21 @@ gameItAngularApp.controller('UserManagementController', ['$scope','toastr', '$ro
                 });
             });
         };
-
+        $scope.makeAdmin = function(user) {
+            console.log(user.isAdmin);
+            $http({
+                method: 'POST',
+                url: 'api/users/'+user.userId+"/admin",
+                data: user.isAdmin
+            }).then(function success(response) {
+                $translate('admin.sidenav.users.adminChanged').then(function (translatedMessage) {
+                    toastr.success(translatedMessage, {
+                        closeButton: true,
+                        allowHtml: true
+                    });
+                });
+            });
+        };
         /*  var editUserDialog = $modal({
          scope: $scope,
          title: 'true',
