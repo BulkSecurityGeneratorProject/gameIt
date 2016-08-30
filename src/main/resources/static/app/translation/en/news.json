@@ -18,6 +18,8 @@
     },
     "title": "Title",
     "smallDescription": "Small Description",
+    "delete": "Delete",
+    "edit": "Edit",
     "description": "Description",
     "picturePath": "Picture Path",
     "editNewsPost": "Edit News Post",

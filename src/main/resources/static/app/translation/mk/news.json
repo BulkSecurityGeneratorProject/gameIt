@@ -21,6 +21,8 @@
     "title": "Наслов",
     "smallDescription": "Мал опис",
     "description": "Опис",
+    "delete": "Избриши",
+    "edit": "Промени",
 
     "picturePath": "Патека до слика",
     "editNewsPost": "Промени новост",

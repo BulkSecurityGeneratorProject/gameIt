@@ -26,24 +26,42 @@ gameItAngularApp.controller('GameController', ['$rootScope', 'toastr', '$scope',
                 });
             });
         };
-
+        $scope.deleteComment = function(gameId,commentGame) {
+            console.log(commentGame);
+            console.log(gameId);
+            $http({
+                method: 'POST',
+                url: 'api/games/'+gameId+"/comment",
+                data: commentGame
+            }).then(function success(response) {
+                $scope.game=response.data;
+                $translate('games.game.commentSuccess').then(function (translatedMessage) {
+                    toastr.success(translatedMessage, {
+                        closeButton: true,
+                        allowHtml: true
+                    });
+                });
+            })
+        };
         //$scope.gamesList = GamesService.query();
         $scope.userRating = 0;
-        GamesService.get({id: gameId}, function (response) {
-            $scope.game = response;
-            $scope.minPerf = $scope.game.gameMinimalPerformance.split("@AND@");
-            $scope.optPerf = $scope.game.gameOptimalPerformance.split("@AND@");
-            if ($rootScope.loggedInUser != null) {
-                for (var i = 0; i < $scope.game.ratings.length; i++) {
-                    if ($scope.game.ratings[i].userId.username = $rootScope.loggedInUser.username) {
-                        $scope.userRating = $scope.game.ratings[i].rating;
-                        $scope.rate = $scope.userRating;
-                        break;
+        function getGame() {
+            GamesService.get({id: gameId}, function (response) {
+                $scope.game = response;
+                $scope.minPerf = $scope.game.gameMinimalPerformance.split("@AND@");
+                $scope.optPerf = $scope.game.gameOptimalPerformance.split("@AND@");
+                if ($rootScope.loggedInUser != null) {
+                    for (var i = 0; i < $scope.game.ratings.length; i++) {
+                        if ($scope.game.ratings[i].userId.username = $rootScope.loggedInUser.username) {
+                            $scope.userRating = $scope.game.ratings[i].rating;
+                            $scope.rate = $scope.userRating;
+                            break;
+                        }
                     }
                 }
-            }
-        });
-
+            });
+        }
+        getGame();
         $scope.rate = 0;
         $scope.max = 5;
         $scope.isReadonly = $rootScope.loggedInUser == null;

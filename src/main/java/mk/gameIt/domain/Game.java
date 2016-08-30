@@ -36,7 +36,6 @@ public class Game {
     private String gamePicture;
 
     @NotNull
-    @Field(store = Store.NO)
     @Column(nullable = false, length = 4000)
     private String gameDescription;
 

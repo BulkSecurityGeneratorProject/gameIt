@@ -9,6 +9,18 @@ gameItAngularApp.controller('AdminGamesController', ['$scope', 'toastr', '$rootS
         $translate.refresh();
 
         $scope.game = {};
+        $scope.minPerf = {
+            proc: "",
+            graph: "",
+            ram: "",
+            hdd: ""
+        };
+        $scope.optPerf = {
+            proc: "",
+            graph: "",
+            ram: "",
+            hdd: ""
+        };
         $scope.addNewGame = function () {
             $scope.game.gameMinimalPerformance = $scope.minPerf.proc + "@AND@" + $scope.minPerf.graph + "@AND@" + $scope.minPerf.ram + "@AND@" + $scope.minPerf.hdd;
             $scope.game.gameOptimalPerformance = $scope.optPerf.proc + "@AND@" + $scope.optPerf.graph + "@AND@" + $scope.optPerf.ram + "@AND@" + $scope.optPerf.hdd;
@@ -20,6 +32,7 @@ gameItAngularApp.controller('AdminGamesController', ['$scope', 'toastr', '$rootS
                 $scope.success = 'SUCCESS';
                 $scope.error = undefined;
                 $scope.game = {};
+                $scope.game.gameReleaseYear = null;
                 $scope.optPerf = {};
                 $scope.minPerf = {};
             }, function error(response) {

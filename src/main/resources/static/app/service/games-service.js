@@ -11,7 +11,7 @@ gameItAngularApp.factory('ApiGames', ['$http', function ($http) {
     var ApiGames = function() {
         this.items = [];
         this.page = 0;
-        this.size = 5;
+        this.size = 6;
         this.busy = false;
     };
 

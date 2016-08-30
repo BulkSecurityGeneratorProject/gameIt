@@ -17,6 +17,26 @@ gameItAngularApp.controller('AdminEditConroller', ['$scope', 'toastr', '$rootSco
 
         $scope.newsList = NewsPostService.query();
         $scope.displayedNews = [].concat($scope.newsList);
+        
+        $scope.deletePost = function (newsPost) {
+            $http({
+                method: 'DELETE',
+                url: 'api/news/'+newsPost.postId
+            }).then(function success(response) {
+                $scope.newsList = NewsPostService.query();
+            });
+        };
+            
+
+        $scope.deleteGame = function (game) {
+            $http({
+                method: 'DELETE',
+                url: 'api/games/'+game.gameId
+            }).then(function success(response) {
+                $scope.gameList = GamesService.query();
+            });
+        };
+        
 
         $scope.viewPost = function (size, newsPost) {
             $scope.selectedNewsPostId = newsPost.postId;

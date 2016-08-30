@@ -17,7 +17,6 @@ public class GameObject {
     @NotNull
     private String gameName;
 
-    @NotNull
     private Date gameReleaseYear;
 
     private String gamePicture;

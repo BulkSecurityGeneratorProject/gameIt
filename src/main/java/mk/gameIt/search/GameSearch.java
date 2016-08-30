@@ -42,7 +42,7 @@ public class GameSearch {
         org.apache.lucene.search.Query query =
                 queryBuilder
                         .keyword()
-                        .onFields("gameName", "gameDescription")
+                        .onFields("gameName")
                         .matching(text)
                         .createQuery();
 

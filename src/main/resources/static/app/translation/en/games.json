@@ -12,6 +12,7 @@
       "description.placeholder": "Enter the description for the game",
       "releasedBy": "<b>Released By:</b>",
       "releaseYear": "<b>Release Year:</b>",
+      "commentDelete": "Delete Comment",
       "releaseYear.placeholder": "Click to select the release year",
       "rateLogIn": "You need to be logged in to rate the game",
       "minPerform": {
@@ -28,6 +29,7 @@
       "editGame": "Edit Game",
       "editSave": "Updated Game!",
       "save": "Save",
+      "delete": "Delete",
       "cancel": "Cancel",
       "insert": "Insert Game",
       "commentText": "Enter your comment",

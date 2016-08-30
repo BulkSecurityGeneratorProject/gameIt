@@ -10,13 +10,63 @@
         </script>
         <![endif]-->
     </div>
+
+
     <div class="row">
         <div class="col-sm-12 text-center">
-            <div ng-show="authenticated">
-                Hello, {{loggedInUser.username}}
+            <div class="container centered home">
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <h1>
+                            <a href="" ui-sref="news" translate="global.menu.news">News</a>
+                        </h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <h1>
+                            <a href="" ui-sref="games" translate="global.menu.games">Games</a>
+                        </h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <span ng-hide="authenticated" ID="LoggedOutPanel">
+                            <h1>
+                                <a href="" ui-sref="login" translate="global.menu.account.login">Login</a>
+                            </h1>
+                            <div class="row">
+                                <div class="col-sm-12 text-center">
+                                    <h1>
+                                        <a href="" ui-sref="register"
+                                           translate="global.menu.account.register">Register</a>
+                                    </h1>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <span ng-show="authenticated">
+                            <h1 ng-show="administrator">
+                                <a href="" ui-sref="admin.admin-graphics-table" translate="global.menu.admin.main">Administration</a>
+                            </h1>
+                            <h1>
+                                <a href="" ng-click="logout()">
+                                 <span translate="global.menu.account.logout">Sign out</span></a>
+                            </h1>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <h1>
+                            <a href="" ui-sref="contact" translate="global.menu.contact">Contact</a>
+                        </h1>
+                    </div>
+                </div>
             </div>
-            <h1 translate="home.subtitle"></h1>
-            <a href="#" class="home text-center"> AJDEEEEEEEE</a>
         </div>
     </div>
 </div>

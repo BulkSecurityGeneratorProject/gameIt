@@ -68,11 +68,6 @@
                                                                                    data-target=".navbar-collapse.in"><i
                                     class="fa fa-wrench"></i>
                                 &#xA0;<span translate="global.menu.account.settings">Settings</span></a></li>
-                            <li ui-sref-active="active" ng-show="authenticated"><a ui-sref="password"
-                                                                                   data-toggle="collapse"
-                                                                                   data-target=".navbar-collapse.in"><i
-                                    class="fa fa-lock"></i>
-                                &#xA0;<span translate="global.menu.account.password">Password</span></a></li>
 
                             <li ui-sref-active="active" ng-show="authenticated"><a href="" ng-click="logout()"
                                                                                    id="logout" data-toggle="collapse"
@@ -92,7 +87,7 @@
                         </ul>
                     </li>
                     <li ng-class="{active: $state.includes('admin')}" ui-sref-active="active" ng-show="administrator">
-                        <a href="" ui-sref="admin.admin-command-board">
+                        <a href="" ui-sref="admin.admin-graphics-table">
                             <span><i class="fa fa-user-secret"></i></span>
                             <span translate="global.menu.admin.main" class="hidden-sm"> Administration</span></a>
                     </li>

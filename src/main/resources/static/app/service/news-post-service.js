@@ -10,7 +10,7 @@ gameItAngularApp.factory('ApiNews', ['$http', '$rootScope', function ($http, $ro
     var ApiNews = function(busy) {
             this.items = [];
         this.page = 0;
-        this.size = 5;
+        this.size = 3;
         this.busy = busy;
     };
 

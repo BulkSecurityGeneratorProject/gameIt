@@ -14,7 +14,7 @@ import java.util.List;
  */
 @Entity
 @Table
-public class NewsPost {
+public class NewsPost implements Comparable<NewsPost> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long postId;
@@ -163,5 +163,10 @@ public class NewsPost {
                 ", tags=" + tags +
                 ", publishedPicturePath='" + publishedPicturePath + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(NewsPost o) {
+        return o.postAddDate.compareTo(this.postAddDate);
     }
 }

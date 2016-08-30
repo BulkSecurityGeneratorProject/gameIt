@@ -8,8 +8,11 @@ import mk.gameIt.service.CommentGameService;
 import mk.gameIt.service.GameService;
 import mk.gameIt.service.UserService;
 import mk.gameIt.web.dto.CommentGameObject;
+import mk.gameIt.web.dto.DeleteCommentObject;
 import mk.gameIt.web.dto.GameObject;
 import mk.gameIt.web.dto.UserObject;
+import org.apache.catalina.connector.Response;
+import org.apache.http.protocol.ResponseServer;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,7 +80,16 @@ public class GameController {
         } catch(Exception e) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
+    }
 
+    @RequestMapping(value = "/games/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity deleteGame(@PathVariable Long id) {
+        try{
+            gameService.delete(id);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch(Exception e) {
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @RequestMapping(value = "/games", method = RequestMethod.POST)
@@ -137,6 +149,17 @@ public class GameController {
             return game;
         } else {
             return null;
+        }
+    }
+    @RequestMapping(value = "/games/{id}/comment", method = RequestMethod.POST)
+    public ResponseEntity deleteComment(@PathVariable Long id, @RequestBody DeleteCommentObject commentGame) {
+        try {
+            Game game = gameService.findOne(id);
+            commentGameService.delete(game, commentGame);
+            return new ResponseEntity(HttpStatus.OK).ok(game);
+        }
+        catch(Exception e) {
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

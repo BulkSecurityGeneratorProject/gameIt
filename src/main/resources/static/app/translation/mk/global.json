@@ -1,12 +1,12 @@
 {
     "global": {
-        "title": "GameIt",
         "footer": "Copyright &copy; Game It. Сите права се задржани.",
         "menu": {
             "home": "Дома",
             "news": "Новости",
             "games": "Игри",
             "hardware": "Хардвер",
+            "contact": "Контакт",
             "account": {
                 "main": "Сметка",
                 "settings": "Подесувања",
@@ -39,10 +39,6 @@
             "email.placeholder": "Вашата e-mail адреса"
         },
         "messages": {
-            "info": {
-                "authenticated": "If you want to <a class=\"alert-link\" href=\"\" ng-click=\"vm.login()\">sign in</a>, you can try the default accounts:<br/>- Administrator (login=\"admin\" and password=\"admin\") <br/>- User (login=\"user\" and password=\"user\").",
-                "register": "You don't have an account yet? <a class=\"alert-link\" ui-sref=\"register\">Register a new account</a>"
-            },
             "error": {
                 "dontmatch": "Лозинката и нејзината потврда не се совпаѓаат!"
             },
@@ -69,14 +65,5 @@
         "field": {
             "id": "ID"
         }
-    },
-    "error": {
-        "server.not.reachable": "Неможе да се пристапи серверот",
-        "NotNull": "Полето {{ fieldName }} неможе да биде празно!",
-        "Size": "Полето {{ fieldName }} does not meet min/max size requirements!",
-        "userexists": "Корисничкото име веќе постои во системот!",
-        "emailexists": "E-mail адресата веќе постои во системот!",
-        "idexists": "A new {{ entityName }} cannot already have an ID"
-    },
-    "footer": "Ова е вашиот footer"
+    }
 }

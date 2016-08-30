@@ -11,6 +11,7 @@ import mk.gameIt.web.dto.TagObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.codec.Base64;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -37,7 +39,8 @@ public class NewsPostController {
     public List<NewsPost> getAllNewsPosts(@RequestParam(value = "page", required = false) Integer page,
                                           @RequestParam(value = "size", required = false) Integer size) {
         if (page != null && size != null) {
-            Pageable pageable = new PageRequest(page, size);
+            Sort sort = new Sort(Sort.Direction.DESC, "postAddDate");
+            Pageable pageable = new PageRequest(page, size, sort);
             List<NewsPost> returnedList = newsPostService.findAll(pageable).getContent();
             return returnedList;
         } else {
@@ -58,6 +61,7 @@ public class NewsPostController {
         }
 
         if (resultList != null) {
+            Collections.sort(resultList);
             return new ResponseEntity(HttpStatus.OK).ok(resultList);
         }
 

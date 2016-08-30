@@ -1,0 +1,18 @@
+{
+  "contact": {
+    "title": "Contact us",
+    "findUs": "Find us",
+    "name": "Name",
+    "name.placeholder": "Enter your name",
+    "email": "Email",
+    "email.placeholder": "Enter your email address",
+    "message": "Message",
+    "message.placeholder": "Enter your message",
+    "button": "Send Message",
+    "details": {
+      "office": "Game It Office",
+      "street": "st. Rugjer Boshkovikj 5",
+      "country": "Skopje, Macedonia, 1000"
+    }
+  }
+}

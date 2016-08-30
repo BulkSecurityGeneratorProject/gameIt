@@ -6,8 +6,8 @@
                 <th>Id</th>
                 <th translate="news.title">"News Post Title</th>
                 <th translate="news.smallDescription">News Small Description</th>
-                <th translate="news.description">News Post Description</th>
-                <th translate="news.picturePath">News Post Picture Path</th>
+                <th translate="news.edit">Edit</th>
+                <th translate="news.delete">Delete</th>
             </tr>
             <!--  <tr>
                   <th>
@@ -20,11 +20,13 @@
                 <td>{{newsPost.postId}}</td>
                 <td>{{newsPost.postTitle}}</td>
                 <td>{{newsPost.smallDescription}}</td>
-                <td class="description">{{newsPost.description | limitTo: 100: 0}}...</td>
                 <td>
                     <button type="button" class="btn btn-info" ng-click="viewPost('lg', newsPost)"
                             translate="news.editNewsPost">Edit News Post!
                     </button>
+                </td>
+                <td>
+                    <button class="btn btn-danger" ng-click="deletePost(newsPost)">Delete</button>
                 </td>
             </tr>
             </tbody>
@@ -47,6 +49,7 @@
                 <th translate="games.game.picturePath">Game Picture Path</th>
                 <th translate="games.game.description">Game Description</th>
                 <th translate="games.game.edit">Edit</th>
+                <th translate="games.game.delete">Delete</th>
             </tr>
             <!--  <tr>
                   <th>
@@ -64,6 +67,9 @@
                     <button type="button" class="btn btn-info" ng-click="viewGame('lg',game)"
                             translate="games.game.edit">Edit Game!
                     </button>
+                </td>
+                <td>
+                    <button class="btn btn-danger" ng-click="deleteGame(game)">Delete</button>
                 </td>
             </tr>
             </tbody>

@@ -1,0 +1,18 @@
+{
+  "contact": {
+    "title": "Контактирајте не",
+    "findUs": "Пронајдете не",
+    "name": "Име",
+    "name.placeholder": "Внесете го вашето име",
+    "email": "Email",
+    "email.placeholder": "Внесете ја вашата email адреса",
+    "message": "Порака",
+    "message.placeholder": "Внесете ја вашата порака",
+    "button": "Испрати порака",
+    "details": {
+      "office": "Канцеларии на Game It",
+      "street": "ул. Руѓер Бошковиќ 5",
+      "country": "Скопје, Македонија, 1000"
+    }
+  }
+}

@@ -1,11 +1,14 @@
 package mk.gameIt.service.impl;
 
 import mk.gameIt.domain.CommentGame;
+import mk.gameIt.domain.CommentGameId;
+import mk.gameIt.domain.Game;
 import mk.gameIt.domain.User;
 import mk.gameIt.repository.CommentGameRepository;
 import mk.gameIt.repository.GameRepository;
 import mk.gameIt.repository.UserRepository;
 import mk.gameIt.service.CommentGameService;
+import mk.gameIt.web.dto.DeleteCommentObject;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,5 +43,16 @@ public class CommentGameServiceImpl implements CommentGameService {
         commentGame = commentGameRepository.save(commentGame);
         log.debug("Created Comment for Game: {}", commentGame);
         return commentGame;
+    }
+
+    @Override
+    public void delete(Game game, DeleteCommentObject commentGame)
+    {
+        CommentGameId id = new CommentGameId();
+        id.setGameId(game.getGameId());
+        id.setUserId(commentGame.getUserId().getUserId());
+        id.setCommentId(commentGame.getCommentId());
+        CommentGame comment = commentGameRepository.findOne(id);
+        commentGameRepository.delete(comment);
     }
 }

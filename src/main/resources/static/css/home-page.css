@@ -50,11 +50,19 @@ video {
         display: none;
     }
 }
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+}
+
 
 .home a {
-    font-size: 16px;
-    color: #000000;
-    transition: all 0.7s ease-in;
+    font-size: 32px;
+    color: #2f4050;
+    transition: all 1.5s ease-in;
     text-decoration: none;
 }
 
@@ -62,10 +70,10 @@ video {
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #FFFFFF;
     -webkit-text-fill-color: #FFFFFF;
-    transition: text-shadow 1s;
-    -moz-transition: text-shadow 1s; /* Firefox 4 */
-    -webkit-transition: text-shadow 1s; /* Safari and Chrome */
-    -o-transition: text-shadow 1s; /* Opera */
+    transition: text-shadow 2s;
+    -moz-transition: text-shadow 2s; /* Firefox 4 */
+    -webkit-transition: text-shadow 2s; /* Safari and Chrome */
+    -o-transition: text-shadow 2s; /* Opera */
     text-shadow: 1px 0px 30px #A5A609;
     text-decoration: none;
 }

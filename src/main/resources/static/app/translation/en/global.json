@@ -1,12 +1,12 @@
 {
     "global": {
-        "title": "MyApp",
         "footer": "Copyright &copy; Game It. All Rights Reserved.",
         "menu": {
             "home": "Home",
             "news": "News",
             "games": "Games",
             "hardware": "Hardware",
+            "contact": "Contact",
             "account": {
                 "main": "Account",
                 "settings": "Settings",
@@ -47,10 +47,6 @@
             "email.placeholder": "Your e-mail"
         },
         "messages": {
-            "info": {
-                "authenticated": "If you want to <a class=\"alert-link\" href=\"\" ng-click=\"vm.login()\">sign in</a>, you can try the default accounts:<br/>- Administrator (login=\"admin\" and password=\"admin\") <br/>- User (login=\"user\" and password=\"user\").",
-                "register": "You don't have an account yet? <a class=\"alert-link\" ui-sref=\"register\">Register a new account</a>"
-            },
             "error": {
                 "dontmatch": "The password and its confirmation do not match!"
             },
@@ -77,14 +73,5 @@
         "field": {
             "id": "ID"
         }
-    },
-    "error": {
-        "server.not.reachable": "Server not reachable",
-        "NotNull": "Field {{ fieldName }} cannot be empty!",
-        "Size": "Field {{ fieldName }} does not meet min/max size requirements!",
-        "userexists": "Login name already used!",
-        "emailexists": "E-mail is already in use!",
-        "idexists": "A new {{ entityName }} cannot already have an ID"
-    },
-    "footer": "This is your footer"
+    }
 }

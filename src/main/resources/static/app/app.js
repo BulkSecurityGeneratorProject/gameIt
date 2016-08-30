@@ -73,6 +73,16 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
                 }
 
             })
+            .state('contact', {
+              url: "/contact",
+                parent:  'main',
+                views: {
+                  'page@': {
+                      templateUrl: 'views/contact.html',
+                      controller: 'ContactController'
+                  }
+                }
+            })
             .state('login', {
                 url: "/login",
                 parent: 'main',
@@ -131,16 +141,6 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
                     }
                 }
             })
-            .state('password', {
-                url: "/password",
-                parent: 'main',
-                views: {
-                    'page@': {
-                        templateUrl: 'views/password.html',
-                        controller: 'PasswordController'
-                    }
-                }
-            })
             .state('games', {
                 url: "/games",
                 parent: 'main',
@@ -192,16 +192,6 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
                     }
                 }
             })
-            .state('metrics', {
-                url: "/metrics",
-                parent: 'admin',
-                views: {
-                    'admin': {
-                        templateUrl: 'views/admin/metrics.html',
-                        controller: 'AdminMetricsController'
-                    }
-                }
-            })
             .state('admin.admin-edit', {
                 url: "/admin-edit",
                 parent: 'admin',
@@ -229,16 +219,6 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
                     'admin': {
                         templateUrl: 'views/admin/admin-graphics-table.html',
                         controller: 'AdminGraphicsTableController'
-                    }
-                }
-            })
-            .state('admin.admin-command-board', {
-                url: "/admin-command-board",
-                parent: 'admin',
-                views: {
-                    'admin': {
-                        templateUrl: 'views/admin/admin-command-board.html',
-                        controller: 'AdminCommandBoardController'
                     }
                 }
             })
