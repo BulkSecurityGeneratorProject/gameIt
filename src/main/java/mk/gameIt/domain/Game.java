@@ -8,9 +8,7 @@ import org.hibernate.search.annotations.Store;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Blob;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Stefan on 24.03.2016.
@@ -49,25 +47,28 @@ public class Game {
     @Column(nullable = true)
     private Double gameGradeSum = (double) 0;
 
-    @ManyToMany
-    @JoinTable(name = "GameGenre", joinColumns = {@JoinColumn(name = "gameId")}, inverseJoinColumns = {@JoinColumn(name = "genreId")})
-    private List<Genre> gameGenres;
+    private Double gamePrice;
+
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "game")
+    private Set<UserGameOrder> userGameOrders = new HashSet<UserGameOrder>(0);
+
+    @ManyToOne
+    @JoinColumn(name = "user_seller")
+    private User userSeller;
 
     @OneToMany(mappedBy = "gameId", cascade = CascadeType.REMOVE)
     private List<GameRating> ratings;
 
-    @ManyToMany(mappedBy = "publishedGames", cascade = CascadeType.REMOVE)
-    private List<Company> gameCompanies;
-
     @OneToMany(mappedBy = "gameId", cascade = CascadeType.REMOVE)
     private List<CommentGame> comments;
+
 
     public Game() {
         gameGradeSum = new Double(0);
         gameNumberOfViews = new Long(0);
         comments = new ArrayList<CommentGame>();
-        gameGenres = new ArrayList<Genre>();
-        gameCompanies = new ArrayList<Company>();
+        gamePrice = new Double(0.0);
     }
 
 
@@ -98,12 +99,37 @@ public class Game {
                 ", gameName='" + gameName + '\'' +
                 ", gameReleaseYear=" + gameReleaseYear +
                 ", gamePicture='" + gamePicture + '\'' +
+                ", gamePrice='" + gamePrice + '\'' +
                 ", gameDescription='" + gameDescription + '\'' +
                 ", gameMinimalPerformance='" + gameMinimalPerformance + '\'' +
                 ", gameOptimalPerformance='" + gameOptimalPerformance + '\'' +
                 ", gameNumberOfViews=" + gameNumberOfViews +
                 ", gameGradeSum=" + gameGradeSum +
                 '}';
+    }
+
+    public void setGameNumberOfViews(Long gameNumberOfViews) {
+        this.gameNumberOfViews = gameNumberOfViews;
+    }
+
+    public void setGameGradeSum(Double gameGradeSum) {
+        this.gameGradeSum = gameGradeSum;
+    }
+
+    public Double getGamePrice() {
+        return gamePrice;
+    }
+
+    public void setGamePrice(Double gamePrice) {
+        this.gamePrice = gamePrice;
+    }
+
+    public Set<UserGameOrder> getUserGameOrders() {
+        return userGameOrders;
+    }
+
+    public void setUserGameOrders(Set<UserGameOrder> userGameOrders) {
+        this.userGameOrders = userGameOrders;
     }
 
     public List<GameRating> getRatings() {
@@ -120,23 +146,6 @@ public class Game {
 
     public void setComments(List<CommentGame> comments) {
         this.comments = comments;
-    }
-
-
-    public List<Company> getGameCompanies() {
-        return gameCompanies;
-    }
-
-    public void setGameCompanies(List<Company> gameCompanies) {
-        this.gameCompanies = gameCompanies;
-    }
-
-    public List<Genre> getGameGenres() {
-        return gameGenres;
-    }
-
-    public void setGameGenres(List<Genre> gameGenres) {
-        this.gameGenres = gameGenres;
     }
 
     public Long getGameId() {
@@ -162,7 +171,6 @@ public class Game {
     public void setGameReleaseYear(Date gameReleaseYear) {
         this.gameReleaseYear = gameReleaseYear;
     }
-
 
     public String getGamePicture() {
         return gamePicture;
@@ -206,6 +214,14 @@ public class Game {
 
     public double getGameGradeSum() {
         return gameGradeSum;
+    }
+
+    public User getUserSeller() {
+        return userSeller;
+    }
+
+    public void setUserSeller(User userSeller) {
+        this.userSeller = userSeller;
     }
 
     public void setGameGradeSum(double gameGradeSum) {

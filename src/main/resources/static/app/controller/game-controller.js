@@ -1,8 +1,8 @@
 /**
  * Created by TOMMY on 03-Apr-16.
  */
-gameItAngularApp.controller('GameController', ['$rootScope', 'toastr', '$scope', '$http', '$translate', '$translatePartialLoader', 'GamesService', '$state',
-    function ($rootScope, toastr, $scope, $http, $translate, $translatePartialLoader, GamesService, $state) {
+gameItAngularApp.controller('GameController', ['$rootScope', '$uibModal','toastr', '$scope', '$http', '$translate', '$translatePartialLoader', 'GamesService', '$state',
+    function ($rootScope,$uibModal, toastr, $scope, $http, $translate, $translatePartialLoader, GamesService, $state) {
         $translatePartialLoader.addPart('games');
         $translate.refresh();
 
@@ -86,5 +86,42 @@ gameItAngularApp.controller('GameController', ['$rootScope', 'toastr', '$scope',
             }, function error(response) {
 
             });
+        };
+
+        $scope.buyGame = function (size, game) {
+            $scope.selectedGame = game;
+
+            $scope.open = function (size) {
+                var modalInstance = $uibModal.open({
+                    animation: true,
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: 'views/purchase-game-modal.html',
+                    controller: 'PaymentController',
+                    size: size,
+                    resolve: {
+                        param: function () {
+                            return {'data': $scope.selectedGame};
+                        }
+                    }
+                });
+
+                modalInstance.result.then(function () {
+                    $scope.gameList = GamesService.query();
+                    $translate('games.game.editSave').then(function (translatedMessage) {
+                        toastr.success(translatedMessage, {
+                            closeButton: true,
+                            allowHtml: true
+                        });
+                    });
+
+                }, function () {
+                    console.log('modalClosed');
+                });
+            };
+            $scope.open(size);
         }
+
+
+
     }]);

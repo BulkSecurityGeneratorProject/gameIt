@@ -20,7 +20,8 @@ var gameItAngularApp = angular.module('gameItApp', [
     'infinite-scroll',
     'ngPasswordStrength',
     'vcRecaptcha',
-    'datePicker'
+    'datePicker',
+    'angular-stripe'
 ]);
 
 gameItAngularApp.run([
@@ -49,8 +50,11 @@ gameItAngularApp.run([
             });
     }]);
 
-gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider',
-    function ($httpProvider, $stateProvider, $urlRouterProvider) {
+gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider', 'stripeProvider',
+    function ($httpProvider, $stateProvider, $urlRouterProvider,stripeProvider) {
+
+        stripeProvider.setPublishableKey('pk_test_i85fUQVFNX8EQUID3i4Knhgp');
+
         $urlRouterProvider.otherwise('/');
         $stateProvider
             .state('main', {

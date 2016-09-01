@@ -15,6 +15,15 @@
       "commentDelete": "Delete Comment",
       "releaseYear.placeholder": "Click to select the release year",
       "rateLogIn": "You need to be logged in to rate the game",
+      "buy": {
+        "gameName": "<b>Buying Game: {{game.gameName}}</b>",
+        "gamePrice": "Game Price:",
+        "paymentDetails": "Payment Details",
+        "cardNumber": "Card Number",
+        "expirationDate": "Expiration Date",
+        "cvc": "CVC Code",
+        "submit": "Purchase!"
+      },
       "minPerform": {
         "name": "<b>Minimum Requirements:</b>",
         "processor": "Processor:",

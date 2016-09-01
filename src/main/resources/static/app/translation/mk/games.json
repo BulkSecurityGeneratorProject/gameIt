@@ -14,6 +14,15 @@
       "releaseYear": "<b>Година на издавање:</b>",
       "commentDelete": "Избриши Коментар",
       "releaseYear.placeholder": "Притиснете за да селектирате датум",
+      "buy": {
+        "gameName": "<b>Вие ја купувате играта:</b>",
+        "gamePrice": "Цена на играта:",
+        "paymentDetails": "Детали за плаќањето",
+        "cardNumber": "Број на картичка:",
+        "expirationDate": "Датум на истекување:",
+        "cvc": "CVC Код:",
+        "submit": "Купи!"
+      },
       "minPerform": {
         "name": "<b>Минимални Барања:</b>",
         "processor": "Процесор:",

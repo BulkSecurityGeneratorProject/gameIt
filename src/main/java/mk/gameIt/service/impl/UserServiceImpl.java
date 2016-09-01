@@ -3,6 +3,7 @@ package mk.gameIt.service.impl;
 import mk.gameIt.domain.Provider;
 import mk.gameIt.domain.Role;
 import mk.gameIt.domain.User;
+import mk.gameIt.service.MailSender;
 import mk.gameIt.web.dto.UserObject;
 import mk.gameIt.web.exceptions.EmailExistsException;
 import mk.gameIt.web.exceptions.UsernameExistsException;
@@ -50,6 +51,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private UserRepository userRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private MailSender mailSender;
 
     @Override
     public List<User> findAll() {
@@ -117,6 +121,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
         userRepository.save(user);
         log.debug("Created Information for User: {}", user);
+        mailSender.sendReistrationSuccessEmail(user);
         return user;
     }
 

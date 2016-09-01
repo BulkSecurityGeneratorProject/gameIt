@@ -96,7 +96,8 @@ var JS_LIB = [
     'bower_components/c3/c3.js',
     'bower_components/angular-password/angular-password.js',
     'bower_components/angular-recaptcha/release/angular-recaptcha.js',
-    'bower_components/angular-datepicker/dist/angular-datepicker.js'
+    'bower_components/angular-datepicker/dist/angular-datepicker.js',
+    'bower_components/angular-stripe/release/angular-stripe.js'
 ];
 
 var JS_APP = [

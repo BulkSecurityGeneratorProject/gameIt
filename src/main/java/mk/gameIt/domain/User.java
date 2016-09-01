@@ -12,7 +12,9 @@ import java.sql.Blob;
 import java.sql.SQLException;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Stefan on 24.03.2016.
@@ -53,10 +55,12 @@ public class User {
     @Enumerated(EnumType.STRING)
     public Role role;
 
- //   @JsonIgnore
-  //  @OneToOne
-  //  @JoinColumn(referencedColumnName = "id")
-  //  private OAuthAccount client;
+    @OneToMany(mappedBy = "userSeller", cascade = CascadeType.ALL)
+    private Set<Game> sellingGames;
+
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private Set<UserGameOrder> userGameOrders = new HashSet<UserGameOrder>(0);
 
     @JsonIgnore
     @OneToMany(mappedBy = "userId", cascade = CascadeType.REMOVE)
@@ -83,6 +87,23 @@ public class User {
 
         return username.equals(user.username);
 
+    }
+
+    public Set<UserGameOrder> getUserGameOrders() {
+        return userGameOrders;
+    }
+
+    public void setUserGameOrders(Set<UserGameOrder> userGameOrders) {
+        this.userGameOrders = userGameOrders;
+    }
+
+
+    public Set<Game> getSellingGames() {
+        return sellingGames;
+    }
+
+    public void setSellingGames(Set<Game> sellingGames) {
+        this.sellingGames = sellingGames;
     }
 
     @Override
