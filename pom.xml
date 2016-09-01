@@ -147,6 +147,12 @@
             <artifactId>httpclient</artifactId>
         </dependency>
 
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>6.0.0</version>
+		</dependency>
+
 		<!--Recaptcha for Spring Boot-->
 		<dependency>
 			<groupId>com.github.mkopylec</groupId>
@@ -179,6 +185,24 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<resources>
+					<resource>
+						<directory>${project.sources}</directory>
+						<filtering>true</filtering>
+						<excludes>
+							<exclude>**/*.woff</exclude>
+							<exclude>**/*.ttf</exclude>
+						</excludes>
+					</resource>
+					<resource>
+						<directory>${project.sources}</directory>
+						<filtering>false</filtering>
+						<includes>
+							<include>**/*.woff</include>
+							<include>**/*.ttf</include>
+						</includes>
+					</resource>
+				</resources>
 			</plugin>
 		</plugins>
 	</build>

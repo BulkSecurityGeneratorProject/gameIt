@@ -1,9 +1,9 @@
 package mk.gameIt.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.stripe.model.Charge;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
@@ -15,6 +15,7 @@ import java.time.ZoneOffset;
 public class UserGameOrder implements java.io.Serializable {
 
     @ManyToOne
+    @NotNull
     private User user;
 
     @ManyToOne
@@ -25,6 +26,9 @@ public class UserGameOrder implements java.io.Serializable {
     private Long orderId;
 
     private long createdDate;
+
+    @Column(nullable = false)
+    private String stripeOrderId;
 
     public UserGameOrder() {
         createdDate = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
@@ -60,6 +64,14 @@ public class UserGameOrder implements java.io.Serializable {
 
     public void setCreatedDate(long createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public String getStripeOrderId() {
+        return stripeOrderId;
+    }
+
+    public void setStripeOrderId(String stripeOrderId) {
+        this.stripeOrderId = stripeOrderId;
     }
 
     @Override

@@ -4,12 +4,13 @@ import com.stripe.Stripe;
 import com.stripe.exception.*;
 import com.stripe.model.Charge;
 import mk.gameIt.domain.Game;
+import mk.gameIt.domain.User;
 import mk.gameIt.domain.UserGameOrder;
 import mk.gameIt.repository.UserGameOrderRepository;
 import mk.gameIt.service.MailSender;
 import mk.gameIt.service.UserGameOrderService;
+import mk.gameIt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.bind.RelaxedPropertyResolver;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,9 @@ public class UserGameOrderServiceImpl implements UserGameOrderService {
     private UserGameOrderRepository userGameOrderRepository;
     @Autowired
     private MailSender mailSender;
+
+    @Autowired
+    private UserService userService;
 
     public static final String STRIPE_KEY_PREFIX = "stripe.";
     public static final String TEST_PRIVATE_KEY = "testpk";
@@ -47,6 +51,7 @@ public class UserGameOrderServiceImpl implements UserGameOrderService {
         Stripe.apiKey = stripeConfig.getProperty(TEST_PRIVATE_KEY);
 
         // Get the credit card details submitted by the form
+        User buyer = userService.currentLoggedInUser();
 
         Double price = game.getGamePrice()*100;
         // Create a charge: this will charge the user's card
@@ -58,6 +63,14 @@ public class UserGameOrderServiceImpl implements UserGameOrderService {
             chargeParams.put("description", "Charge for game");
 
             Charge charge = Charge.create(chargeParams);
+
+            UserGameOrder userGameOrder = new UserGameOrder();
+            userGameOrder.setUser(buyer);
+            userGameOrder.setGame(game);
+            userGameOrder.setStripeOrderId(charge.getId());
+
+            userGameOrderRepository.save(userGameOrder);
+
 
             return charge;
         } catch (CardException e) {

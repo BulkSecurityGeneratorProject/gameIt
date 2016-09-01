@@ -10,7 +10,7 @@
       "grade": "Grade",
       "description": "<b>Game Description:</b>",
       "description.placeholder": "Enter the description for the game",
-      "releasedBy": "<b>Released By:</b>",
+      "soldBy": "<b>Released By:</b>",
       "releaseYear": "<b>Release Year:</b>",
       "commentDelete": "Delete Comment",
       "releaseYear.placeholder": "Click to select the release year",
@@ -34,6 +34,7 @@
       "optPerform": {
         "name": "<b>Recommended Requirements:</b>"
       },
+      "buyComplete": "Transaction Successful",
       "edit": "Edit",
       "editGame": "Edit Game",
       "editSave": "Updated Game!",

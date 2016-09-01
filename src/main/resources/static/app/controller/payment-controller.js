@@ -1,8 +1,8 @@
 /**
  * Created by Stefan on 31.8.2016.
  */
-gameItAngularApp.controller('PaymentController', ['$scope', '$http', 'stripe', 'param', '$uibModalInstance', '$rootScope', '$translate', '$translatePartialLoader', 'CredentialsService', '$state', '$stateParams',
-    function ($scope, $http, stripe, param, $uibModalInstance, $rootScope, $translate, $translatePartialLoader, CredentialsService, $state, $stateParams) {
+gameItAngularApp.controller('PaymentController', ['$scope','toastr','$http', 'stripe', 'param', '$uibModalInstance', '$rootScope', '$translate', '$translatePartialLoader', 'CredentialsService', '$state', '$stateParams',
+    function ($scope, toastr, $http, stripe, param, $uibModalInstance, $rootScope, $translate, $translatePartialLoader, CredentialsService, $state, $stateParams) {
 
         $scope.game = {};
         $scope.game = param.data;
@@ -25,6 +25,12 @@ gameItAngularApp.controller('PaymentController', ['$scope', '$http', 'stripe', '
                 .then(function (payment) {
                     console.log(payment);
                     console.log('successfully submitted payment for $', payment.data.amount/100);
+                    $translate('games.game.buyComplete').then(function (translatedMessage) {
+                        toastr.success(translatedMessage, {
+                            closeButton: true,
+                            allowHtml: true
+                        });
+                    });
                     $uibModalInstance.close();
                 })
                 .catch(function (err) {

@@ -55,6 +55,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     public Role role;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "userSeller", cascade = CascadeType.ALL)
     private Set<Game> sellingGames;
 

@@ -3,12 +3,11 @@
 }*/
 
 @font-face {
-    font-family: Roboto;
-    src: url('../fonts/roboto/Roboto-Medium.ttf');
+    font-family: 'Ubuntu', sans-serif;
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     padding-top: 70px;
     margin-bottom: 50px;
 }

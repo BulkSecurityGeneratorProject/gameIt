@@ -108,12 +108,7 @@ gameItAngularApp.controller('GameController', ['$rootScope', '$uibModal','toastr
 
                 modalInstance.result.then(function () {
                     $scope.gameList = GamesService.query();
-                    $translate('games.game.editSave').then(function (translatedMessage) {
-                        toastr.success(translatedMessage, {
-                            closeButton: true,
-                            allowHtml: true
-                        });
-                    });
+
 
                 }, function () {
                     console.log('modalClosed');

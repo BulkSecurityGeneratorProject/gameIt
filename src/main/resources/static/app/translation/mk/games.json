@@ -10,7 +10,7 @@
       "grade": "Оцена",
       "description": "<b>Опис на Играта:</b>",
       "description.placeholder": "Внеси опис за играта",
-      "releasedBy": "<b>Издава:</b>",
+      "soldBy": "<b>Продава:</b>",
       "releaseYear": "<b>Година на издавање:</b>",
       "commentDelete": "Избриши Коментар",
       "releaseYear.placeholder": "Притиснете за да селектирате датум",
@@ -33,6 +33,7 @@
       "optPerform": {
         "name": "<b>Препорачани Барања:</b>"
       },
+      "buyComplete": "Трансакцијата беше успешна",
       "edit": "Промени",
       "editGame": "Промени Игра",
       "editSave": "Промената е зачувана!",
