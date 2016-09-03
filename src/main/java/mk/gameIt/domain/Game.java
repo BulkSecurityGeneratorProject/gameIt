@@ -1,20 +1,19 @@
 package mk.gameIt.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Indexed;
-import org.hibernate.search.annotations.Store;
+//import org.hibernate.search.annotations.Field;
+//import org.hibernate.search.annotations.Indexed;
+//import org.hibernate.search.annotations.Store;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.sql.Blob;
 import java.util.*;
 
 /**
  * Created by Stefan on 24.03.2016.
  */
 @Entity
-@Indexed
+//@Indexed
 @Table(name = "Game")
 public class Game {
     @Id
@@ -22,7 +21,7 @@ public class Game {
     private Long gameId;
 
     @NotNull
-    @Field
+   // @Field
     @Column(nullable = false)
     private String gameName;
 
@@ -52,6 +51,11 @@ public class Game {
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "game")
     private Set<UserGameOrder> userGameOrders = new HashSet<UserGameOrder>(0);
+
+//    @JsonIgnore
+//    @ManyToOne
+//    @JoinColumn(name = "userWishlist")
+//    private User userWishlist;
 
     @ManyToOne
     @JoinColumn(name = "user_seller")
@@ -107,6 +111,14 @@ public class Game {
                 ", gameGradeSum=" + gameGradeSum +
                 '}';
     }
+
+//    public User getUserWishlist() {
+//        return userWishlist;
+//    }
+//
+//    public void setUserWishlist(User userWishlist) {
+//        this.userWishlist = userWishlist;
+//    }
 
     public void setGameNumberOfViews(Long gameNumberOfViews) {
         this.gameNumberOfViews = gameNumberOfViews;

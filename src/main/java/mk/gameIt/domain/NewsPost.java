@@ -1,7 +1,7 @@
 package mk.gameIt.domain;
 
 import org.hibernate.annotations.CollectionId;
-import org.hibernate.search.annotations.Indexed;
+//import org.hibernate.search.annotations.Indexed;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

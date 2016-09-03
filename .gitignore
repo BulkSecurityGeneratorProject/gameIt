@@ -1,8 +1,4 @@
-target/
-buildNumber.properties
-.mvn/timing.properties
+target
 
 *.iml
 .idea/
-
-*-aplication.properties

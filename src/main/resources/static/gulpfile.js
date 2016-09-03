@@ -98,6 +98,8 @@ var JS_LIB = [
     'bower_components/angular-recaptcha/release/angular-recaptcha.js',
     'bower_components/angular-datepicker/dist/angular-datepicker.js',
     'bower_components/angular-stripe/release/angular-stripe.js'
+   // 'bower_components/ngcart/dist/ngCart.js'
+
 ];
 
 var JS_APP = [

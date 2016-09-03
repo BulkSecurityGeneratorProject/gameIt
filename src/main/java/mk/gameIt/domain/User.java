@@ -55,6 +55,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     public Role role;
 
+//    @ManyToMany(mappedBy = "userWishlist", cascade = CascadeType.ALL)
+//    private Set<Game> wishlist;
+
     @JsonIgnore
     @OneToMany(mappedBy = "userSeller", cascade = CascadeType.ALL)
     private Set<Game> sellingGames;
@@ -89,6 +92,14 @@ public class User {
         return username.equals(user.username);
 
     }
+//
+//    public Set<Game> getWishlist() {
+//        return wishlist;
+//    }
+//
+//    public void setWishlist(Set<Game> wishlist) {
+//        this.wishlist = wishlist;
+//    }
 
     public Set<UserGameOrder> getUserGameOrders() {
         return userGameOrders;
@@ -237,6 +248,7 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", langKey='" + langKey + '\'' +
                 ", profileImage=" + getUserProfileImageToString() +
+//                ", wishlist=" + wishlist +
                 ", provider=" + provider +
                 ", role=" + role +
                 '}';

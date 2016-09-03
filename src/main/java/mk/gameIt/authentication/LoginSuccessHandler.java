@@ -6,9 +6,7 @@ import mk.gameIt.domain.User;
 import mk.gameIt.repository.UserRepository;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.util.ResourceUtils;
 
@@ -22,7 +20,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
-import java.util.LinkedHashMap;
 
 /**
  * Created by Stefan on 01.04.2016.

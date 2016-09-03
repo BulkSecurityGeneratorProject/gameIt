@@ -1,5 +1,6 @@
 package mk.gameIt.service;
 
+import mk.gameIt.domain.Game;
 import mk.gameIt.domain.User;
 import mk.gameIt.web.dto.UserObject;
 import mk.gameIt.web.exceptions.EmailExistsException;
@@ -34,4 +35,6 @@ public interface UserService {
     void changeLangKey(String lang, String username);
 
     void changeAdmin(User user, Boolean admin);
+
+//    void addToWishlist(Game game);
 }

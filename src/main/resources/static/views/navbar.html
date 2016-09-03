@@ -127,6 +127,13 @@
                             </li>
                         </ul>
                     </li>
+                    <li ng-show="authenticated">
+                        <a ui-sref="cart"
+                           data-toggle="collapse"
+                           data-target=".navbar-collapse.in"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                        <ngcart-summary></ngcart-summary>
+                        </a>
+                    </li>
                 </ul>
 
             </div>

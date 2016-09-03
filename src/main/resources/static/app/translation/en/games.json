@@ -10,7 +10,7 @@
       "grade": "Grade",
       "description": "<b>Game Description:</b>",
       "description.placeholder": "Enter the description for the game",
-      "soldBy": "<b>Released By:</b>",
+      "soldBy": "<b>Sold By:</b>",
       "releaseYear": "<b>Release Year:</b>",
       "commentDelete": "Delete Comment",
       "releaseYear.placeholder": "Click to select the release year",

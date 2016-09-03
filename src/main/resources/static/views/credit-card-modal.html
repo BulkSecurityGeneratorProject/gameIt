@@ -1,0 +1,57 @@
+<div class="modal-body payForm" id="modal-body">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <img class="pull-right" src="http://i76.imgup.net/accepted_c22e0.png" />Payment
+            Details</h3>
+        </div>
+        <div class="panel-body">
+            <form name="paymentForm" ng-submit="charge(payment)">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="cardNumber">Card Number</label>
+                            <div class="input-group">
+                                <input ng-model="payment.card.number" class="form-control" id="cardNumber"
+                                       name="cardNumber" placeholder="Valid Card Number" required autofocus
+                                       name="cardNumber" cc-number/>
+                                <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-7 col-md-7">
+                        <div class="form-group">
+                            <label for="expMonth" >Expiration Data</label>
+                            <div class="row">
+                                <div class="col-xs-3 col-lg-3 pl-ziro">
+                                    <input type="text" ng-model="payment.card.exp_month" id="expMonth"
+                                           placeholder="mm" class="form-control" name="expMonth" cc-exp-month/>
+                                </div>
+                                <div class="col-xs-4 col-lg-4" style="padding-left:0px">
+                                    <input type="text" ng-model="payment.card.exp_year" class="form-control"
+                                           placeholder="YY" name="expYear" cc-exp-year/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-5 col-md-5 pull-right">
+                        <div class="form-group">
+                            <label for="cvCode">CVC CODE</label>
+                            <input type="password" id="cvCode" ng-model="payment.card.cvc" class="form-control"
+                                   name="cvc" cc-cvc cc-type="cardNumber.$ccType">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-md btn-success">Purchase</button>
+                        <button class="btn btn-warning" type="button" ng-click="cancel()" >Cancel</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

@@ -15,6 +15,7 @@ import org.springframework.boot.bind.RelaxedPropertyResolver;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -71,7 +72,7 @@ public class UserGameOrderServiceImpl implements UserGameOrderService {
 
             userGameOrderRepository.save(userGameOrder);
 
-
+            mailSender.sendOrderEmail(buyer, game, userGameOrder.getOrderId());
             return charge;
         } catch (CardException e) {
             // The card has been declined
@@ -82,6 +83,8 @@ public class UserGameOrderServiceImpl implements UserGameOrderService {
         } catch (APIConnectionException e) {
             e.printStackTrace();
         } catch (AuthenticationException e) {
+            e.printStackTrace();
+        } catch (MessagingException e) {
             e.printStackTrace();
         }
         return null;

@@ -10,10 +10,6 @@ import mk.gameIt.service.UserService;
 import mk.gameIt.web.dto.CommentGameObject;
 import mk.gameIt.web.dto.DeleteCommentObject;
 import mk.gameIt.web.dto.GameObject;
-import mk.gameIt.web.dto.UserObject;
-import org.apache.catalina.connector.Response;
-import org.apache.http.protocol.ResponseServer;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,15 +18,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.codec.Base64;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -132,6 +122,12 @@ public class GameController {
             return new ResponseEntity<List<Game>>(HttpStatus.NO_CONTENT);
         }
     }
+//
+//    @RequestMapping(value = "/games/{id}/wishlist", method = RequestMethod.POST)
+//    public ResponseEntity putGameToWishlist(@PathVariable Long id) {
+//        Game game  = gameService.findOne(id);
+//        userService.addToWishlist(game);
+//    }
 
     @RequestMapping(value = "/games/comment", method = RequestMethod.POST)
     public Game commentGame(@RequestBody CommentGameObject object) {

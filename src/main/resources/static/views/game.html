@@ -2,7 +2,17 @@
     <div class="row">
         <div class="col-sm-12">
             <div ng-show="authenticated">
-                <button ng-click="buyGame('md',game)" class="btn btn-lg btn-default">Buy Game</button>
+                <div class="row">
+                    <div class="col-sm-6 ">
+                        <div class="pull-right">
+                            <button ng-click="buyGame('md',game)" class="btn btn-md btn-primary">Buy Now</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <!--&lt;!&ndash;<h3>Add to Cart <span>(ngcart-addtocart)</span></h3>&ndash;&gt;-->
+                        <ngcart-addtocart id="{{ game.gameId }}" name="{{ game.gameName }}" price="{{ game.gamePrice }}" quantity="1" quantity-max="30" data="game">Add to Cart</ngcart-addtocart>
+                    </div>
+                </div>
             </div>
             <h1 class="page-header text-center">{{game.gameName}} - <span translate="games.game.grade">Grade</span>:
                 {{game.gameGradeSum}}</h1>

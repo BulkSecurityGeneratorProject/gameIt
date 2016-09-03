@@ -21,7 +21,8 @@ var gameItAngularApp = angular.module('gameItApp', [
     'ngPasswordStrength',
     'vcRecaptcha',
     'datePicker',
-    'angular-stripe'
+    'angular-stripe',
+    'ngCart'
 ]);
 
 gameItAngularApp.run([
@@ -76,6 +77,16 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
                     }
                 }
 
+            })
+            .state('cart', {
+                url: '/cart',
+                parent: 'main',
+                views: {
+                    'page@': {
+                        templateUrl: 'views/ngCart/cart.html',
+                        controller: 'CartController'
+                    }
+                }
             })
             .state('contact', {
               url: "/contact",

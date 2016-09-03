@@ -5,7 +5,6 @@ import mk.gameIt.domain.User;
 import mk.gameIt.web.dto.UserObject;
 import mk.gameIt.web.exceptions.EmailExistsException;
 import mk.gameIt.web.exceptions.UsernameExistsException;
-import org.apache.catalina.connector.Response;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +17,6 @@ import mk.gameIt.service.UserService;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
