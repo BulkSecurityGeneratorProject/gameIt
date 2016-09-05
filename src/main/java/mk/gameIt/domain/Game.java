@@ -1,6 +1,8 @@
 package mk.gameIt.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
 //import org.hibernate.search.annotations.Field;
 //import org.hibernate.search.annotations.Indexed;
 //import org.hibernate.search.annotations.Store;
@@ -13,7 +15,7 @@ import java.util.*;
  * Created by Stefan on 24.03.2016.
  */
 @Entity
-//@Indexed
+@Indexed
 @Table(name = "Game")
 public class Game {
     @Id
@@ -21,7 +23,7 @@ public class Game {
     private Long gameId;
 
     @NotNull
-   // @Field
+    @Field
     @Column(nullable = false)
     private String gameName;
 

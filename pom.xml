@@ -162,11 +162,11 @@
         </dependency>
 
         <!--&lt;!&ndash; Maven artifact identifier for Hibernate Search &ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>org.hibernate</groupId>-->
-            <!--<artifactId>hibernate-search-orm</artifactId>-->
-            <!--<version>4.5.1.Final</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-search-orm</artifactId>
+            <version>4.5.1.Final</version>
+        </dependency>
 
         <!--&lt;!&ndash; Optional: to use JPA 2.1 &ndash;&gt;-->
         <!--<dependency>-->
