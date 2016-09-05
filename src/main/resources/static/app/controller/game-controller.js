@@ -1,10 +1,15 @@
 /**
  * Created by TOMMY on 03-Apr-16.
  */
-gameItAngularApp.controller('GameController', ['$rootScope', '$uibModal','toastr', '$scope', '$http', '$translate', '$translatePartialLoader', 'GamesService', '$state',
-    function ($rootScope,$uibModal, toastr, $scope, $http, $translate, $translatePartialLoader, GamesService, $state) {
+gameItAngularApp.controller('GameController', ['$rootScope', '$uibModal', 'toastr', '$scope', '$http', '$translate',
+    '$translatePartialLoader', 'GamesService', '$state', 'ngCart',
+    function ($rootScope, $uibModal, toastr, $scope, $http, $translate,
+              $translatePartialLoader, GamesService, $state, ngCart) {
         $translatePartialLoader.addPart('games');
         $translate.refresh();
+
+        ngCart.setTaxRate(10);
+        ngCart.setShipping(2.99);
 
         var gameId = $state.params.id;
         $scope.comment = {};

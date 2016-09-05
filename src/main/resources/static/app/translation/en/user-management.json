@@ -23,6 +23,7 @@
         "profiles": "Profiles",
         "langKey": "Language",
         "admin": "Admin",
+        "seller": "Seller",
         "delete": "Delete"
     }
 }

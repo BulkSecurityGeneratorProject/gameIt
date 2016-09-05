@@ -20,19 +20,12 @@ gameItAngularApp.controller('NavbarController', ['$scope', '$rootScope', '$state
 
         CredentialsService.authenticate();
         $scope.logout = function () {
-            $http({
-                method: 'POST',
-                url: 'logout',
-                data: {}
-            }).then(function success(response) {
-                $rootScope.authenticated = false;
-                $rootScope.loggedInUser = undefined;
-                $state.go('home');
-                $rootScope.administrator = false;
-            }, function error(response) {
-                $rootScope.authenticated = false;
-                $rootScope.loggedInUser = undefined;
-                $rootScope.administrator = false;
+            CredentialsService.logout(function success() {
+                if ($scope.$state.current.name == 'home') {
+                    $state.transitionTo('home', {}, {reload: true, notify: true});
+                } else {
+                    $state.go('home');
+                }
             });
         };
 

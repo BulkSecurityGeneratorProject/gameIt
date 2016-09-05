@@ -107,7 +107,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setPasswordHash(passwordHash);
         user.setLangKey("en");
         user.setProvider(Provider.LOCAL);
-        user.setRole(Role.ROLE_USER);
+        if(userObject.getSeller()) {
+            user.setRole(Role.ROLE_SELLER);
+        } else {
+            user.setRole(Role.ROLE_USER);
+        }
         if (userObject.getProfileImage() == null) {
             File img = ResourceUtils.getFile("classpath:static/images/defaultProfileImage.png");
             byte[] imag = IOUtils.toByteArray(new FileInputStream(img));

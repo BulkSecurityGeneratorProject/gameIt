@@ -63,6 +63,16 @@
                         </span>
                         </a>
                         <ul class="dropdown-menu">
+                            <li ui-sref-active="active" ng-show="seller"><a ui-sref="sell-games"
+                                                                                   data-toggle="collapse"
+                                                                                   data-target=".navbar-collapse.in"><i
+                                    class="fa fa-gamepad fa-fw"></i>
+                                &#xA0;<span translate="global.menu.account.sellGame">Sell Game</span></a></li>
+                            <li ui-sref-active="active" ng-show="authenticated"><a ui-sref="orders"
+                                                                                   data-toggle="collapse"
+                                                                                   data-target=".navbar-collapse.in"><i
+                                    class="fa fa-credit-card" aria-hidden="true"></i>
+                                &#xA0;<span translate="global.menu.account.orders">Orders</span></a></li>
                             <li ui-sref-active="active" ng-show="authenticated"><a ui-sref="settings"
                                                                                    data-toggle="collapse"
                                                                                    data-target=".navbar-collapse.in"><i

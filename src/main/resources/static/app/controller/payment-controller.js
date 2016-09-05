@@ -22,9 +22,27 @@ gameItAngularApp.controller('PaymentController', ['$scope','toastr','$http', 'st
                     payment.token = response.id;
                     return $http.post('api/games/' + $scope.game.gameId + '/order', payment);
                 })
-                .then(function (payment) {
-                    console.log(payment);
-                    console.log('successfully submitted payment for $', payment.data.amount/100);
+                .then(function (response) {
+                    console.log(response);
+                    var fileName = "order-report.pdf";
+                    var a = document.createElement("a");
+                    document.body.appendChild(a);
+                    a.style = "display: none";
+                    $http({
+                        method: 'GET',
+                        url: 'report/order/'+response.data.orderId,
+                        headers: {
+                            'Content-type': 'application/pdf'
+                        },
+                        responseType: 'arraybuffer'
+                    }).then(function success(response) {
+                        console.log(response);
+                        var file = new Blob([response.data], {type: 'application/pdf'});
+                        var fileURL = window.URL.createObjectURL(file);
+                        a.href = fileURL;
+                        a.download = fileName;
+                        a.click();
+                    });
                     $translate('games.game.buyComplete').then(function (translatedMessage) {
                         toastr.success(translatedMessage, {
                             closeButton: true,

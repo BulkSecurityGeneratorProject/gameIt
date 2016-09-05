@@ -88,6 +88,16 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
                     }
                 }
             })
+            .state('orders', {
+                url: '/orders',
+                parent: 'main',
+                views: {
+                    'page@': {
+                        templateUrl: 'views/orders.html',
+                        controller: 'OrderController'
+                    }
+                }
+            })
             .state('contact', {
               url: "/contact",
                 parent:  'main',
@@ -237,13 +247,13 @@ gameItAngularApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'
                     }
                 }
             })
-            .state('admin.admin-games', {
-                url: "/admin-games",
-                parent: 'admin',
+            .state('sell-games', {
+                url: "/sell-game",
+                parent: 'main',
                 views: {
-                    'admin': {
-                        templateUrl: 'views/admin/admin-games.html',
-                        controller: 'AdminGamesController'
+                    'page@': {
+                        templateUrl: 'views/sell-games.html',
+                        controller: 'SellGamesController'
                     }
                 }
             })

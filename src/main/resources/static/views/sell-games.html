@@ -101,6 +101,11 @@
                                    format="YYYY"
                                    ng-model="game.gameReleaseYear" required>
                         </div>
+                        <div class="col-sm-3">
+                            <label class="control-label" for="releaseYear" translate="games.game.gamePrice">Game
+                                Price:</label>
+                            <input type="text" id="gamePrice" class="form-control" ng-model="game.gamePrice" required placeholder="{{'games.game.gamePrice.placeholder' | translate}}" />
+                        </div>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">

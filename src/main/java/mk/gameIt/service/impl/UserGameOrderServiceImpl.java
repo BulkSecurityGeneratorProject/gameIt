@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -45,7 +46,7 @@ public class UserGameOrderServiceImpl implements UserGameOrderService {
     }
 
     @Override
-    public Charge placeOrder(String creditCardObject, Game game) {
+    public UserGameOrder placeOrder(String creditCardObject, Game game) {
         initPropertyResolver();
         // Set your secret key: remember to change this to your live secret key in production
         // See your keys here: https://dashboard.stripe.com/account/apikeys
@@ -73,7 +74,7 @@ public class UserGameOrderServiceImpl implements UserGameOrderService {
             userGameOrderRepository.save(userGameOrder);
 
             mailSender.sendOrderEmail(buyer, game, userGameOrder.getOrderId());
-            return charge;
+            return userGameOrder;
         } catch (CardException e) {
             // The card has been declined
         } catch (APIException e) {
@@ -88,6 +89,18 @@ public class UserGameOrderServiceImpl implements UserGameOrderService {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public List<UserGameOrder> getAllOrders() {
+        User user = userService.currentLoggedInUser();
+        List<UserGameOrder> orders = userGameOrderRepository.findAllByUser(user);
+        return orders;
+    }
+
+    @Override
+    public UserGameOrder findOne(Long id) {
+        return userGameOrderRepository.findOne(id);
     }
 
 }

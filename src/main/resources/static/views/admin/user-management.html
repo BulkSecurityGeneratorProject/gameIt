@@ -2,6 +2,7 @@
     <div class="row">
         <div class="col-sm-12">
             <h2 translate="userManagement.home.title">Users</h2>
+            <h3>Generate a user report! <button class="btn btn-default" ng-click="generateReport()">Generate</button> </h3>
             <table st-table="displayedUsers" st-safe-src="userList" class="table table-hover table-stripped">
                 <thead>
                 <tr>
@@ -10,6 +11,7 @@
                     <th translate="userManagement.email">Email</th>
                     <th translate="userManagement.firstName">First Name</th>
                     <th translate="userManagement.lastName">Last Name</th>
+                    <th translate="userManagement.seller">Seller</th>
                     <th translate="userManagement.admin">Admin</th>
                     <th translate="userManagement.delete">Delete</th>
                 </tr>
@@ -26,6 +28,12 @@
                     <td>{{user.email}}</td>
                     <td>{{user.firstName}}</td>
                     <td>{{user.lastName}}</td>
+                    <td><input type="checkbox"
+                               ng-model="user.isSeller"
+                               ng-change="makeSeller(user)"
+                               ng-checked="user.role == 'ROLE_SELLER'"/>
+
+                    </td>
                     <td><input type="checkbox"
                                ng-model="user.isAdmin"
                                ng-change="makeAdmin(user)"

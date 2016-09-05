@@ -1,8 +1,8 @@
 /**
  * Created by Stefan on 19.8.2016.
  */
-gameItAngularApp.controller('AdminGamesController', ['$scope', 'toastr', '$rootScope', '$http', '$translate', '$translatePartialLoader', '$uibModal', 'GamesService',
-    function ($scope, toastr, $rootScope, $http, $translate, $translatePartialLoader, $uibModal, GamesService) {
+gameItAngularApp.controller('SellGamesController', ['$scope', 'toastr','$state', '$rootScope', '$http', '$translate', '$translatePartialLoader', '$uibModal', 'GamesService',
+    function ($scope, toastr,$state, $rootScope, $http, $translate, $translatePartialLoader, $uibModal, GamesService) {
         // $scope.account = AccountService.query();
         $translatePartialLoader.addPart('games');
         $translatePartialLoader.addPart('admin');

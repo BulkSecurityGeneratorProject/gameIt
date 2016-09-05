@@ -32,6 +32,8 @@ public class GameObject {
 
     private Double gameGradeSum;
 
+    private Double gamePrice;
+
     public GameObject() {
     }
 
@@ -55,7 +57,17 @@ public class GameObject {
         game.setGameDescription(this.gameDescription);
         game.setGameMinimalPerformance(this.gameMinimalPerformance);
         game.setGameOptimalPerformance(this.gameOptimalPerformance);
+        game.setGamePrice(this.getGamePrice());
         return game;
+    }
+
+
+    public Double getGamePrice() {
+        return gamePrice;
+    }
+
+    public void setGamePrice(Double gamePrice) {
+        this.gamePrice = gamePrice;
     }
 
     public Long getGameId() {

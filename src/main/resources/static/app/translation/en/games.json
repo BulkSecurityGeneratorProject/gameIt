@@ -8,6 +8,8 @@
       "picturePath": "<b>Game picture path:</b>",
       "picturePath.placeholder": "Enter the game picture path (link)",
       "grade": "Grade",
+      "gamePrice": "Game Price:",
+      "gamePrice.placeholder": "Enter the game price:",
       "description": "<b>Game Description:</b>",
       "description.placeholder": "Enter the description for the game",
       "soldBy": "<b>Sold By:</b>",

@@ -26,6 +26,8 @@ public class UserObject {
     @Size(min = PASSWORD_MIN_LENGTH, max = PASSWORD_MAX_LENGTH)
     private String password;
 
+    private Boolean seller;
+
     @Size(max = 50)
     private String firstName;
 
@@ -39,6 +41,15 @@ public class UserObject {
     private String profileImage;
 
     private Role role;
+
+
+    public Boolean getSeller() {
+        return seller;
+    }
+
+    public void setSeller(Boolean seller) {
+        this.seller = seller;
+    }
 
     public String getUsername() {
         return username;

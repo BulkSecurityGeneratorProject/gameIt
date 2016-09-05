@@ -1,5 +1,6 @@
 package mk.gameIt.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.stripe.model.Charge;
 
 import javax.persistence.*;
@@ -14,9 +15,11 @@ import java.time.ZoneOffset;
 @Table
 public class UserGameOrder implements java.io.Serializable {
 
+    @JsonIgnore
     @ManyToOne
     @NotNull
     private User user;
+
 
     @ManyToOne
     private Game game;
@@ -88,5 +91,15 @@ public class UserGameOrder implements java.io.Serializable {
     @Override
     public int hashCode() {
         return orderId != null ? orderId.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "UserGameOrder{" +
+                "game=" + game +
+                ", orderId=" + orderId +
+                ", createdDate=" + createdDate +
+                ", stripeOrderId='" + stripeOrderId + '\'' +
+                '}';
     }
 }

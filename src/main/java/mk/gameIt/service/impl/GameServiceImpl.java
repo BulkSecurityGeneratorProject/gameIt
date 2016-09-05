@@ -8,6 +8,7 @@ import mk.gameIt.repository.GameRatingRepository;
 import mk.gameIt.repository.GameRepository;
 import mk.gameIt.repository.UserRepository;
 import mk.gameIt.service.GameService;
+import mk.gameIt.service.UserService;
 import mk.gameIt.web.dto.GameObject;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,9 @@ public class GameServiceImpl implements GameService {
 
     @Autowired
     private UserRepository  userRepository;
+
+    @Autowired
+    private UserService userService;
 
 
     @Override
@@ -87,6 +91,7 @@ public class GameServiceImpl implements GameService {
     @Transactional
     public Game save(GameObject gameObject) throws IOException, SQLException {
         Game game = gameObject.getGame();
+        game.setUserSeller(userService.currentLoggedInUser());
         game = gameRepository.save(game);
         log.debug("Created Game: {}", game);
         return game;

@@ -1,6 +1,14 @@
 {
     "global": {
         "footer": "Copyright &copy; Game It. All Rights Reserved.",
+        "cart": {
+            "name": "Your Cart",
+            "quantity": "Quantity",
+            "amount": "Amount",
+            "total": "Total",
+            "tax": "Tax",
+            "shipping": "Shipping"
+        },
         "menu": {
             "home": "Home",
             "news": "News",
@@ -14,7 +22,9 @@
                 "sessions": "Sessions",
                 "login": "Sign in",
                 "logout": "Sign out",
-                "register": "Register"
+                "register": "Register",
+                "orders": "Orders",
+                "sellGame": "Sell Game"
             },
             "search.placeholder": "Search",
             "admin": {

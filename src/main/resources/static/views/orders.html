@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2 class="page-header">Your orders</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-7 col-sm-offset-3">
+            <table class="table table-responsive table-hover table-bordered">
+                <thead>
+                <th>Order id</th>
+                <th>Game Name</th>
+                <th>Game Price</th>
+                </thead>
+                <tbody>
+                <tr ng-repeat="order in orders">
+                    <td>
+                        {{order.orderId}}
+                    </td>
+                    <td>
+                        {{order.game.gameName}}
+                    </td>
+                    <td>
+                        {{order.game.gamePrice}} $
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

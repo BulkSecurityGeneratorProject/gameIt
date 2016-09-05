@@ -1,6 +1,14 @@
 {
     "global": {
         "footer": "Copyright &copy; Game It. Сите права се задржани.",
+        "cart": {
+            "name": "Вашата Кошничка",
+            "quantity": "Количина",
+            "amount": "Цена",
+            "total": "Тотално",
+            "tax": "Данок",
+            "shipping": "Испорака"
+        },
         "menu": {
             "home": "Дома",
             "news": "Новости",
@@ -14,7 +22,9 @@
                 "sessions": "Сесии",
                 "login": "Најава",
                 "logout": "Одјава",
-                "register": "Регистрација"
+                "register": "Регистрација",
+                "orders": "Нарачки",
+                "sellGame": "Продавај Игра"
             },
             "search.placeholder": "Пребарувај",
             "admin": {

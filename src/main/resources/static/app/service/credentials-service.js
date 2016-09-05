@@ -8,12 +8,16 @@ gameItAngularApp.factory('CredentialsService', ['$http', '$rootScope', '$transla
                 method: 'GET',
                 url: 'api/authenticate',
             }).then(function success(response) {
+                console.log(response);
                 if (response.data.name) {
                     if ($rootScope.loggedInUser === undefined) {
                         $rootScope.loggedInUser = response.data.principal;
                     }
                     if(response.data.authorities[0].authority == "ROLE_ADMIN"){
                         $rootScope.administrator = true;
+                    }
+                    if(response.data.authorities[0].authority == "ROLE_SELLER") {
+                        $rootScope.seller = true;
                     }
                     $rootScope.authenticated = true;
                     console.log("requesting lang");
@@ -29,17 +33,38 @@ gameItAngularApp.factory('CredentialsService', ['$http', '$rootScope', '$transla
                 } else {
                     $rootScope.loggedInUser = undefined;
                     $rootScope.authenticated = false;
+                    $rootScope.seller = false;
                     $rootScope.administrator = false;
                 }
                 callback && callback();
             }, function error(response) {
                 $rootScope.authenticated = false;
                 $rootScope.administrator = false;
+                $rootScope.seller = false;
                 callback && callback();
             });
 
         },
+        logout: function(callback) {
+            $http({
+                method: 'POST',
+                url: 'logout',
+                data: {}
+            }).then(function success(response) {
+                $rootScope.authenticated = false;
+                $rootScope.loggedInUser = undefined;
+                $rootScope.seller = false;
+                $rootScope.administrator = false;
+                callback && callback();
+            }, function error(response) {
+                $rootScope.authenticated = false;
+                $rootScope.loggedInUser = undefined;
+                $rootScope.administrator = false;
+                callback && callback();
+            });
+        },
         register: function(credentials, callbackSuccess, callbackError) {
+            console.log(credentials);
             $http({
                 method: 'POST',
                 url: 'api/register',

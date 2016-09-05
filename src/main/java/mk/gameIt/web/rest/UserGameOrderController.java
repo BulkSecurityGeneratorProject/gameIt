@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * Created by Stefan on 31.8.2016.
@@ -32,10 +33,21 @@ public class UserGameOrderController {
       try {
           String token = creditCardObject.getToken();
           Game game = gameService.findOne(id);
-          Charge charge = userGameOrderService.placeOrder(token, game);
-          return new ResponseEntity(HttpStatus.OK).ok(charge);
+          UserGameOrder order = userGameOrderService.placeOrder(token, game);
+          return new ResponseEntity(HttpStatus.OK).ok(order);
       } catch(Exception e) {
           return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
       }
+    }
+
+    @RequestMapping(value = "/orders", method = RequestMethod.GET)
+    public ResponseEntity getAllUserOrders() {
+        try {
+            List<UserGameOrder> orders = userGameOrderService.getAllOrders();
+            return new ResponseEntity(HttpStatus.OK).ok(orders);
+        }
+        catch(Exception e ){
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

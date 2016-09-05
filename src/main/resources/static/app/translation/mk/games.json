@@ -8,6 +8,9 @@
       "picturePath": "<b>Патека до слика за играта:</b>",
       "picturePath.placeholder": "Тука внесете ја патеката од сликата за играта (линк)",
       "grade": "Оцена",
+      "gamePrice": "Цена:",
+      "gamePrice.placeholder": "Внесете ја цената:",
+
       "description": "<b>Опис на Играта:</b>",
       "description.placeholder": "Внеси опис за играта",
       "soldBy": "<b>Продава:</b>",
