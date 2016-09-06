@@ -14,4 +14,24 @@ gameItAngularApp.controller('HomeController', ['$scope', '$state', '$rootScope',
                 }
             });
         }
+        var fileName = "order-report.pdf";
+        var a = document.createElement("a");
+        document.body.appendChild(a);
+        a.style = "display: none";
+        $http({
+            method: 'GET',
+            url: 'report/1',
+            headers: {
+                'Content-type': 'application/pdf'
+            },
+            responseType: 'arraybuffer'
+        }).then(function success(response) {
+            console.log(response);
+
+            var file = new Blob([response.data], {type: 'application/pdf'});
+            var fileURL = window.URL.createObjectURL(file);
+            a.href = fileURL;
+            a.download = fileName;
+            a.click();
+        });
     }]);

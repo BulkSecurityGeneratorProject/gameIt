@@ -37,6 +37,7 @@ gameItAngularApp.controller('PaymentController', ['$scope','toastr','$http', 'st
                         responseType: 'arraybuffer'
                     }).then(function success(response) {
                         console.log(response);
+
                         var file = new Blob([response.data], {type: 'application/pdf'});
                         var fileURL = window.URL.createObjectURL(file);
                         a.href = fileURL;

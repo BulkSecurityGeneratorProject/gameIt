@@ -54,10 +54,7 @@ public class Game {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "game")
     private Set<UserGameOrder> userGameOrders = new HashSet<UserGameOrder>(0);
 
-//    @JsonIgnore
-//    @ManyToOne
-//    @JoinColumn(name = "userWishlist")
-//    private User userWishlist;
+    private String category;
 
     @ManyToOne
     @JoinColumn(name = "user_seller")
@@ -240,6 +237,14 @@ public class Game {
 
     public void setGameGradeSum(double gameGradeSum) {
         this.gameGradeSum = gameGradeSum;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public void recalculateGameGradeSum() {
